@@ -1,0 +1,62 @@
+\documentclass[master,german]{hgbthesis}
+% Zulässige Class Options: 
+%   Typ der Arbeit: diplom, master (default), bachelor, praktikum 
+%   Hauptsprache: german (default), english
+%%------------------------------------------------------------
+
+\graphicspath{{images/}}    % wo liegen die Bilder? 
+\bibliography{literatur}  	% Angabe der BibTeX-Datei, % utf8-change
+
+%%%----------------------------------------------------------
+\begin{document}
+%%%----------------------------------------------------------
+
+%------------------------------------------------------------
+\title{Aminosäurerest Pseudopotentiale \& Energie Substitutionsmatrix, SNP Annotation mittels 3D Struktur}
+\author{Tobias Juhre}
+\studiengang{Bioinformatik und Systembiologie}
+\studienort{Gießen}
+\abgabedatum{2017}{10}{14}	% {YYYY}{MM}{DD}
+
+%%% zusätzlich für eine Bachelorarbeit: ---------------------
+\nummer{2032483}
+\semester{Sommersemester 2017} 
+\gegenstand{Einführung in die Tiefere Problematik} 
+\betreuer{Andre Marquardt}
+
+
+%\strictlicense  % erzeugt restriktive Lizenzformel
+
+%%%----------------------------------------------------------
+\frontmatter
+\maketitle
+\tableofcontents
+%%%----------------------------------------------------------
+
+\include{vorwort}
+\include{kurzfassung}
+\include{abstract}
+
+%%%----------------------------------------------------------
+\mainmatter         % Hauptteil (ab hier arab. Seitenzahlen)
+%%%----------------------------------------------------------
+
+\include{einleitung}
+\include{methoden}
+\include{Datenaquirierung}
+%\include{abc}
+\include{schluss}
+
+%%%----------------------------------------------------------
+%%%Anhang
+\appendix
+%\include{anhang_d}	% Quelltext dieses Dokuments
+
+%%%----------------------------------------------------------
+\MakeBibliography
+%%%----------------------------------------------------------
+
+%%%Messbox zur Druckkontrolle
+\include{messbox}
+
+\end{document}

@@ -1,0 +1,206 @@
+\chapter{Methoden}
+%\label{cha:Metoden abkürzung}
+
+In diesem Kapitel werden die Grundlagen vermittelt, welche für das Verständnis der Arbeit in ihrer Gänze notwendig sind.
+%und Evaluation der Arbeit von Bedeutung sind.
+
+\section{Aminosäurerest-Pseudopotentiale}
+
+Bei den Aminosäurerest-Pseudopotentialen (AP) handelt es sich um eine Methode der Transformation der physikochemischen und wechselwirkenden Eigenschaften der Aminosäuren der Proteinstruktur in ein Energiemaß. Diese Energiemaße werden dabei durch eine Dezimalzahl dargestellt und im Gegensatz zur hochkomplexen 3D Strukturen sind die Berechnungen mit ihnen viel einfacher. Die Energieprofile stehen auf dem Webserver \emph{eProS}\footnote{\url{https://biosciences.hs-mittweida.de/epros/}} zum Download bereit. Zusätzlich wurde zur lokalen Berechnung und zu Testzwecken eine lokale Möglichkeit von Herrn \emph{Florian Heinke} von der \emph{Bioinformatics Group Mittweida} (bigM)\footnote{\url{http://www.bioforscher.de/bigM/}}, zur Berechnung der Energieprofile, zu Verfügung gestellt.
+
+Durch die APs können zu den lokalen Interaktionen der direkten Nachbarn, auch noch die globalen Interaktionen der indirekten Nachbarn in einer 8A Umgebung betrachtet werden (Abb. \ref{fig:8A_Sphaere}). Somit können auch Effekte wie sterische Hinderung berücksichtigt werden. Durch diese neue Betrachtung löst man sich von der starren Betrachtungsweise der Sequenz und der 2d Struktur, wie es bei bisherigen Vorhersage-Algorithmen war.
+%
+\begin{figure}
+\centering
+\includegraphics[width=.95\textwidth]{8A_Sphaere.png}
+\caption{Ein 3D Modell einer Proteinstruktur, hellblau ist die 8 Angström Umgebung um die dunkelblaue Aminosäure im Zentrum, mit direkten Nachbarn in grün und in indirekten Nachbarn in rot. Die punktierte Linie zeigt den Abstand der $C_{\alpha}$ Atome in Angström.}%\cite{8A_Sphaere}
+\label{fig:8A_Sphaere}
+\end{figure}
+
+Energieprofile sind grobkörnige Aminosäuren Interaktionsmodelle, basierend auf $C_{\alpha}$ und $C_{\beta}$ Atom Koordinaten, welche aus bekannten Protein Strukturen extrahiert wurden. Es wird die natürlich Neigung eines Aminosäurerests, mit anderen Resten zu interagieren, untersucht. Bei Membran lokalisierten Proteinen wird zusätzlich noch die Neigung der Aminosäureresten sich in Richtung der Lipid Doppelschicht zu richten, berücksichtigt. 
+
+Generell ist die Energie Abhängig von der Neigung des Aminosäurerests nach Außen ($n_{out}$) in das umgebende Milieu oder in das Innere ($n_{in}$) des Proteins. Nimmt man nun den negativen natürlichen Logarithmus zur Basis 10, so ergibt sich für $e_{a_i}$ folgende Gleichung \ref{eq:definition}:
+%
+\begin{equation}
+  	e_{a_i} \propto -\ln{\left(\frac{n_{a_i}^{in}}{n_{a_i}^{out}}\right)}
+  	\label{eq:definition}
+\end{equation}
+
+Diese Parameter sind von bekannten globularen- und membranassoziierten Proteinen hergeleitet. Wie in \ref{eq:single} zu sehen, ist die Interaktionsenergie $e_{a_{i}}$, $a_{j}$ zwischen 2 Aminosäuren $a_{i}$ und $a_{j}$ gleich die Summe der Energien der Beiden. 
+
+\begin{equation}
+  	e_{a_{i},a_{j}} = \left( e_{a_{i}} + e_{a_{j}} \right)
+    \label{eq:single}
+\end{equation}
+
+Somit lässt sich die Gesamtenergie des Aminosäurerests $E_{a_i}$ mittels \ref{eq:total} berechnen:
+
+\begin{equation}
+    E_{a_{i}} = \sum_{< i, j >}{e_{a_{i},a_{j}}} 
+    \label{eq:total}
+\end{equation}
+
+In ihren Arbeiten [Membrane protein stability analyses] hat das ePros Team Mittweida gezeigt, dass die Aminosäurerest-Pseudopotentiale genutzt werden können um die Proteinstruktur Stabilität und Funktionalität zu untersuchen. Es wurde gezeigt, dass Ähnlichkeiten der Energieprofile von Proteinen auf Ähnlichkeiten der strukturellen und funktionellen Eigenschaften dieser Proteine deuten.
+
+\textbf{Perzentile +++++++++++++++++++++++++++++++}
+
+\subsection{ePros Webserver}
+Die einzige aktuelle Quelle fertig berechneter Energieprofile ist der ePros Webserver... 
+
+\textbf{++++++++++++++++++++++++++++++}
+
+[eProS—a database and toolbox for investigating protein sequence–structure–function relationships through energy profiles]
+
+
+\section{Datenbanken}
+Bei dem Aufbau eines passenden Datensatzes wurden die Datenbanken \textbf{PDB} und \textbf{Pfam} genutzt, welche zusammen als Datengrundlage für die spätere $\psi$ \& $\phi$ Winkel Kalkulation dienten. 
+
+
+\subsection{RCSB PDB}
+
+Eine wichtige Grundlage der Arbeit ist die „Protein Daten Bank“ kurz PDB [PDB Paper]
+%H.M. Berman, J. Westbrook, Z. Feng, G. Gilliland, T.N. Bhat, H. Weissig, I.N. Shindyalov, P.E. Bourne. (2000) The Protein Data Bank Nucleic Acids Research, 28: 235-242. , der Research Collaboratory for Structural Bioinformatics (RCSB),
+, sie enthält die 3D Strukturdaten der Proteine, welche die Grundlage der Energieprofile sind. Die PDB enthält zusätzlich noch Strukturdaten von Nukleinsäuren und komplexen \emph{Assemblies}, die in allen Aspekten der Biomedizin und der Landwirtschaft, von der Proteinsynthese bis hin zum Gesundheitswesen von Bedeutung sind. Die PDB bietet auf Grundlage dieser Daten Tools für Forschung und Bildung in der Molekularbiologie, in der Strukturbiologie und in der Rechenbiologie an.
+Die PDB wurde 1971 von den Brookhaven National Laboratories (BNL) \footnote{\url{https://www.rcsb.org/pdb/static.do?p=general_information/about_pdb/index.html}} als Archiv für biologische makromolekulare Kristallstrukturen etabliert und beinhaltete anfangs nur 7 Strukturen. 1980 zeigte sich ein rasanter Anstieg der eingereichten Strukturen, ausgelöst durch einen verbesserten Prozess der Kristallographie, einen offeneren Datenaustausch der Wissenschaftlichen Gemeinschaft und der neuen Methode der Kernspinresonanzspektroskopie (NMR). So umfasst der Datensatz zum Zeitpunkt der vorangegangenen Arbeit 101.207 Einträge (24. Juni 2014) und zum heutigen Zeitpunkt über 133920 Strukturen (24 September 2017). Bei einem Wachstum von fast 10.000 Strukturen pro Jahr, macht dies die PDB zur weltweit größten Sammlung von bekannten Proteinstrukturen.
+
+\begin{figure}
+\includegraphics[width=.95\textwidth]{PDB_growth_rate.png}
+%\caption{}
+\caption[Caption for LOF]{Die Jährliche Wachstumsrate\protect\footnotemark \ der PDB seit ihrer Gründung 1971.}
+\label{fig:PDB_growth_rate}
+\end{figure}
+\footnotetext{Die Daten der Tabelle befinden sich auf der offiziellen Webseite der RCSB PDB unter: \url{http://www.rcsb.org/pdb/statistics/contentGrowthChart.do?content=total}}
+
+%%%%Abschnitt zu aufgebauscht!
+%wen interessiert denn in deiner arbeit die nutzer. oder dass anfangs noch die daten über festplatten ausgetauscht werden musste und alles. 
+%In meinen augen solltest du diesen abschnitt sehr kürzen auf das wesentliche
+
+Der Zugriff auf die PDB hat sich im Laufe der Jahre drastisch geändert, so wurden die Daten am Anfang noch mit Magnet Medien ausgetauscht, so kam mit der Etablierung des WWW, der Datenaustausch über dieses. Ebenso haben sich die Autoren der Daten geändert, so waren es am Anfang nur Experten auf dem Fachgebiet der Strukturellen Forschung, so sind es heute unterschiedlichste Kompetenzen in den Techniken der Röntgenkristallstrukturbestimmung, Kernspinresonanz, Kryo-Elektronenmikroskopie und theoretischen Modellierung. Genau so hat sich auch die Nutzerschaft erweitert, sodass es heute eine sehr diverse Gruppe aus Forschern, Lehrern und Studenten in den Fachbereichen Biologie, Chemie, Informatik und Physik ist. Die zunehmende Erkenntnis über den Wert der Daten und dem daraus resultierenden Verständnis der biologischen Funktion, sorgte für einen erhöhten Zustrom an Daten und erforderte einen neuen Weg die Daten zu sammeln, organisieren und zu verteilen. Im Oktober 1988 wurde das Management der PDB Zuständig für die RCSB. Die PDB setzt sich heute aus einer Vielzahl von Subdatenbanken zusammen, die wichtigsten sind die Europäische PDB (PDBe), die Japanische PDB (PDBj), die Biological Magnetic Resonance Bank (BMRB) und die Worldwide PDB (wwPDB). Zusammen pflegen und kuratieren diese Datenbanken die PDB und sorgen dafür, dass die PDB weltweit frei und öffentlich verfügbar ist.
+
+Die Vision der RCSB ist es eine Ressource zu schaffen, welche mittels modernster Technologien, die Nutzung und Analyse von Strukturdaten erleichtert und damit eine Grundlage für die biologische Forschung stellt. 
+
+In dieser Arbeit wurde mit dem PDB Dateiformat gearbeitet, sodass dieses im folgenden Abschnitt erklärt wird. Alle Strukturen der PDB sind verfügbar in dem .pdb Format, dieses ist sehr strikt geregelt, jede Zeile darf maximal 80 Zeichen enthalten und muss mit einem Identifyer beginnen. Anders als bei ähnlichen Formaten, werden hier einzelne Spalten nicht durch Tabs separiert, sondern befinden sich an genau charakterisierten Positionen. Z.B. ist der „Residue Namen" in der „ATOM“ Zeile immer an der Position 18-20 zu finden, wobei die 1. Position bei 1 beginnt und nicht bei 0. Für weitere Arbeiten ist die Seite 176 in den Formatvorgaben\footnotetext{Die Formatvorgabe ist zu finden unter \url{ftp://ftp.wwpdb.org/pub/pdb/doc/format_descriptions/Format_v33_A4.pdf}} der PDB interessant.
+
+
+\subsection{Pfam}
+
+Die Protein Family Database [Pfam: the protein families database] oder kurz Pfam enthält nah verwandte Sequenz Alignments, sogenannte Protein Familien. Diese setzen sich aus einem repräsentativen Subset aus einem Satz übereinstimmender Sequenzen zusammen, dem sogenannten „Seed Alignment“. Dieses \emph{Seed Alignment} wird anschließend genutzt um ein \emph{Profil hidden Markov model} (HMM) [HMM-HMM] mittels der Software HMMER [HMMER3] zu erstellen. Nun wird das Profil HMM mit Datenbanken verglichen und um alle Sequenzen erweitert, welche über dem \emph{gathering threshold} GA liegen. GAs werden per Hand kuratiert und sind Familien spezifisch. Diese neuen Mitglieder der Familie werden an das Profil HMM aligniert um ein volles Alignment zu erzeugen. Pfam-Einträge, welche als verwandt identifiziert wurden, werden in Gruppen zusammengefasst, die als \emph{Clans} bezeichnet werden. Beziehungen werden sowohl mittels Sequenzinformationen via HMMER cross matches und SCOOP [SCOOP], als auch durch Protein Homologie Detektion durch HMM-HMM Vergleiche, mit HHsearch [HHsearch] ermittelt.
+
+Die Pfam wurde 1997 von Sonnhammer EL, Eddy SR und Durbin R. ins Leben gerufen [1997]. Ihr Ziel war es eine Datenbank zur Proteinsequenz Klassifizierung und Analyse zu erschaffen. Die Pfam setzt sich aus zwei Teilen zusammen, der Pfam A und Pfam B. Die Pfam-A ist kuratiert und enthält gut charakterisierte Protein Domain Familien mit hochqualitativen Alignments. Dies wird durch manuell überprüften Seed Alignments und HMMs, gewährleistet. Pfam B hingegen enthält Sequenzfamilien, bei denen der Domainer Algorithmus zum Alignieren und Clustern aller nicht Pfam A Sequenzen, genutzt wurde. 
+
+Die Aktuelle Version ist Pfam 31.0 und wurde am Europäischen Bioinformatik Institut (EBI)\footnote{\url{https://www.ebi.ac.uk}} produziert, mittels einer Sequenzdatenbank namens Pfamseq, welche auf UniProt\footnote{\url{http://www.uniprot.org}} basiert. Sie enthält aktuell 16712 Familien in 607 Clans (März 2017).
+\begin{figure}
+\includegraphics[width=.95\textwidth]{Pfam_workflow.png}
+\caption{Der Pfam Daten Workflow }
+\label{fig:Pfam_workflow}
+\end{figure}
+
+
+\section{Bewertungen von Klassifikationen}
+
+In dieser Arbeit war es wichtig die vorhergesagten Klassifikationen zu bewerten, dabei hängt die Güte des Klassifikators von dessen Typ ab. In diesem Fall handelt es sich um einen binären Klassifikator, daher können zwei Bewertungsverfahren in Betracht gezogen werden.
+
+\subsection{F1 Score}
+Der F1 Score ist ein statistisches Maß um die Testgenauigkeit zu bewerten. Er verwendet sowohl die \emph{Präzision} p, als auch den \emph{Recall} r um den Score zu berechnen. P ist die Anzahl aller richtigen positiven Ergebnisse, geteilt durch die Anzahl an allen positiven Ergebnissen. R ist die Anzahl an vorhergesagten richtigen positiven Ergebnissen, geteilt durch die Anzahl der tatsächlich positiven Ergebnisse (\ref{eq:f1_score}). 
+\begin{equation}
+    F_{1} = 2 \times \frac{1}{\frac{1}{recall}+\frac{1}{precision}} = \frac{\text{precision} \times \text{recall}}{\text{Precision} + \text{recall}}
+    \label{eq:f1_score}
+\end{equation}
+
+Der F1 Score kann Werte von 0 bis 1 annehmen, wobei ein Score von 1 die beste mögliche Aussage bedeutet.
+
+
+\subsection{Matthews correlation coefficient}
+
+Der \emph{Matthews correlation coefficient}, oder kurz MCC ist ein Maß um die Qualität einer binären Klassifikation zu bewerten und wird oftmals im Bereich des \emph{Machine Learnings} angewandt. Der Biochemiker Brian W. Matthews führte diesen Algorithmus 1975, in seinem Paper „Comparison of the predicted and observed secondary structure of T4 phage lysozyme“[x] ein. Der MCC berücksichtig True und False Postives, sowie True und False Negatives, um eine Bewertung einer beobachtete und vorhergesagte zwei Klassen Klassifizierung zu treffen. Dabei kann der MCC einen Wert von -1 bis 1 annehmen, ein Koeffizient von 1 repräsentiert eine perfekte Vorhersage. Ein Koeffizient von 0 bedeutet, dass die Vorhersage nicht besser ist, als ein zufälliger Münzwurf. Ein Wert vom -1 deutet auf eine totale Differenz zwischen Beobachtung und Vorhersage hin. Der MCC ist auch bekannt als Phi Koeffizient und zusammenhängend mit der chi Quadrat Statistik, für eine 2x2 Kontingenztabelle, in der n für die totale Anzahl der Beobachtungen steht.
+
+\begin{equation}
+    |MCC| = \sqrt{\frac{x^2}{n}}
+    \label{eq:mcc}
+\end{equation}
+
+Der MCC gilt als ausbalanciertes Maß, selbst wenn die Klassen sehr verschiedene Größen haben, Andere Maße, wie der einfache „Anteil der richtigen Vorhersagen“, auch bekannt als statistische Genauigkeit, sind nicht besonders hilfreich, wenn zwei Klassen unterschiedlich groß sind. Denn wenn jedes Objekt dem größeren Set zugewiesen wird, so erreicht man eine Höhere Anzahl an korrekten Vorhersagen, welche statistisch gesehen allerdings wenig Aussagekraft besitzen.
+
+%%%%%%%%%%% Einheitlich entweder DEUTSCH ODER ENGLISCH
+
+Der MCC berechnet sich direkt aus der Konfusionsmatrix \ref{table:konfusionsmatrix}, mit der Formel \ref{eq:mcc2}:
+
+\begin{table}[]
+\centering
+\caption{Konfusionsmatrix }
+\label{table:konfusionsmatrix}
+\begin{tabular}{lll}
+ &  &  \\ \cline{2-3} 
+\multicolumn{1}{l|}{} & \multicolumn{1}{l|}{Person ist krank (rp+fn)} & \multicolumn{1}{l|}{Person ist gesund (fp+rn)} \\ \hline
+\multicolumn{1}{|l|}{Test positiv (rp+fp)} & \multicolumn{1}{l|}{richtig positiv (rp)} & \multicolumn{1}{l|}{falsch positiv (fp)} \\ \hline
+\multicolumn{1}{|l|}{Test negativ (fn+rn)} & \multicolumn{1}{l|}{falsch negativ (fn)} & \multicolumn{1}{l|}{richtig negativ (rn)} \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{equation}
+    MCC = \frac{TP \times TN - FP \times FN}{\sqrt{(TP + FP)(TP + FN)(TN + FP)(TN + FN)}}
+    \label{eq:mcc2}
+\end{equation}
+
+In Gleichung \ref{eq:mcc2} ist TP die Anzahl der \emph{True Positives}, TN die Anzahl der \emph{True Negatives}, FP die Anzahl der \emph{False Postives} und FN die Anzahl der \emph{False Negatives}. Wenn eine der 4 Summen im Teiler 0 Ergibt, so kann man den Nenner willkürlich auf 1 setzen, sodass man einen MCC von 0 erhält, dies stellt den Grenzwert der Gleichung dar.
+
+
+\subsection{Ramachandran Plot}
+
+Der Ramachandran Plot wurde 1963 von G. N. Ramachandran [x] entwickelt, um die jeweiligen Diederwinkel (oder auch Torsionswinkel)  $\psi\ \&\ \phi$ eines bestimmten Protein-Backbones darzustellen. Die 3D Struktur eines Proteins wird hauptsächlich durch nicht kovalente Bindungen zwischen Atomen unterschiedlicher Aminosäurereste bestimmt, diese Bindungen sind für Strukturen wie Alpha Helices und Beta Faltblätter verantwortlich. Dies wird durch Veränderungen der  $\psi\ \&\ \phi$ Winkel des C Alpha Atoms erreicht. Denn durch den Doppelbindungscharakter der Aminosäuren ist der $\omega$ Winkel immer 180° und das Protein damit planar. Somit können sich $\psi\ \&\ \phi$ Winkel in einem Bereich von -180° bis +180° befinden, siehe \ref{fig:psi_phi}. Wenn man nun auf der Ordinate die $\psi$-, auf der Abszisse die $\phi$-Winkel der C Alpha Atome aufträgt, erhält man den typischen Ramachandran Plot. 
+
+\begin{figure}
+\includegraphics[width=.95\textwidth]{psi_phi.png}
+\caption{2 dimensionale Projection eines Proteins mit C alpha Atom in der Mitte und gekennzeichneten Winkeln\protect\footnotemark}
+\label{fig:psi_phi}
+\end{figure}
+\footnotetext{\url{https://application.wiley-vch.de/HOME/bioinformatik/prot/Prot_1d/ueb/1dprotueb.htm}}
+
+Anhäufungen im Ramachandran Plot sind immer charakteristisch für spezifische Protein Sekundärstrukturen, wie z.B. alpha Helices oder beta Faltblätter. Diese sind gut zu sehen in der Abbildung \ref{fig:ramaplot}.
+
+\begin{figure}
+\includegraphics[width=.95\textwidth]{ramaplot.png}
+\caption{Ein Ramachandran Plot des Proteins PCNA, eines menschlichen Enzyms aus der Replikationsmaschinerie, das sowohl beta-Faltblätter als auch alpha-Helices enthält (PDB ID 1AXC). Auf der Ordinate sind die psi-, auf der Abszisse die phi-Winkel aufgetragen.\protect\footnotemark \textbf{hier kommt noch ein geeigneter Plot von mir hin}}
+\label{fig:ramaplot}
+\end{figure}
+\footnotetext{\url{https://upload.wikimedia.org/wikipedia/commons/5/57/Ramaplot.png}}
+
+Mathematisch lässt sich der Ramachandran Plot mit folgender Gleichung beschreiben:
+
+\begin{equation}
+    f : [-\pi,\pi]\times[-\pi,\pi] \rightarrow \R_{+}
+    \label{eq:rama_eq}
+\end{equation}
+
+
+
+\section{Durchführung der Berechnungen}
+
+
+\subsection{Apache Spark}
+In dieser Arbeit wurde mit der Gesamten RCSB PDB und somit mit 133277 Energieprofilen gearbeitet, um diese \emph{Big Data} adäquat und schnell zu verarbeiten wurde sowohl eine Hardware, als auch Software Lösung benötigt, da ein normaler PC nicht mehr ausreicht, diese Datenmengen zeitnah zu verarbeiten. Hierzu wurde als Hardwarelösung das Cluster der Arbeitsgruppe Goesmann genutzt, indem auf 5000 virtuelle Kerne mit 512GB RAM zugegriffen wurde. Als Softwarelösung wurde Apache Spark[x] eingesetzt, hierbei handelt es sich um eine gneral-purpose Cluster Software, welche über eine High Level API in Python, Scala, R und Java verfügt. Gerade die Python API war sehr hilfreich, da die Mehrzahl aller Skripte für diese Arbeit in Python geschrieben wurden. So konnte ein Python Skript erst lokal auf einem PC entwickelt und mit einem Testdatensatz überprüft werden, um es anschließend mit Spark auf dem Cluster der AG Goesmann zu deployen. Nach dem deploy verteilt Spark die Daten automatisch auf dem Cluster und fängt die Ergebnisse ab. 
+
+Zudem verfügt Spark noch über ein SQL Tool zum Verarbeiten von strukturierten Daten, MLib für Machine Learning und GraphX für Graph Prozessierung.
+
+\begin{figure}
+\includegraphics[width=.95\textwidth]{apache_spark.png}
+\caption{Apache Spark\protect\footnotemark}
+\label{fig:apache_spark}
+\end{figure}
+\footnotetext{\url{https://www.slideshare.net/perone/apache-spark-intro-to-largescale-recommendations-with-apache-spark-and-python}}
+
+
+\subsection{Nextflow}
+Data-driven computational pipelines \textbf{übersetzt das mal =D}
+
+\begin{figure}
+\includegraphics[width=.80\textwidth]{nextflow_pipe.png}
+\caption{Nextflow pipeline \protect\footnotemark}
+\label{fig:nextflow_pipe}
+\end{figure}
+\footnotetext{\url{https://github.com/cbcrg/unistrap/blob/master/images/dag.png}}
+
+lalalal 1234
+
+\subsection{Python}
+Schlangen sind cool <3

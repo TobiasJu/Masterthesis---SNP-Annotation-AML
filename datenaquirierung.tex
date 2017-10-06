@@ -1,0 +1,88 @@
+\chapter[Datenaquirierung]{Datenaquirierung}
+\label{chap:Datenaquirierung}
+
+Dieses Kapitel befasst sich mit der Datenaquirierung, es sollte zum beginn der Arbeit der Versuch unternommen werden die Substitutionsmatrix unter Zuhilfenahme der neuen Strukturen in der PDB neu zu berechnen. Da sich zum Zeitpunkt der Arbeit \cite{Mathias.2014} in der PDB 101.539 Proteinstrukturen befanden und nun zum Zeitpunkt dieser Arbeit 132095. Dies bedeutet eine Informationserweiterung von ~30\%. Doch leider war es aus zeitlichen Gründen für mich nicht möglich die Substitutionsmatrix zu reproduzieren. Dennoch wurden die Daten als Grundlage für die $\psi$ \& $\phi$ Berechnung genutzt. Hier wird nun Schritt für Schritt erklärt wie der Datensatz entstanden ist.
+
+\section{Konstruktion des Datensatzes}
+
+Um die Änderungen der $\psi$ \& $\phi$ in der 3D Struktur interpretieren zu können musste als erstes ein geeigneter Datensatz erstellt werden. Hierfür wurde an Hand der Arbeit \cite{Mathias.2014}, ein geeigneter Datensatz aus der Pfam und PDB erzeugt. 
+
+
+
+
+
+
+\section{Berechnung der Energieprofile}
+Der folgende Abschnitt befasst sich mit der Erstellung der Energieprofile (EP), denn ursprünglich war es geplant die EPs vom Webserver ePros \ref{sec:epros} herunter zu laden, doch leider waren die Downloadlinks zum Zeitpunkt dieser Arbeit nicht erreichbar. Nach einer erfolgreichen E-Mail Korrespondenz wurde ein Java Programm von der Arbeitsgruppe \emph{bigM} zu Verfügung gestellt. Mit diesem Programm war es nun möglich sowohl globuläre, als auch alpha helicale EPs lokal zu berechnen. 
+
+Die Rechenleistung eines einzelnen PCs stellte sich allerdings als nicht ausreichend heraus um das Problem zeitnah zu lösen. Aufgrund dessen wurde ein Nextflow Pipeline geschrieben mit dem die Berechnung der EPs parallelisiert wurde. Somit konnte die Geschwindigkeit um den Faktor 100 gesteigert werden. Zudem wurde die Nextflow Pipeline noch genutzt um direkt die Anpassung der Daten vorzunehmen, insgesamt wurden 4 Schritte von der Pipeline ausgeführt:
+
+\begin{description}
+\item[1.]
+Als erstes wurden alle komprimierten PDB Dateien \emph{on the fly} (otf) entpackt und für jede Datei ein extra Thread angelegt, mit einer maximalen Parallelisierung von 200 Threads.
+\item[2.] 
+Danach wurden die EPs mittels dem bereitgestellten Java Programm aus den PDB Dateien berechnet.
+\item[3.]
+Im 3. Schritt wurde jedem EP ein zusätzliches Verbindungsprofil hinzugefügt, indem nach benachbarten Aminosäuren innerhalb der 8 Angström Sphäre gesucht wurde, diese Kontaktmatrix ist in Abschnitt \ref{sec:Kontaktmatrix} näher erklärt.
+\item[4.]
+Im letzten Schritt wurden die Namen der Dateien bereinigt, denn Nextflow arbeitet mit vielen Dateiendungen um die Daten zu verarbeiten. Am Ende des Workflows ist der Ordner gefüllt mit \texttt{pdb****.ent.ep2.cnn} Dateien, diese werden nun geöffnet und anhand ihrer PDB ID umbenannt.
+\end{description}
+
+\paragraph{Hinweis:} Hierbei ist noch zu erwähnen das die Pipeline insgesamt zwei mal ausgeführt wurde, einmal mit allen globulär assozierten PDB Daten und einmal mit allen alpha helicalen Membran Dateien, da sich die Berechnung dieser beiden Klassen unterscheidet.
+
+Die Datengrundlage für EPs ist die Struktur der Proteine
+
+PDB 132095 Strukturen
+
+Nextflow
+
+ePros hatte 346365 EPs
+so gibt es Beispielsweise für den PDB Eintrag 1A0A drei EPs, nämlich neben der Datei \texttt{1A0A.ep2}, welche alle \emph{side chains} enthält, noch \texttt{1A0A-A.ep2} und \texttt{1A0A-B.ep2}, welche jeweils nur entweder die A oder B side chain enthalten.
+
+
+\section{Kontaktmatrix}
+\label{sec:Kontaktmatrix}
+Die Kontaktmatrix wurde erstellt mit dem Ziel den Energieprofil zusätzliche Informationen hinzuzufügen, ohne es dabei zu verändern oder externe Daten zu benötigen. Ein EP mit Kontakten ist identisch zu einem EP ohne diese (siehe Abschnitt \ref{sec:Energieprofil}), es wurde lediglich um eine Spalte, bestehend aus einem Array, aus \texttt{1} oder \texttt{0} erweitert:
+
+\begin{lstlisting}
+NAME	3t4f
+TYPE	globular
+HEAD	Chain	ResNo	Res	SS	Energy
+ENGY	F	1	P	c	-0.3665176925547002	1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ENGY	F	3	G	c	-1.7143933253759942	1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0
+ENGY	F	4	P	c	-0.4886902567396003	1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0
+ENGY	F	6	G	c	-1.7143933253759942	0 1 1 1 1 1 0 1 0 0 0 0 0 0 0 0 0
+ENGY	F	7	P	c	-0.426609617950302	0 1 0 1 1 1 1 1 0 0 0 0 0 0 0 0 0
+ENGY	F	9	G	c	-0.8189007383286611	0 0 0 1 1 1 1 1 1 0 1 0 1 1 1 1 0
+ENGY	F	10	P	c	0.889666104924768	0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1
+ENGY	F	11	K	c	5.678058211612121	0 0 0 1 1 1 1 1 1 1 1 0 1 1 1 1 0
+ENGY	F	12	G	c	0.318821225835888	0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1
+ENGY	F	13	E	c	2.612350424331274	0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1
+ENGY	F	15	G	c	-1.3849755172085403	0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1
+ENGY	F	16	P	c	-0.4886902567396003	0 0 0 0 0 0 1 0 1 1 1 1 1 1 1 1 1
+ENGY	F	18	G	c	-1.7143933253759942	0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1
+ENGY	F	19	P	c	-0.6108628209245004	0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1
+ENGY	F	21	G	c	-1.7143933253759942	0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1
+ENGY	F	22	P	c	-0.4886902567396003	0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1
+ENGY	F	24	G	c	-0.735024098503097	0 0 0 0 0 0 1 0 1 1 1 1 1 1 1 1 1
+\end{lstlisting}
+
+In diesem Array, ist die Information zu den benachbarten Aminosäuren gespeichert. Die Länge des Arrays ist immer gleich der Länge der Sequenz der Polypeptidkette im EP. Hierbei ist zu beachten, dass fehlende 3D Informationen und somit fehlende Aminosäuren übersprungen werden. Im obigen Beispiel sieht man dies sehr gut, die \texttt{F Chain} hat 24 Aminosäuren, doch es sind nur die 3D Positionen von 17 Aminosäuren bekannt, weswegen auch die Kontaktliste nur 17 Einträge aufweist. Iteriert man nun über das Array, so ist der erste Eintrag gleich der ersten Position in der Chain, der zweite Eintrag im Array ist hingegen der dritte in der Chain, da die Position der zweiten Aminosäure noch nicht aufgeklärt ist und somit auch im EP fehlt.
+
+Eine \texttt{1} bedeutet, es gibt in der 8 Angström Umgebung um die Aminosäure einen Kontakt mit der anderen Aminosäure. Am Beispiel der ersten Aminosäure Prolin an Position 1, kann man also sehen, dass diese Kontakte mit Glycin an Position 3 und Prolin an Position 4 in der Chain hat. Eine \texttt{0} bedeutet im Gegensatz es besteht kein Kontakt in der 8\AA\ Umgebung.
+
+Um ein Kontaktprofil zu errechnen wird das Python Script \texttt{add\_aa\_connections.py} verwendet. Zuerst wird für das jeweilige EP die entsprechende PDB Datei herausgesucht, in dem oben genannten Beispiel wäre dies \texttt{pdb3t4f.ent}. Nun wird über die PDB Datei iteriert und alle Positionen der Aminosäuren analysiert und mit der Abstandsgleichung \ref{eq:abstand}, der Abstand der einzelnen Aminosäuren zueinander bestimmt.
+
+\begin{equation}
+    d=\sqrt{(x_2-x_1)^2+(y_2-y_1)^2+(z_2-z_1)^2}
+    \label{eq:abstand}
+\end{equation}
+
+Es gilt:
+
+\begin{equation}
+    d = 8\text{\AA}
+    \label{eq:8a}
+\end{equation}
+
+Ist \ref{eq:8a} erfüllt, so wird eine \texttt{1} in der Kontaktliste gespeichert ansonsten eine \texttt{0}, die Kontaktliste wird nun in einem \emph{dictionary} mit der Position als \emph{key} gespeichert. Wenn über alle Positionen iteriert wurde, wird nun das Energieprofil geöffnet und um die Kontaktdaten im \emph{dictionary} erweitert.

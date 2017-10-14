@@ -6,9 +6,9 @@ In diesem Kapitel werden die Grundlagen vermittelt, welche für das Verständnis
 
 \section{Aminosäurerest-Pseudopotentiale}
 
-Bei den Aminosäurerest-Pseudopotentialen (AP) handelt es sich um eine Methode der Transformation der physikochemischen und wechselwirkenden Eigenschaften der Aminosäuren der Proteinstruktur in ein Energiemaß. Diese Energiemaße werden dabei durch eine Dezimalzahl dargestellt und im Gegensatz zur hochkomplexen 3D Strukturen sind die Berechnungen mit ihnen viel einfacher. Die Energieprofile stehen auf dem Webserver \emph{eProS}\footnote{\url{https://biosciences.hs-mittweida.de/epros/}} zum Download bereit. Zusätzlich wurde zur lokalen Berechnung und zu Testzwecken eine lokale Möglichkeit von Herrn \emph{Florian Heinke} von der \emph{Bioinformatics Group Mittweida} (bigM)\footnote{\url{http://www.bioforscher.de/bigM/}}, zur Berechnung der Energieprofile, zu Verfügung gestellt.
+Bei den \acf{APs} handelt es sich um eine Methode der Transformation der physikochemischen und wechselwirkenden Eigenschaften der Aminosäuren der Proteinstruktur in ein Energiemaß. Diese Energiemaße werden dabei durch eine Dezimalzahl dargestellt und im Gegensatz zur hochkomplexen 3D Strukturen sind die Berechnungen mit ihnen viel einfacher. Die Energieprofile stehen auf dem Webserver \emph{eProS}\footnote{\url{https://biosciences.hs-mittweida.de/epros/}} zum Download bereit. Zusätzlich wurde zur lokalen Berechnung und zu Testzwecken eine lokale Möglichkeit von einem Entwickler der \ac{bigM}\footnote{\url{http://www.bioforscher.de/bigM/}}, zur Berechnung der Energieprofile, zu Verfügung gestellt.
 
-Durch die APs können zu den lokalen Interaktionen der direkten Nachbarn, auch noch die globalen Interaktionen der indirekten Nachbarn in einer 8A Umgebung betrachtet werden (Abb. \ref{fig:8A_Sphaere}). Somit können auch Effekte wie sterische Hinderung berücksichtigt werden. Durch diese neue Betrachtung löst man sich von der starren Betrachtungsweise der Sequenz und der 2d Struktur, wie es bei bisherigen Vorhersage-Algorithmen war.
+Durch die \ac{APs} können zu den lokalen Interaktionen der direkten Nachbarn, auch noch die globalen Interaktionen der indirekten Nachbarn betrachtet werden (Abb. \ref{fig:8A_Sphaere}). Zur Berechnung benutzt man die Betrachtung einer 8 Angström Sphäre, um die betrachtete Aminosäure und analysiert ob noch andere Aminosäuren des Proteins in diese Sphäre hineinragen. Somit können auch Effekte wie sterische Hinderung berücksichtigt werden. Durch diese neue Betrachtung löst man sich von der starren Betrachtungsweise der Sequenz und der 2D Struktur, wie es bei bisherigen Vorhersage-Algorithmen war.
 %
 \begin{figure}
 \centering
@@ -19,7 +19,7 @@ Durch die APs können zu den lokalen Interaktionen der direkten Nachbarn, auch n
 
 Energieprofile sind grobkörnige Aminosäuren Interaktionsmodelle, basierend auf $C_{\alpha}$ und $C_{\beta}$ Atom Koordinaten, welche aus bekannten Protein Strukturen extrahiert wurden. Es wird die natürlich Neigung eines Aminosäurerests, mit anderen Resten zu interagieren, untersucht. Bei Membran lokalisierten Proteinen wird zusätzlich noch die Neigung der Aminosäureresten sich in Richtung der Lipid Doppelschicht zu richten, berücksichtigt. 
 
-Generell ist die Energie Abhängig von der Neigung des Aminosäurerests nach Außen ($n_{out}$) in das umgebende Milieu oder in das Innere ($n_{in}$) des Proteins. Nimmt man nun den negativen natürlichen Logarithmus zur Basis 10, so ergibt sich für $e_{a_i}$ folgende Gleichung \ref{eq:definition}:
+Generell ist die Energie abhängig von der Neigung des Aminosäurerests nach Außen ($n_{out}$) in das umgebende Milieu oder in das Innere ($n_{in}$) des Proteins. Nimmt man nun den negativen natürlichen Logarithmus zur Basis 10, so ergibt sich für $e_{a_i}$ folgende Gleichung \ref{eq:definition}:
 %
 \begin{equation}
   	e_{a_i} \propto -\ln{\left(\frac{n_{a_i}^{in}}{n_{a_i}^{out}}\right)}
@@ -42,21 +42,20 @@ Somit lässt sich die Gesamtenergie des Aminosäurerests $E_{a_i}$ mittels \ref{
 
 In ihren Arbeiten \cite{Heinke.2011} hat das ePros Team Mittweida gezeigt, dass die Aminosäurerest-Pseudopotentiale genutzt werden können um die Proteinstruktur Stabilität und Funktionalität zu untersuchen. Es wurde gezeigt, dass Ähnlichkeiten der Energieprofile von Proteinen auf Ähnlichkeiten der strukturellen und funktionellen Eigenschaften dieser Proteine deuten.
 
-\textbf{Perzentile +++++++++++++++++++++++++++++++}
 
 \subsection{ePros Webserver}
 \label{sec:epros}
-Die einzige aktuelle Quelle fertig berechneter Energieprofile ist der ePros Webserver\footnote{\url{https://biosciences.hs-mittweida.de/epros}}. Mittels ePros lassen sich nicht nur Energieprofile für bestimmte PDB IDs abrufen, sondern auch noch einige andere Tools nutzen.
+Die einzige aktuelle Quelle fertig berechneter Energieprofile ist der ePros Webserver\footnote{\url{https://biosciences.hs-mittweida.de/epros}}. Mittels ePros lassen sich nicht nur Energieprofile für bestimmte \ac{PDB} IDs abrufen, sondern auch noch einige andere Tools nutzen.
 
 \begin{figure}
 \includegraphics[width=.95\textwidth]{images/ePros.png}
-\caption{eCalc Ergebnis für PDB ID 1A1C Chain A}
+\caption{eCalc Ergebnis für \ac{PDB} ID 1A1C Chain A}
 \label{fig:epros}
 \end{figure}
 
 \begin{description}
 \item[eCalc]
-Mittels \emph{eCalc} lassen sich Energieprofile auf Grundlage einer Struktur oder PDB ID berechnen. Das EP wird dann in einem 2D Graphen visualisiert, sodass man leicht die Energiewerte jeder Aminosäure sehen kann, sowie deren Sekundärstruktur, siehe Abb. \ref{fig:epros}.
+Mittels \emph{eCalc} lassen sich Energieprofile auf Grundlage einer Struktur oder \ac{PDB} ID berechnen. Das EP wird dann in einem 2D Graphen visualisiert, sodass man leicht die Energiewerte jeder Aminosäure sehen kann, sowie deren Sekundärstruktur, siehe Abb. \ref{fig:epros}.
 \item[eAlign]
 Mit \emph{eAlign} ist es möglich zwei EPs mit einem modifizierten Needleman-Wunsch/Smith-Waterman Algorithmus zu alignieren und paarweise zu vergleichen.
 \item[eGOR]
@@ -70,7 +69,7 @@ Das besondere an \emph{eMut} ist, dass es die energetischen Ähnlichkeiten und U
 
 \subsection{Energieprofile}
 \label{sec:Energieprofil}
-Energieprofile (EP) sind die Grundlage dieser Arbeit, daher wird hier kurz erklärt wie dieses Datenformat aufgebaut ist. Ein EP ist eine Datei mit APs für jede Aminosäure. Im folgenden Beispiel ist das EP für die Struktur \emph{3T4F} der \emph{F Chain} dargestellt. Die ersten beiden Zeilen beschreiben das EP, in der ersten Zeile steht der Name der Struktur und in der zweiten ob es sich um ein globuläres oder alpha helikales Protein handelt. Die restlichen Zeilen sind immer gleich aufgebaut und Tabstopp separiert. In der Spalte steht immer \texttt{ENERGY}, gefolgt von dem Chain Buchstaben, dahinter steht die Aminosäurennummer und Aminosäurennamen. Dahinter steht die Sekundärstruktur an dieser Stelle und ganz am Ende steht der Energie Wert der betreffenden Aminosäure. Am Ende der Datei kann noch \texttt{REMAKE} Zeilen stehen, in denen z.B. die Qualität der zugrundeliegenden PDB Datei angegeben ist.
+\acf{EPs} sind die Grundlage dieser Arbeit, daher wird kurz der Aufbau des Datenformats erklärt. Ein \ac{EP} ist eine Datei mit \ac{APs} für jede Aminosäure. Im folgenden Beispiel ist das EP für die Struktur \emph{3T4F} der \emph{F Chain} dargestellt. Die ersten beiden Zeilen beschreiben das \ac{EP}, in der ersten Zeile steht der Name der Struktur und in der zweiten ob es sich um ein globuläres oder alpha helikales Protein handelt. Die restlichen Zeilen sind immer gleich aufgebaut und Tabstopp separiert. In der Spalte steht immer \texttt{ENGY}, gefolgt von dem Chain Buchstaben, dahinter steht die Aminosäurennummer und der Aminosäurennamen. Dahinter steht die Sekundärstruktur an dieser Stelle und ganz am Ende steht der Energie Wert der betreffenden Aminosäure. Am Ende der Datei kann noch \texttt{REMK} Zeilen stehen, in denen z.B. die Qualität der zugrundeliegenden \ac{PDB} Datei angegeben ist.
 
 \begin{lstlisting}
 NAME	3t4f
@@ -94,6 +93,7 @@ ENGY	F	21	G	c	-1.7143933253759942
 ENGY	F	22	P	c	-0.4886902567396003
 ENGY	F	24	G	c	-0.735024098503097
 \end{lstlisting}
+% du könntst die abbildung verbesern in meinen augen, in dem du markierungen machst und pfeile undso und nochmal reinschreibst was was ist. damit es auch für den dümmsten leser (mich) klar wird was mir der text vermittelt.
 
 
 \section{Datenbanken}
@@ -102,26 +102,26 @@ Bei dem Aufbau eines passenden Datensatzes wurden die Datenbanken \textbf{PDB} u
 
 \subsection{RCSB PDB}
 
-Eine wichtige Grundlage der Arbeit ist die „Protein Daten Bank“ kurz PDB\cite{Bernstein.1977}, sie enthält die 3D Strukturdaten der Proteine, welche die Grundlage der Energieprofile sind. Die PDB enthält zusätzlich noch Strukturdaten von Nukleinsäuren und komplexen \emph{Assemblies}, die in allen Aspekten der Biomedizin und der Landwirtschaft, von der Proteinsynthese bis hin zum Gesundheitswesen von Bedeutung sind. Die PDB bietet auf Grundlage dieser Daten Tools für Forschung und Bildung in der Molekularbiologie, in der Strukturbiologie und in der Rechenbiologie an.
-Die PDB wurde 1971 von den Brookhaven National Laboratories (BNL) \footnote{\url{https://www.rcsb.org/pdb/static.do?p=general_information/about_pdb/index.html}} als Archiv für biologische makromolekulare Kristallstrukturen etabliert und beinhaltete anfangs nur 7 Strukturen. 1980 zeigte sich ein rasanter Anstieg der eingereichten Strukturen, ausgelöst durch einen verbesserten Prozess der Kristallographie, einen offeneren Datenaustausch der Wissenschaftlichen Gemeinschaft und der neuen Methode der Kernspinresonanzspektroskopie (NMR). So umfasst der Datensatz zum Zeitpunkt der vorangegangenen Arbeit 101.207 Einträge (24. Juni 2014) und zum heutigen Zeitpunkt über 133920 Strukturen (24 September 2017). Bei einem Wachstum von fast 10.000 Strukturen pro Jahr, macht dies die PDB zur weltweit größten Sammlung von bekannten Proteinstrukturen.
+Eine wichtige Grundlage der Arbeit ist die „Protein Daten Bank“ kurz PDB\cite{Bernstein.1977}, sie enthält die 3D Strukturdaten der Proteine, welche die Grundlage der Energieprofile sind. Die \ac{PDB} enthält zusätzlich noch Strukturdaten von Nukleinsäuren und komplexen \emph{Assemblies}, die in allen Aspekten der Biomedizin und der Landwirtschaft, von der Proteinsynthese bis hin zum Gesundheitswesen von Bedeutung sind. Die \ac{PDB} bietet auf Grundlage dieser Daten Tools für Forschung und Bildung in der Molekularbiologie, in der Strukturbiologie und in der Rechenbiologie an.
+Die \ac{PDB} wurde 1971 von den \ac{BNL}\footnote{\url{https://www.rcsb.org/pdb/static.do?p=general_information/about_pdb/index.html}} als Archiv für biologische makromolekulare Kristallstrukturen etabliert und beinhaltete anfangs nur 7 Strukturen. 1980 zeigte sich ein rasanter Anstieg der eingereichten Strukturen, ausgelöst durch einen verbesserten Prozess der Kristallographie, einen offeneren Datenaustausch der Wissenschaftlichen Gemeinschaft und der neuen Methode der Kernspinresonanzspektroskopie. So umfasst der Datensatz zum Zeitpunkt der vorangegangenen Arbeit 101.207 Strukturen (24. Juni 2014) und zum heutigen Zeitpunkt über 133.920 Strukturen (24 September 2017). Bei einem Wachstum von fast 10.000 Strukturen pro Jahr, macht dies die \ac{PDB} zur weltweit größten Sammlung von bekannten Proteinstrukturen.
 
 \begin{figure}
 \includegraphics[width=.95\textwidth]{PDB_growth_rate.png}
 %\caption{}
-\caption[Caption for LOF]{Die Jährliche Wachstumsrate\protect\footnotemark \ der PDB seit ihrer Gründung 1971.}
+\caption[Caption for LOF]{Die Jährliche Wachstumsrate\protect\footnotemark \ der \ac{PDB} seit ihrer Gründung 1971.}
 \label{fig:PDB_growth_rate}
 \end{figure}
-\footnotetext{Die Daten der Tabelle befinden sich auf der offiziellen Webseite der RCSB PDB unter: \url{http://www.rcsb.org/pdb/statistics/contentGrowthChart.do?content=total}}
+\footnotetext{Die Daten der Tabelle befinden sich auf der offiziellen Webseite der RCSB \ac{PDB} unter: \url{http://www.rcsb.org/pdb/statistics/contentGrowthChart.do?content=total}}
 
 %%%%Abschnitt zu aufgebauscht!
 %wen interessiert denn in deiner arbeit die nutzer. oder dass anfangs noch die daten über festplatten ausgetauscht werden musste und alles. 
 %In meinen augen solltest du diesen abschnitt sehr kürzen auf das wesentliche
 
-Der Zugriff auf die PDB hat sich im Laufe der Jahre drastisch geändert, so wurden die Daten am Anfang noch mit Magnet Medien ausgetauscht, so kam mit der Etablierung des WWW, der Datenaustausch über dieses. Ebenso haben sich die Autoren der Daten geändert, so waren es am Anfang nur Experten auf dem Fachgebiet der Strukturellen Forschung, so sind es heute unterschiedlichste Kompetenzen in den Techniken der Röntgenkristallstrukturbestimmung, Kernspinresonanz, Kryo-Elektronenmikroskopie und theoretischen Modellierung. Genau so hat sich auch die Nutzerschaft erweitert, sodass es heute eine sehr diverse Gruppe aus Forschern, Lehrern und Studenten in den Fachbereichen Biologie, Chemie, Informatik und Physik ist. Die zunehmende Erkenntnis über den Wert der Daten und dem daraus resultierenden Verständnis der biologischen Funktion, sorgte für einen erhöhten Zustrom an Daten und erforderte einen neuen Weg die Daten zu sammeln, organisieren und zu verteilen. Im Oktober 1988 wurde das Management der PDB Zuständig für die RCSB. Die PDB setzt sich heute aus einer Vielzahl von Subdatenbanken zusammen, die wichtigsten sind die Europäische PDB (PDBe), die Japanische PDB (PDBj), die Biological Magnetic Resonance Bank (BMRB) und die Worldwide PDB (wwPDB). Zusammen pflegen und kuratieren diese Datenbanken die PDB und sorgen dafür, dass die PDB weltweit frei und öffentlich verfügbar ist.
+Der Zugriff auf die \ac{PDB} hat sich im Laufe der Jahre drastisch geändert, so wurden die Daten am Anfang noch mit Magnet Medien ausgetauscht, so kam mit der Etablierung des WWW, der Datenaustausch über dieses. Ebenso haben sich die Autoren der Daten geändert, so waren es am Anfang nur Experten auf dem Fachgebiet der Strukturellen Forschung, so sind es heute unterschiedlichste Kompetenzen in den Techniken der Röntgenkristallstrukturbestimmung, Kernspinresonanz, Kryo-Elektronenmikroskopie und theoretischen Modellierung. Genau so hat sich auch die Nutzerschaft erweitert, sodass es heute eine sehr diverse Gruppe aus Forschern, Lehrern und Studenten in den Fachbereichen Biologie, Chemie, Informatik und Physik ist. Die zunehmende Erkenntnis über den Wert der Daten und dem daraus resultierenden Verständnis der biologischen Funktion, sorgte für einen erhöhten Zustrom an Daten und erforderte einen neuen Weg die Daten zu sammeln, organisieren und zu verteilen. Im Oktober 1988 wurde das Management der \ac{PDB} Zuständig für die \ac{RCSB}. Die \ac{PDB} setzt sich heute aus einer Vielzahl von Subdatenbanken zusammen, die wichtigsten sind die Europäische \ac{PDB} (PDBe), die Japanische \ac{PDB} (PDBj), die Biological Magnetic Resonance Bank (BMRB) und die Worldwide \ac{PDB} (wwPDB). Zusammen pflegen und kuratieren diese Datenbanken die \ac{PDB} und sorgen dafür, dass die \ac{PDB} weltweit frei und öffentlich verfügbar ist.
 
 Die Vision der RCSB ist es eine Ressource zu schaffen, welche mittels modernster Technologien, die Nutzung und Analyse von Strukturdaten erleichtert und damit eine Grundlage für die biologische Forschung stellt. 
 
-In dieser Arbeit wurde mit dem PDB Dateiformat gearbeitet, sodass dieses im folgenden Abschnitt erklärt wird. Alle Strukturen der PDB sind verfügbar in dem .pdb Format, dieses ist sehr strikt geregelt, jede Zeile darf maximal 80 Zeichen enthalten und muss mit einem Identifyer beginnen. Anders als bei ähnlichen Formaten, werden hier einzelne Spalten nicht durch Tabs separiert, sondern befinden sich an genau charakterisierten Positionen. Z.B. ist der „Residue Namen" in der „ATOM“ Zeile immer an der Position 18-20 zu finden, wobei die 1. Position bei 1 beginnt und nicht bei 0. Für weitere Arbeiten ist die Seite 176 in den Formatvorgaben\footnotetext{Die Formatvorgabe ist zu finden unter \url{ftp://ftp.wwpdb.org/pub/pdb/doc/format_descriptions/Format_v33_A4.pdf}} der PDB interessant.
+In dieser Arbeit wurde mit dem \ac{PDB} Dateiformat gearbeitet, sodass dieses im folgenden Abschnitt erklärt wird. Alle Strukturen der \ac{PDB} sind verfügbar in dem .pdb Format, dieses ist sehr strikt geregelt, jede Zeile darf maximal 80 Zeichen enthalten und muss mit einem Identifyer beginnen. Anders als bei ähnlichen Formaten, werden hier einzelne Spalten nicht durch Tabs separiert, sondern befinden sich an genau charakterisierten Positionen. Z.B. ist der \emph{Residue name} in der \texttt{ATOM} Zeile immer an der Position 18-20 zu finden, wobei die 1. Position bei 1 beginnt und nicht bei 0. Für weitere Arbeiten ist die Seite 176 in den Formatvorgaben\footnotetext{Die Formatvorgabe ist zu finden unter \url{ftp://ftp.wwpdb.org/pub/pdb/doc/format_descriptions/Format_v33_A4.pdf}} der \ac{PDB} interessant.
 
 
 \subsection{Pfam}
@@ -166,15 +166,15 @@ Der MCC gilt als ausbalanciertes Maß, selbst wenn die Klassen sehr verschiedene
 Der MCC berechnet sich direkt aus der Konfusionsmatrix \ref{table:konfusionsmatrix}, mit der Formel \ref{eq:mcc2}:
 
 \begin{table}[]
-\centering
-\caption{Konfusionsmatrix }
-\label{table:konfusionsmatrix}
-\begin{tabular}{l|l|l|}
-\cline{2-3}
+    \centering
+    \caption{Konfusionsmatrix }
+    \label{table:konfusionsmatrix}
+    \begin{tabular}{l|l|l|}
+        \cline{2-3}
  & pathogenic SNP (tp + fn) & benign SNP (fp + tn) \\ \hline
 \multicolumn{1}{|l|}{test positive (tp + fp)} & \cellcolor[HTML]{9AFF99}true positive (tp) & \cellcolor[HTML]{FFCCC9}fals positive (fp) \\ \hline
 \multicolumn{1}{|l|}{test negative (fn + tn} & \cellcolor[HTML]{FFFFC7}false negative (fn) & \cellcolor[HTML]{9AFF99}true negative (tn) \\ \hline
-\end{tabular}
+    \end{tabular}
 \end{table}
 
 \begin{equation}
@@ -182,17 +182,34 @@ Der MCC berechnet sich direkt aus der Konfusionsmatrix \ref{table:konfusionsmatr
     \label{eq:mcc2}
 \end{equation}
 
-In Gleichung \ref{eq:mcc2} ist TP die Anzahl der \emph{true postives}, TN die Anzahl der \emph{true Negatives}, FP die Anzahl der \emph{true Postives} und FN die Anzahl der \emph{true Negatives}. Wenn eine der 4 Summen im Teiler 0 Ergibt, so kann man den Nenner willkürlich auf 1 setzen, sodass man einen MCC von 0 erhält, dies stellt den Grenzwert der Gleichung dar.
+In Gleichung \ref{eq:mcc2} ist TP die Anzahl der \emph{true postives}, TN die Anzahl der \emph{true negatives}, FP die Anzahl der \emph{true postives} und FN die Anzahl der \emph{true negatives}. Wenn eine der 4 Summen im Teiler 0 Ergibt, so kann man den Nenner willkürlich auf 1 setzen, sodass man einen MCC von 0 erhält, dies stellt den Grenzwert der Gleichung dar.
 
 
-\subsection{Ramachandran Plot}
+\section{Homologie Berechnung}
+\label{sec:siwssmodel}
+Im Rahmen dieser Arbeit war es nötig 3D Strukturen für Protein Sequenzen zu ermitteln welche nicht oder nur teilweise aufgeklärt sind. Denn Homologieberechunungen werden häufig eingesetzt wenn es keine experimentellen Daten zu einer Struktur eines Proteins gibt. 
+\begin{figure}
+    \includegraphics[width=.95\textwidth]{images/Swissmodel.png}
+    \caption{Typisches Ergebnis einer Swissmodel Anfrage, für jedes Modell werden Koordinaten, Alignment, Sequenzidentität, Abdeckung, Modellierungsprotokoll,eine Qualitätsschätzung und vieles mehr, zur Verfügung gestellt.}
+    \label{fig:swissmodel}
+\end{figure}
+
+\begin{quote}
+    Die Homologiemodellierung (oder vergleichende Modellierung) stützt sich auf evolutionär verwandte Strukturen (Templates) zur Generierung eines Strukturmodell eines Proteins von Interesse (Target). Der Prozess umfasst typischerweise die folgenden Schritte: (i) Vorlage Identifikation, (ii) Auswahl der Vorlagen, (iii) Modellerstellung und (iv) Schätzung der Modellqualität. Kurz gesagt, eine Bibliothek von experimentell ermittelten Proteinstrukturen wird gesucht, mit empfindlichen Sequenzsuchwerkzeugen zur Identifizierung von Proteinen die evolutionär mit dem Zielprotein verwandt sind. Wenn eine oder mehrere Vorlagen identifiziert sind, werden die Informationen der Abgleich der Ziel- und Modell-Sequenzen gemeinsam mit den 3D-Koordinaten der Vorlage (n) verwendet, um ein Strukturmodell für das Protein zu erstellen. Schließlich wird die Qualität des berechneten Modells geschätzt, um die Qualität des berechneten Modells für spätere Anwendungen zu zeigen.
+\end{quote}
+
+Übersetzt aus \cite{Biasini.2014}, den Autoren des Webservers Swissmodel\footnotetext{\url{https://swissmodel.expasy.org}}, welcher zur Homologie Berechnung genutzt wurde. Swissmodel zeichnet sich durch eine aufgeräumte Benutzeroberfläche, einem zuverlässig Server und einer schnellen Berechung aus, siehe \ac{Abb} \ref{fig:swissmodel}. Zudem ist kein Download erforderlich, somit werden auch keine Referenz Datenbanken benötigt. Damit war der Webserver die optimale Wahl für diese Arbeit.
+
+
+
+\section{Ramachandran Plot}
 
 Der Ramachandran Plot wurde 1963 von G. N. Ramachandran \cite{RAMACHANDRAN.1963} entwickelt, um die jeweiligen Diederwinkel (oder auch Torsionswinkel)  $\psi\ \&\ \phi$ eines bestimmten Protein-Backbones darzustellen. Die 3D Struktur eines Proteins wird hauptsächlich durch nicht kovalente Bindungen zwischen Atomen unterschiedlicher Aminosäurereste bestimmt, diese Bindungen sind für Strukturen wie Alpha Helices und Beta Faltblätter verantwortlich. Dies wird durch Veränderungen der  $\psi\ \&\ \phi$ Winkel des C Alpha Atoms erreicht. Denn durch den Doppelbindungscharakter der Aminosäuren ist der $\omega$ Winkel immer 180° und das Protein damit planar. Somit können sich $\psi\ \&\ \phi$ Winkel in einem Bereich von -180° bis +180° befinden, siehe \ref{fig:psi_phi}. Wenn man nun auf der Ordinate die $\psi$-, auf der Abszisse die $\phi$-Winkel der C Alpha Atome aufträgt, erhält man den typischen Ramachandran Plot. 
 
 \begin{figure}
-\includegraphics[width=.95\textwidth]{psi_phi.png}
-\caption{2 dimensionale Projection eines Proteins mit C alpha Atom in der Mitte und gekennzeichneten Winkeln\protect\footnotemark}
-\label{fig:psi_phi}
+    \includegraphics[width=.95\textwidth]{psi_phi.png}
+    \caption{2 dimensionale Projection eines Proteins mit C alpha Atom in der Mitte und gekennzeichneten Winkeln\protect\footnotemark}
+    \label{fig:psi_phi}
 \end{figure}
 \footnotetext{\url{https://application.wiley-vch.de/HOME/bioinformatik/prot/Prot_1d/ueb/1dprotueb.htm}}
 
@@ -218,7 +235,7 @@ Mathematisch lässt sich der Ramachandran Plot mit folgender Gleichung beschreib
 
 
 \subsection{Apache Spark}
-In dieser Arbeit wurde mit der Gesamten RCSB PDB und somit mit 133277 Energieprofilen gearbeitet, um diese \emph{Big Data} adäquat und schnell zu verarbeiten wurde sowohl eine Hardware, als auch Software Lösung benötigt, da ein normaler PC nicht mehr ausreicht, diese Datenmengen zeitnah zu verarbeiten. Hierzu wurde als Hardwarelösung das Cluster der Arbeitsgruppe Goesmann genutzt, indem auf 5000 virtuelle Kerne mit 512GB RAM zugegriffen wurde. Als Softwarelösung wurde Apache Spark\footnote{\url{https://spark.apache.org}} eingesetzt, hierbei handelt es sich um eine gneral-purpose Cluster Software, welche über eine High Level API in Python, Scala, R und Java verfügt. Gerade die Python API war sehr hilfreich, da die Mehrzahl aller Skripte für diese Arbeit in Python geschrieben wurden. So konnte ein Python Skript erst lokal auf einem PC entwickelt und mit einem Testdatensatz überprüft werden, um es anschließend mit Spark auf dem Cluster der AG Goesmann zu deployen. Nach dem deploy verteilt Spark die Daten automatisch auf dem Cluster und fängt die Ergebnisse ab. 
+In dieser Arbeit wurde mit der Gesamten RCSB \ac{PDB} und somit mit 133277 Energieprofilen gearbeitet, um diese \emph{Big Data} adäquat und schnell zu verarbeiten wurde sowohl eine Hardware, als auch Software Lösung benötigt, da ein normaler PC nicht mehr ausreicht, diese Datenmengen zeitnah zu verarbeiten. Hierzu wurde als Hardwarelösung das Cluster der Arbeitsgruppe Goesmann genutzt, indem auf 5000 virtuelle Kerne mit 512GB RAM zugegriffen wurde. Als Softwarelösung wurde Apache Spark\footnote{\url{https://spark.apache.org}} eingesetzt, hierbei handelt es sich um eine gneral-purpose Cluster Software, welche über eine High Level API in Python, Scala, R und Java verfügt. Gerade die Python API war sehr hilfreich, da die Mehrzahl aller Skripte für diese Arbeit in Python geschrieben wurden. So konnte ein Python Skript erst lokal auf einem PC entwickelt und mit einem Testdatensatz überprüft werden, um es anschließend mit Spark auf dem Cluster der AG Goesmann zu deployen. Nach dem deploy verteilt Spark die Daten automatisch auf dem Cluster und fängt die Ergebnisse ab. 
 
 Zudem verfügt Spark noch über ein SQL Tool zum Verarbeiten von strukturierten Daten, MLib für Machine Learning und GraphX für Graph Prozessierung.
 

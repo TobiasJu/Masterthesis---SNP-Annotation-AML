@@ -1,0 +1,253 @@
+\chapter{Durchführung}
+
+Ausgehend von dem nun verfügbaren Datensatz, ist es möglich mit der Anwendung auf unser Problem zu beginnen.
+
+
+
+\section{Aminosäurerest-Pseudopotential Spektrum}
+
+
+\subsection{Quartile}
+In einer ersten Analyse, wurde die Allgemeine Verteilung der \ac{APs} in Quartile erfasst. Dies wurde mit dem Skript \texttt{check\_energy\_quants.py} durchgeführt und die Ergebnisse in \ac{Abb} \ref{fig:quartiles_glob} und \ref{fig:quartiles_memb} dargestellt. 
+%
+\begin{figure}
+\centering
+\includegraphics[width=.95\textwidth]{images/Quartile_Mathias.png}
+\caption{Quartil Verteilung aller Energieprofile, der globulären Proteine, in vier Perzentile, mit Grenzen.}
+\label{fig:quartiles_glob}
+\end{figure}
+
+%new Quantile for globular:
+%-81.2912287163
+%-21.5377154868
+%-9.50643383752
+%-3.44146165978
+%11.768577356
+\begin{figure}
+\centering
+\includegraphics[width=.95\textwidth]{images/Quartile_Mathias.png}
+\caption{Quartil Verteilung aller Energieprofile, der membran assozierten Proteine, in vier Perzentile, mit Grenzen.}
+\label{fig:quartiles_memb}
+\end{figure}
+
+%Quantile for membrane:
+%-12.2373208162
+%4.49279516205
+%8.98564351117
+%13.4598691639
+%46.4967251975
+
+In \ref{fig:quartiles_glob} werden die Quartile für alle globulären Proteine dargestellt, hierbei ist auffällig, dass das größte Quartil von -50 bis -22,21 geht und sich das kleinste Quartil von -8,43 bis -2,94 befindet. In \ref{fig:quartiles_memb} werden die Quartile aller alpha helicalen Proteine dargestellt, hier ist die Quartilverteiung ähnlich. Jedoch fällt auf das die obere und untere Grenze sich deutlich von \ref{fig:quartiles_glob} unterscheidet, denn die untere Grenze beginnt bei -XX,XX anstelle von -50. Die obere Grenze hingegen reicht bis +YY,YY anstelle von +10.
+
+Aufgrund der Übersichtlichkeit und durch Zeitgründe geschuldet, befasst sich diese Arbeit ab hier nur mit den globulären Proteinen.
+
+
+\subsection{Spektrum aller Aminosäuren}
+In einem weiteren Schritt wurde überprüft, ob und wie sich die \ac{AP} Verteilung zwischen den einzelnen Aminosäuren unterscheidet. Dafür wurde der gesamte Datensatz aus 132.098 \ac{EPs} mit dem Skript \texttt{check\_aa\_energy\_range.py} analysiert. Das Skript lieferte die \ac{Abb} \ref{fig:energy_ranges}, welche zeigt, dass nicht alle Aminosäuren im gleichen Energie Spektrum zu finden sind. %
+\begin{table}[]
+\centering
+\begin{tabular}{llllll}
+ &  &  &  &  &  \\
+ &  &  &  &  &  \\ \hline
+\multicolumn{1}{|l|}{Name} & \multicolumn{1}{l|}{Abk.} & \multicolumn{1}{l|}{Symbol} & \multicolumn{1}{l|}{Acylgruppe} & \multicolumn{1}{l|}{essentiell?} & \multicolumn{1}{l|}{Ø in Proteinen} \\ \hline
+Alanin & Ala & A & Alanyl- & nein & 9,0 \% \\
+Arginin & Arg & R & Arginyl- & semi & 4,7 \% \\
+Asparagin & Asn & N & Asparaginyl- & nein & 4,4 \% \\
+Asparaginsäure & Asp & D & $\alpha$-Aspartyl- & nein & 5,5 \% \\
+Cystein & Cys & C & Cysteinyl- & nein & 2,8 \% \\
+Glutamin & Gln & Q & Glutaminyl- & nein & 3,9 \% \\
+Glutaminsäure & Glu & E & $\alpha$-Glutamyl- & nein & 6,2 \% \\
+Glycin & Gly & G & Glycyl- & nein & 7,5 \% \\
+Histidin & His & H & Histidyl- & semi & 2,1 \% \\
+Isoleucin & Ile & I & Isoleucyl- & ja & 4,6 \% \\
+Leucin & Leu & L & Leucyl- & ja & 7,5 \% \\
+Lysin & Lys & K & Lysyl- & ja & 7,0 \% \\
+Methionin & Met & M & Methionyl- & ja & 1,7 \% \\
+Phenylalanin & Phe & F & Phenylalanyl- & ja & 3,5 \% \\
+Prolin & Pro & P & Prolyl- & nein & 4,6 \% \\
+Serin & Ser & S & Seryl- & nein & 7,1 \% \\
+Threonin & Thr & T & Threonyl- & ja & 6,0 \% \\
+Tryptophan & Trp & W & Tryptophyl- & ja & 1,1 \% \\
+Tyrosin & Tyr & Y & Tyrosyl- & nein & 3,5 \% \\
+Valin & Val & V & Valyl- & ja & 6,9 \%
+\end{tabular}
+\caption{Die 20 kanonischen Aminosäuren mit Abkürzungen, Acylgruppe und prozentualer Anteil an der Gesamtheit\protect\footnotemark. Diese Tabelle dient dem Verständis der \ac{Abb} \ref{fig:energy_ranges}.}
+\label{tab:amino_table}
+\end{table}
+\footnotetext{\url{https://de.wikipedia.org/wiki/Aminosäuren##Kanonische_Aminos.C3.A4uren}}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=.99\textwidth]{images/BoxPlot_energy_rages.png}
+    \caption{Energien pro Aminosäure im Boxplot links und Violinen Plot rechts dargestellt. Die Buchstaben stellen die Abkürzungen der einzelnen Aminosäuren dar, siehe Tabelle \ref{tab:amino_table}.}
+    \label{fig:energy_ranges}
+\end{figure}
+
+Zum Beispiel reicht das Spektrum der \ac{APs} von Glutaminsäure und Asparaginsäure von etwa -6 bis +6, während sich das Spektrum von Phenylalanin und Isoleuchin von -50 bis -6 bewegt. 
+
+Zusätzlich zum Boxplot wurde noch ein Violinen Plot für jede Aminosäure erstellt. Dieser zeigt nochmals die Verteilung der Energiewerte innerhalb einer Aminosäure. Es ist so deutlich zu sehen, dass alle Werte um einen Mittelwert verteilt sind, sowie das die Anzahl der Werte stark abflacht sobald man sich den äußeren Bereich des jeweiligen Spektrums nähert.
+
+Der Violinen Plot beinhaltet zudem noch alle Ausreißer, aufgrund dessen sich das Spektrum im allgemeinen länger darstellt, als es im Boxplot der Fall ist. Die Ausreißer wurden im Boxplot mit Hilfe des Grubbs Test\cite{Jain.2010} herausgefiltert. 
+
+
+\subsection{Spektrum der Aminosäuren im Detail}
+In diesem Abschnitt wird das Spektrum der zwei Aminosäuren, Glutaminsäure und Glycin im Detail vorgestellt. Diese beiden Aminosäuren wurden exemplarisch Ausgewählt, da sich alle Aminosäuren Spektren ähnlich verhalten. So ist in \ac{Abb} \ref{fig:glu_distr} deutlich zu sehen das alle Enerigewerte der Glutaminsäure um einen Mittelwert (-0.1) verteilt sind. Dies verhält sich sehr ähnlich für Glycin, sieh \ac{Abb} \ref{fig:gly_distr}, hier sind ebenfalls alle Werte um den Mittelwert (-5.1) verteilt. Jedoch fällt auf, dass die Kurve nicht ganz symmetrisch ist, wie in \ref{fig:glu_distr}, sondern nach links flacher abfällt. Die Verteilungen wurden mit dem Skript \texttt{check\_aa\_energy\_range.py} erstellt, die restlichen \ac{Abb} sind im Anhang dieser Arbeit zu finden. 
+
+Ein Test auf Normalverteilung aus dem Python Packet \emph{scipy}\footnotetext{\url{https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.mstats.normaltest.html}} hat ergeben, dass die Energie Werte nicht normal Verteilt sind, da die Kurve zu spitz ist.  \textbf{ich weiß ja nicht der letzte Satz klingt nicht gut, soll ich die Varianz nochmal explizit ausrechnen? Sagt uns das überhaupt was wichtiges?}
+
+\begin{figure} 
+    \subfigure[\ac{AP} Verteilung von Glutaminsäure]{\includegraphics[width=0.49\textwidth]{images/Glutaminsaure_distr.png}}
+    \subfigure[\ac{AP} Verteilung von Glycin]{\includegraphics[width=0.49\textwidth]{images/Glutaminsaure_distr.png}}
+    \caption{Titel unterm gesamten Bild} 
+    \label{fig:glu_distr}
+\end{figure} 
+
+
+\newpage
+\section{\ac{SNP} Analysen mittels \ac{EPs}}
+
+Um eine eine Aussage über die eventuelle Pathogenität von \ac{SNPs} zu treffen, war es erforderlich geeignete \ac{SNPs} zu finden, die betreffenden Gene zu identifizieren, eine \ac{PDB} Datei mit den Strukturinformationen des betreffenden Proteins zu haben und anschließend das Energieprofil für die generierten \ac{PDB} Dateien zu berechnen. Damit die \ac{EPs} anschließend vergleichen und ausgewertet werden können.
+
+
+\subsection{Identifizierung der SNPs}
+
+Um geeignete \ac{SNPs} für eine aussagekräftige Analyse zu finden, wurde auf die Datenbank ClinVar\footnotetext{\url{https://www.ncbi.nlm.nih.gov/clinvar/}} zurück gegriffen. Diese enthält Daten über genetische Variationen und die Auswirkungen auf die menschliche Gesundheit. Zum Zeitpunkt dieser Arbeit (Oktober 2017) enthielt sie 82.147 als \emph{pathogenic} markierte und 105.337 als \emph{benign} markierte genetische Variationen. Jedoch konnte nicht ohne weiteres aus diesem Datensatz geschöpft werden, denn viele Variationen enthalten widersprüchliche Annotationen. Um die Qualität der Annotation zu bewerten gibt es den sogenannten \emph{Review Status} dieser gibt an, wie gut die Annotation ist. So gibt es z.B. einen Stern, wenn die genetische Variation bisher nur von einem Autoren eingetragen wurde. Gibt es mehrere Autoren und widersprechen sich die Annotationen nicht, so bekommt die Annotation zwei Sterne. Die fast beste Qualität, mit drei Sternen, hat das \emph{expert panel}, Autoren in dieser Kategorie müssen spezielle Anforderungen erfüllen\footnotetext{\url{https://www.ncbi.nlm.nih.gov/clinvar/docs/review_guidelines/}}. Die beste Annotation mit vier Sternen hat \emph{practice guideline}, jedoch fallen fast keine \ac{SNPs} (23) in diese Kategorie, aus diesem Grund wurden erst nur Variationen betrachtet, welche aus dem \emph{expert panel} kommen. 
+%
+\begin{table}[]
+    \centering
+    \begin{tabular}{llllllll}
+    \hline
+    \multicolumn{1}{|l|}{Name} & \multicolumn{1}{l|}{Template} & \multicolumn{1}{l|}{Länge} & \multicolumn{1}{l|}{coverage} & \multicolumn{1}{l|}{Identity} & \multicolumn{1}{l|}{QMEAN} & \multicolumn{1}{l|}{SNPs} & \multicolumn{1}{l|}{Assozierung} \\ \hline
+    \rowcolor[HTML]{9AFF99} 
+    MSH2 & 3thw.1.A & 934 & 98,40\% & 100\% & -2,05 & 33 & globulär \\ \hline
+    \multicolumn{1}{|l}{BRCA1} & 1jm7.1.A & 1863 & 5,50\% & 100\% & -0,13 & 24 & \multicolumn{1}{l|}{globulär} \\
+    \multicolumn{1}{|l}{} & 4y18.1.A &  & 11,40\% &  & -2,18 &  & \multicolumn{1}{l|}{} \\ \hline
+    BRCA2 & 1miu.1.B & 3418 & 21\% & 75,48\% & -5,05 & 10 & globulär \\
+    \rowcolor[HTML]{9AFF99} 
+    CFTR & 5uak.1.A & 1480 & 96,70\% & 100\% & -4,51 & 44 & membran \\
+    MYH7 & 5tby.1.A & 1935 & 49,50\% & 100\% & -4,8 & 32 & globulär \\ \hline
+    \multicolumn{1}{|l}{MLH1} & 4p7a.1.A & 756 & 44\% & 100\% & -0,73 & 65 & \multicolumn{1}{l|}{globulär} \\
+    \multicolumn{1}{|l}{} & 3rbn.1.A &  & 34,90\% & 100\% & -1,29 &  & \multicolumn{1}{l|}{} \\ \hline
+    \end{tabular}
+    \caption{Tabelle aller Gene des \emph{expert panels} mit mindestens 10 Pathogenen \ac{SNPs}}
+    \label{tab:expert_snps}
+\end{table}
+
+Das \emph{expert panel} enthält 5.437 pathogene und 2.878 gutartige Variationen, von diesen waren 1.717 und 2.697 \ac{SNPs} für diese Arbeit von Interesse, die anderen genetischen Variationen aus Deletionen, Duplikationen und Insertionen bestehen. Ausgehend von diesen \ac{SNPs} wurden alle Gene ausgewählt welche mindestens 10 Pathogene SNPs in der ClinVar besitzen. So wurden 6 Gene ausgewählt und die Aminosäure Sequenz aus der NCBI Protein Datenbank\footnotetext{\url{https://www.ncbi.nlm.nih.gov/protein/}} heruntergeladen und für jeden \ac{SNPs} eine Sequenz angelegt. 
+
+\begin{table}[]
+    \centering
+    \begin{tabular}{llllllll}
+    \hline
+    \multicolumn{1}{|l|}{Name} & \multicolumn{1}{l|}{Template} & \multicolumn{1}{l|}{Länge} & \multicolumn{1}{l|}{coverage} & \multicolumn{1}{l|}{Identity} & \multicolumn{1}{l|}{QMEAN} & \multicolumn{1}{l|}{SNPs} & \multicolumn{1}{l|}{Assozierung} \\ \hline
+    MFN2 & 5gom.1.A & 757 & 51,30\% & 71.21\% & -1,32 & 13 & globulär \\
+    \rowcolor[HTML]{CBFFCB} 
+    SDHB & 1zoy.1.B & 280 & 85,70\% & 97.54\% & -0,88 & 10 & Membran \\
+    MUTYH & 3n5n.2.A & 535 & 51,40\% & 100\% & -1,8 & 14 & globulär \\
+    ALPL & 1zef.1.A & 524 & 90\% & 58,58\% & -2,04 & 8 & globulär \\
+    \rowcolor[HTML]{9AFF99} 
+    SLC2A1 & 4pyp.1.A & 492 & 90,70\% & 99,59\% & -4,75 & 8 & Membran \\
+    \rowcolor[HTML]{9AFF99} 
+    ACADM & 1ege.1.B & 421 & 91,70\% & 100\% & -1,23 & 11 & globulär \\
+    LMNA & 1ufg.1.A & 572 & 22,70\% & 96,18\% & -4,66 & 21 & globulär \\
+    ABCA4 & 5xjy.1.A & 2273 & 98,90\% & 51,97\% & -6,57 & 22 & Membran \\
+    TNNT2 & 1j1d.2.B & 295 & 25,10\% & 99,03\% & 0,87 & 10 & globulär \\
+    COL9A2 & 5ctd.1.B & 689 & 6,30\% & 86,67\% & 0,41 & 6 & globulär \\
+    STIL & 4yyp.1.B & 1288 & 100\% & 2\% & -0,03 & 6 & globulär \\
+    AGL & 5d06.2.A & 1532 & 43,09\% & 97,30\% & -4,43 & 8 & globulär \\
+    \rowcolor[HTML]{CBFFCB} 
+    KCNQ1 & 5vms.1.A & 676 & 68,50\% & 83,30\% & -5,87 & 10 & Membran \\
+    \rowcolor[HTML]{CBFFCB} 
+    KCNH2 & 5va2.1.A & 1159 & 74,20\% & 96,56\% & -5,38 & 6 & Membran \\
+    PMS2 & 1h7s.1.A & 862 & 39\% & 100\% & 0,25 & 6 & globulär
+    \end{tabular}
+    \caption{Tabelle aller Gene der ClinVar Datenbank, mit mindestens 6 Pathogenen SNPs und multiplen Autoren, ohne Widerspruch}
+    \label{tab:multiple_subs_snps}
+\end{table}
+
+Da der Datensatz erst 6 Gene umfasst, wurden die Kriterien der \ac{SNP} Auswahl erweitert. So wurden in einem zweiten Durchlauf auch jende \ac{SNPs} hinzugezogen, welche nicht im \emph{expert Panel} waren, sondern lediglich von mehreren Autoren eingetragen wurden. Somit standen 3.826 pathogene und gutartige 19.070 \ac{SNPs} zu Verfügung. Des weiteren wurde die Mindestanzahl an pathogener SNPs auf 6 pro Gen verringert. Somit konnte der Datensatz um 15 Gene erweitert werden, siehe Tabelle \ref{tab:multiple_subs_snps}.
+
+
+\subsection{Homologie Berechnungen}
+
+Sobald alle Proteine mit den \ac{SNPs} vorlagen musste eine Homologie Modellierung durchgeführt werden. Denn zum Einen besitzen nicht alle Proteine eine aufgeklärte Struktur und zum Anderen sind nur sehr wenige mutierte Proteine strukturell aufgeklärt. So war es notwendig jeweils für das Proteine und die Mutation mit dem \ac{SNP} eine Homologie Berechnung durchzuführen. Hierzu wurde wie in Kapitel \ref{sec:siwssmodel} gezeigt mit Swissmodel eine Berechnung durchgeführt.
+
+Die Ergebnisse sind in \ref{tab:expert_snps} dargestellt, wie zu sehen ist, ist die größte Coverage bei \texttt{MSH2} mit 98,4\% gefolgt von \texttt{CFTR} mit 96,7\%. Die Sequenz Identität beträgt bei beiden 100\%. Bei fast allen Sequenzen wurden mehrere Templates gefunden, doch meist weisen die Meisten eine sehr niedrige Coverage auf, sodass sie hier nicht dargestellt sind. Bei \texttt{MLH1} wurden zwei Templates gefunden, welche 44\% und 34,9\% der Sequenz abdecken. Bei \texttt{BRCA1} wurden ebenfalls mehrere Templates gefunden, so dass hier eine Coverage von 11,4\% und 5,5\% vorliegt. \texttt{BRCA2} hat eine Coverage von 21\% bei 75,48\% Sequenzidentität.
+
+In einem zweiten Durchgang wurden auch alle Proteine mit ihren SNPs aus \ref{tab:multiple_subs_snps} mittels Swissmodel strukturell modelliert. Hierbei zeigte \texttt{ABCA4} die höchste Coverage, doch nur eine Sequenzidentität von 51,97\%. Betrachtet man Coverage und Sequenzidentität, so weisen \texttt{SLC2A1} und \texttt{ACADM} die höchste Coverage mit 90,7\% und 91,7\% auf. 
+
+\textbf{die Tabellen noch mehr erklären?}
+
+
+
+\subsection{Berechnung \& Auswertung der Energieprofile}
+Nachdem nun die \ac{PDB} Dateien vorliegen, wurde für jede dieser Dateien ein Energieprofil berechnet wie es auch in Kapitel \ref{sec:calc_ep} beschrieben ist. Diese \ac{EPs} wurden nun anschließend mit dem Skript \texttt{plot\_eps\_and\_snps.py} analysiert und geplottet. 
+%
+\begin{figure}
+    \centering
+    \includegraphics[width=.99\textwidth]{images/ep_vs_snp.png}
+    \caption{eVis (Energie Profil Visualisierung) Darstellung vom ePros Webserver (Kapitel \ref{sec:epros}) eines Ausschnittes eines \ac{EP}s. original Sequenz links und Sequenz mit \ac{SNP} rechts}
+    \label{fig:ep_vs_snp}
+\end{figure}
+
+Zum Verständnis ist ein \ac{EP} in \ac{Abb} \ref{fig:ep_vs_snp} dargestellt. Hier sieht man eine 2D Visualisierung eines \ac{EP}s, auf der Abszisse sind die Aminosäuren im Einbuchstabencode aufgetragen, wahrend auf der Ordinate die Energiewerte eingetragen sind. Die beiden Darstellungen unterscheiden sich nur durch die Substitution von Valin durch Glycin, so ist hier deutlich die Energiewert Differenz zwischen den beiden Darstellungen zu erkennen. So besitzt im Protein Valin an der Position 68 einen Energiewert von -25, der Glycin \ac{SNP} hingegen besitzt einen Energiewert von -10, so ergibt sich eine Delta von 15.
+
+
+
+
+
+\newpage
+\section{Anwendbarkeit auf unser Problem}
+
+
+
+\begin{table}[]
+    \centering
+    \begin{tabular}{lllll}
+    \hline
+    \multicolumn{1}{|l|}{Genname} & \multicolumn{1}{l|}{Genelänge (bp)} & \multicolumn{1}{l|}{Transkriptlänge} & \multicolumn{1}{l|}{PDB-ENSP} & \multicolumn{1}{l|}{PDB coverage} \\ \hline
+    IDH1 & 29847 & 2298 & 1t09.A & 17,97\% \\
+    KDM6A & 239425 & 5438 & 3avr.A & 9,58\% \\
+    JAK2 & 143793 & 5285 & 4z32.A & 9,18\% \\
+    NRAS & 12425 & 4449 & 3con.A & 3,84\% \\
+    RAD21 & 28931 & 3749 & 4pju.B & 3,71\% \\
+    RAD21 & 28931 & 3749 & 4pjw.B & 3,71\% \\
+    NOTCH1 & 51418 & 9371 & 3eto.A & 3,06\% \\
+    \end{tabular}
+    \caption{Illumina TruSight Myeloid Sequencing Panel Gene \emph{coverage}, Transkriptlänge ist mit UTRs und CDS angegeben}
+    \label{my-label}
+\end{table}
+
+
+
+
+
+\section{PSI \& PHI Winkel Berechnung}
+
+Der generierte Datensatz aus Kapitel \ref{sec:calc_ep}, ist Grundlage der folgenden Berechnung.
+
+Bedingt durch die Tatsache das alle in dieser Arbeit \ref{sec:konst} gefilterten \ac{Pfam} auch eine aufgeklärte Struktur besitzen lies sich nun jede \ac{Pfam} in einen Ramachandran Plot darstellen, siehe \ac{Abb} \ref{fig:ramachandran_PF01287}.
+
+% finde einen SNP der in der Pfam liegt und in der Clinvar ist
+
+\begin{figure}
+    \centering
+    \includegraphics[width=.99\textwidth]{images/ramachandranplot_PF01287.png}
+    \caption{Ramachandran Plot der Pfam PF01287}
+    \label{fig:ramachandran_PF01287}
+\end{figure}
+
+
+Es treten nicht nur spezifische PSI und PHI Winkel auf, sondern fast im kompletten Spektrum des möglichen.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=.99\textwidth]{images/ramachandranplot_PF00883.png}
+    \caption{Ramachandran Plot der Pfam PF00883}
+    \label{fig:ramachandran_PF00883}
+\end{figure}
+
+
+
+
+

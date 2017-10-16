@@ -49,7 +49,7 @@ Die einzige aktuelle Quelle fertig berechneter Energieprofile ist der ePros Webs
 
 \begin{figure}
 \includegraphics[width=.95\textwidth]{images/ePros.png}
-\caption{eCalc Ergebnis für \ac{PDB} ID 1A1C Chain A}
+\caption{eCalc Ergebnis für \ac{PDB} ID \texttt{1A1C} Chain A, dargestellt mit \ac{eVis}.}
 \label{fig:epros}
 \end{figure}
 
@@ -57,7 +57,7 @@ Die einzige aktuelle Quelle fertig berechneter Energieprofile ist der ePros Webs
 \item[eCalc]
 Mittels \emph{eCalc} lassen sich Energieprofile auf Grundlage einer Struktur oder \ac{PDB} ID berechnen. Das EP wird dann in einem 2D Graphen visualisiert, sodass man leicht die Energiewerte jeder Aminosäure sehen kann, sowie deren Sekundärstruktur, siehe Abb. \ref{fig:epros}.
 \item[eAlign]
-Mit \emph{eAlign} ist es möglich zwei EPs mit einem modifizierten Needleman-Wunsch/Smith-Waterman Algorithmus zu alignieren und paarweise zu vergleichen.
+Mit \emph{eAlign} ist es möglich zwei EPs mit einem modifizierten Needle-man-Wunsch/Smith-Waterman Algorithmus zu alignieren und paarweise zu vergleichen.
 \item[eGOR]
 Anders als \emph{eCalc} ist \emph{eGOR} ein \emph{GOR}\cite{Garnier.1996} basierter Ansatz um ein EP zu berechnen, als Grundlage dient eine Aminosäure Sequenz.
 \item[eSearch]
@@ -216,11 +216,11 @@ Der Ramachandran Plot wurde 1963 von G. N. Ramachandran \cite{RAMACHANDRAN.1963}
 Anhäufungen im Ramachandran Plot sind immer charakteristisch für spezifische Protein Sekundärstrukturen, wie z.B. alpha Helices oder beta Faltblätter. Diese sind gut zu sehen in der Abbildung \ref{fig:ramaplot}.
 
 \begin{figure}
-\includegraphics[width=.95\textwidth]{ramaplot.png}
-\caption{Ein Ramachandran Plot des Proteins PCNA, eines menschlichen Enzyms aus der Replikationsmaschinerie, das sowohl beta-Faltblätter als auch alpha-Helices enthält (PDB ID 1AXC). Auf der Ordinate sind die psi-, auf der Abszisse die phi-Winkel aufgetragen.\protect\footnotemark \textbf{hier kommt noch ein geeigneter Plot von mir hin}}
+\includegraphics[width=.95\textwidth]{images/Ramaplot.png}
+\caption{Abgebildet ist ein Ramachandran Plot welcher 100.000 representative Datenpunkte darstellt. Gut zu sehen sind die Akkumulationen links und rechts drehenden alpha-Helices, sowie die beta-Faltblätter. Auf der Ordinate sind die PSI-, auf der Abszisse die PHI-Winkel aufgetragen\protect\footnotemark.}
 \label{fig:ramaplot}
 \end{figure}
-\footnotetext{\url{https://upload.wikimedia.org/wikipedia/commons/5/57/Ramaplot.png}}
+\footnotetext{\url{http://proteopedia.org/wiki/index.php/Ramachandran_Plots}}
 
 Mathematisch lässt sich der Ramachandran Plot mit folgender Gleichung beschreiben:
 
@@ -237,8 +237,6 @@ Mathematisch lässt sich der Ramachandran Plot mit folgender Gleichung beschreib
 \subsection{Apache Spark}
 In dieser Arbeit wurde mit der Gesamten RCSB \ac{PDB} und somit mit 133277 Energieprofilen gearbeitet, um diese \emph{Big Data} adäquat und schnell zu verarbeiten wurde sowohl eine Hardware, als auch Software Lösung benötigt, da ein normaler PC nicht mehr ausreicht, diese Datenmengen zeitnah zu verarbeiten. Hierzu wurde als Hardwarelösung das Cluster der Arbeitsgruppe Goesmann genutzt, indem auf 5000 virtuelle Kerne mit 512GB RAM zugegriffen wurde. Als Softwarelösung wurde Apache Spark\footnote{\url{https://spark.apache.org}} eingesetzt, hierbei handelt es sich um eine gneral-purpose Cluster Software, welche über eine High Level API in Python, Scala, R und Java verfügt. Gerade die Python API war sehr hilfreich, da die Mehrzahl aller Skripte für diese Arbeit in Python geschrieben wurden. So konnte ein Python Skript erst lokal auf einem PC entwickelt und mit einem Testdatensatz überprüft werden, um es anschließend mit Spark auf dem Cluster der AG Goesmann zu deployen. Nach dem deploy verteilt Spark die Daten automatisch auf dem Cluster und fängt die Ergebnisse ab. 
 
-Zudem verfügt Spark noch über ein SQL Tool zum Verarbeiten von strukturierten Daten, MLib für Machine Learning und GraphX für Graph Prozessierung.
-
 \begin{figure}
 \includegraphics[width=.95\textwidth]{apache_spark.png}
 \caption{Apache Spark\protect\footnotemark}
@@ -246,8 +244,12 @@ Zudem verfügt Spark noch über ein SQL Tool zum Verarbeiten von strukturierten 
 \end{figure}
 \footnotetext{\url{https://www.slideshare.net/perone/apache-spark-intro-to-largescale-recommendations-with-apache-spark-and-python}}
 
+Zudem verfügt Spark noch über ein SQL Tool zum Verarbeiten von strukturierten Daten, MLib für Machine Learning und GraphX für Graph Prozessierung.
 
-\newpage
+
+
+
+%\newpage
 \subsection{Nextflow}
 
 \begin{wrapfigure}{R}{0.5\textwidth}

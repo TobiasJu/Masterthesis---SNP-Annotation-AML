@@ -15,7 +15,9 @@ Um die Änderungen der $\psi$ \& $\phi$ in der 3D Struktur interpretieren zu kö
 
 \begin{enumerate}
 \item
+    \begin{sloppypar}
     Um schnell und effizient mit den beiden Datenbanken zu arbeiten, wurden diese von deren offiziellen Webseiten heruntergeladen. Die \ac{PDB} ist unter \url{http://www.rcsb.org/pdb/static.do?p=download/http/index.html} erreichbar und wurde via Kommandozeile mit \texttt{wget -N \url{ftp://ftp.wwpdb.org/pub/pdb/data/structures/all/pdb/*}} heruntergeladen. Die \ac{Pfam} ist zu finden unter \url{ftp://ftp.ebi.ac.uk/pub/databases/Pfam/releases/Pfam31.0/} hier wurde die Datei \texttt{Pfam-A.full.ncbi.gz} herunter geladen. Nach dem Download umfassten die Dateien der \ac{PDB} 16GB und die \ac{Pfam} 28GB (hierbei ist zu beachten das die entpackte \ac{Pfam} 212GB und die \ac{PDB} Dateien 100GB umfassen).
+    \end{sloppypar}
 \item
     Alle \ac{Pfams} werden in einer einzigen großen Datei zu Verfügung gestellt. Dies ist für die weitere Arbeit ungeeignet, da die gesamte Datei immer wieder in den \ac{RAM} geladen werden müsste. Der Aufbau der Dateistruktur ermöglicht es uns jedoch jeden Eintrag einer Familie separat zu erfassen und in eine Datei zu extrahieren, dies wurde mit \texttt{extract\_protein\_families.py} durchgeführt.
 \item
@@ -34,9 +36,9 @@ Um die Änderungen der $\psi$ \& $\phi$ in der 3D Struktur interpretieren zu kö
         \item
         Danach wurden diese ID Listen mit den \texttt{UniProtKB} AC/IDs auf der Webseite \url{http://www.uniprot.org/uploadlists/} eingefügt um so die korrespondierenden \texttt{EMBL} CDS IDs zu bekommen, welche die Sequenzen in den Pfams eindeutig beschreiben.
         \item
-        Mit den EMBL CDS IDs war es nun möglich alle benötigten Sequenzen aus den Pfams mittels dem Skript \texttt{find\_pfam\_pdb\_sequences.py} zu filtern.
+        Mit den EMBL CDS IDs war es nun möglich alle benötigten Sequenzen aus den Pfams mittels dem Skript \texttt{find\-\_pfam\-\_pdb\-\_sequences.py} zu filtern.
         \item
-        Zuletzt wurde noch mit dem Skript \texttt{find\_empty\_pfams.py} alle Proteinfamilien, welche keine Sequenzen mehr beinhalten, verworfen. 
+        Zuletzt wurde noch mit dem Skript \texttt{find\-\_empty\-\_pfams.py} alle Proteinfamilien, welche keine Sequenzen mehr beinhalten, verworfen. 
     \end{enumerate}
 \end{enumerate}
 
@@ -62,12 +64,12 @@ Die Rechenleistung eines einzelnen PCs stellte sich allerdings als nicht ausreic
     \item
         Im 3. Schritt wurde jedem \ac{EP} ein zusätzliches Verbindungsprofil hinzugefügt, indem nach benachbarten Aminosäuren innerhalb der 8 Angström Sphäre gesucht wurde, diese Kontaktmatrix ist in Abschnitt \ref{sec:Kontaktmatrix} näher erklärt.
     \item
-        Im letzten Schritt wurden die Namen der Dateien bereinigt, denn Nextflow arbeitet mit vielen Dateiendungen um die Daten zu verarbeiten. Am Ende des Workflows ist der Ordner gefüllt mit \texttt{pdb*.ent.ep2.cnn} Dateien, diese werden nun geöffnet und anhand ihrer \ac{PDB} ID umbenannt.
+        Im letzten Schritt wurden die Namen der Dateien bereinigt, denn Nextflow arbeitet mit vielen Dateiendungen um die Daten zu verarbeiten. Am Ende des Workflows ist der Ordner gefüllt mit \texttt{pdb*.\-ent.\-ep2.\-cnn} Dateien, diese werden nun geöffnet und anhand ihrer \ac{PDB} ID umbenannt.
 \end{enumerate}
 
 \paragraph{Hinweis:} Hierbei ist noch zu erwähnen das die Pipeline insgesamt zwei mal ausgeführt wurde, einmal mit allen globulär assozierten \ac{PDB} Daten und einmal mit allen alpha helicalen Membran Dateien, da sich die Berechnung dieser beiden Klassen unterscheidet.
 
-Nach der Abschluss der Berechnung waren XXX.XXX globuläre \ac{EPs} und Y.YYY alpha helicale Proteine vorhanden.
+Nach der Abschluss der Berechnung waren 132.098 globuläre und 3.172 alpha helicale \ac{EPs} vorhanden.
 
 \section{Kontaktmatrix}
 \label{sec:Kontaktmatrix}
@@ -100,7 +102,7 @@ In diesem Array, ist die Information zu den benachbarten Aminosäuren gespeicher
 
 Eine \texttt{1} bedeutet, es gibt in der 8 Angström Umgebung um die Aminosäure einen Kontakt mit der anderen Aminosäure. Am Beispiel der ersten Aminosäure Prolin an Position 1, kann man also sehen, dass diese Kontakte mit Glycin an Position 3 und Prolin an Position 4 in der Chain hat. Eine \texttt{0} bedeutet im Gegensatz es besteht kein Kontakt in der 8\AA\ Umgebung.
 
-Um ein Kontaktprofil zu errechnen wird das Python Script \texttt{add\_aa\_connections.py} verwendet. Zuerst wird für das jeweilige \ac{EP} die entsprechende \ac{PDB} Datei herausgesucht, in dem oben genannten Beispiel wäre dies \texttt{pdb3t4f.ent}. Nun wird über die \ac{PDB} Datei iteriert und alle Positionen der Aminosäuren analysiert und mit der Abstandsgleichung \ref{eq:abstand}, der Abstand der einzelnen Aminosäuren zueinander bestimmt.
+Um ein Kontaktprofil zu errechnen wird das Python Skript \texttt{add\-\_aa\-\_connections.py} verwendet. Zuerst wird für das jeweilige \ac{EP} die entsprechende \ac{PDB} Datei herausgesucht, in dem oben genannten Beispiel wäre dies \texttt{pdb3t4f.ent}. Nun wird über die \ac{PDB} Datei iteriert und alle Positionen der Aminosäuren analysiert und mit der Abstandsgleichung \ref{eq:abstand}, der Abstand der einzelnen Aminosäuren zueinander bestimmt.
 
 \begin{equation}
     d=\sqrt{(x_2-x_1)^2+(y_2-y_1)^2+(z_2-z_1)^2}

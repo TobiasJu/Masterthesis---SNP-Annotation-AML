@@ -12,8 +12,8 @@ In einer ersten Analyse, wurde die Allgemeine Verteilung der \ac{APs} in Quartil
 %
 \begin{figure}
 \centering
-\includegraphics[width=.95\textwidth]{images/Quartile_Mathias.png}
-\caption{Quartil Verteilung aller Energieprofile, der globulären Proteine, in vier Perzentile, mit Grenzen.}
+\includegraphics[width=.95\textwidth]{images/Quartil_glob.png}
+\caption{Verteilung des Energiespektrums aller Energieprofile, der globulären Proteine, in vier Perzentile, mit Grenzen.}
 \label{fig:quartiles_glob}
 \end{figure}
 
@@ -25,8 +25,8 @@ In einer ersten Analyse, wurde die Allgemeine Verteilung der \ac{APs} in Quartil
 %11.768577356
 \begin{figure}
 \centering
-\includegraphics[width=.95\textwidth]{images/Quartile_Mathias.png}
-\caption{Quartil Verteilung aller Energieprofile, der membran assozierten Proteine, in vier Perzentile, mit Grenzen.}
+\includegraphics[width=.95\textwidth]{images/Quartil_memb.png}
+\caption{Verteilung des Energiespektrums aller Energieprofile, der Membran assoziierten Proteine, in vier Perzentile, mit Grenzen.}
 \label{fig:quartiles_memb}
 \end{figure}
 
@@ -37,13 +37,13 @@ In einer ersten Analyse, wurde die Allgemeine Verteilung der \ac{APs} in Quartil
 %13.4598691639
 %46.4967251975
 
-In \ref{fig:quartiles_glob} werden die Quartile für alle globulären Proteine dargestellt, hierbei ist auffällig, dass das größte Quartil von -50 bis -22,21 geht und sich das kleinste Quartil von -8,43 bis -2,94 befindet. In \ref{fig:quartiles_memb} werden die Quartile aller alpha helicalen Proteine dargestellt, hier ist die Quartilverteiung ähnlich. Jedoch fällt auf das die obere und untere Grenze sich deutlich von \ref{fig:quartiles_glob} unterscheidet, denn die untere Grenze beginnt bei -XX,XX anstelle von -50. Die obere Grenze hingegen reicht bis +YY,YY anstelle von +10.
+In \ref{fig:quartiles_glob} werden die Quartile für alle globulären Proteine dargestellt, hierbei ist auffällig, dass das größte Quartil von -81 bis -22,21 geht und sich das kleinste Quartil von -9,26 bis -3,33 befindet. In \ref{fig:quartiles_memb} werden die Quartile aller alpha helicalen Proteine dargestellt, hier ist die relative Quartilgröße ähnlich. Doch es fällt auf, dass die obere und untere Grenze sich deutlich von \ref{fig:quartiles_glob} unterscheiden, denn die untere Grenze beginnt bei -12 anstelle von -81. Die obere Grenze hingegen reicht bis +46,49 anstelle von +11,5.
 
-Aufgrund der Übersichtlichkeit und durch Zeitgründe geschuldet, befasst sich diese Arbeit ab hier nur mit den globulären Proteinen.
+Aufgrund der Übersichtlichkeit und durch die geringe Anzahl an alpha helicalen \ac{EPs}, befasst sich diese Arbeit sich hauptsächlich mit globulären Proteinen.
 
 
 \subsection{Spektrum aller Aminosäuren}
-In einem weiteren Schritt wurde überprüft, ob und wie sich die \ac{AP} Verteilung zwischen den einzelnen Aminosäuren unterscheidet. Dafür wurde der gesamte Datensatz aus 132.098 \ac{EPs} mit dem Skript \texttt{check\_aa\_energy\_range.py} analysiert. Das Skript lieferte die \ac{Abb} \ref{fig:energy_ranges}, welche zeigt, dass nicht alle Aminosäuren im gleichen Energie Spektrum zu finden sind. %
+In einem weiteren Schritt wurde überprüft, ob und wie sich die \ac{AP} Verteilung zwischen den einzelnen Aminosäuren unterscheidet. Dafür wurde der gesamte Datensatz aus 132.098 globulären \ac{EPs} mit dem Skript \texttt{check\_aa\_energy\_range.py} analysiert. Das Skript lieferte die \ac{Abb} \ref{fig:energy_ranges}, welche zeigt, dass nicht alle Aminosäuren im gleichen Energie Spektrum zu finden sind. %
 \begin{table}[]
 \centering
 \begin{tabular}{llllll}
@@ -91,27 +91,28 @@ Der Violinen Plot beinhaltet zudem noch alle Ausreißer, aufgrund dessen sich da
 
 
 \subsection{Spektrum der Aminosäuren im Detail}
-In diesem Abschnitt wird das Spektrum der zwei Aminosäuren, Glutaminsäure und Glycin im Detail vorgestellt. Diese beiden Aminosäuren wurden exemplarisch Ausgewählt, da sich alle Aminosäuren Spektren ähnlich verhalten. So ist in \ac{Abb} \ref{fig:glu_distr} deutlich zu sehen das alle Enerigewerte der Glutaminsäure um einen Mittelwert (-0.1) verteilt sind. Dies verhält sich sehr ähnlich für Glycin, sieh \ac{Abb} \ref{fig:gly_distr}, hier sind ebenfalls alle Werte um den Mittelwert (-5.1) verteilt. Jedoch fällt auf, dass die Kurve nicht ganz symmetrisch ist, wie in \ref{fig:glu_distr}, sondern nach links flacher abfällt. Die Verteilungen wurden mit dem Skript \texttt{check\_aa\_energy\_range.py} erstellt, die restlichen \ac{Abb} sind im Anhang dieser Arbeit zu finden. 
+In diesem Abschnitt wird das Spektrum der zwei Aminosäuren, Glutaminsäure und Glycin im Detail vorgestellt. Diese beiden Aminosäuren wurden exemplarisch Ausgewählt, da sich alle Aminosäuren Spektren ähnlich verhalten. So ist in \ac{Abb} \ref{fig:ep_as_distr} deutlich zu sehen das alle Enerigewerte der Glutaminsäure um einen Mittelwert (-0.1) verteilt sind. Dies verhält sich sehr ähnlich für Glycin, hier sind ebenfalls alle Werte um den Mittelwert (-5.1) verteilt. Jedoch fällt auf, dass die Kurve nicht ganz symmetrisch ist, wie in der Verteilung von Energiewerten der Glutaminsäure, sondern nach links flacher abfällt. Die Verteilungen wurden mit dem Skript \texttt{check\_aa\_energy\_range.py} erstellt, die restlichen \ac{Abb} sind im Anhang dieser Arbeit zu finden. 
 
-Ein Test auf Normalverteilung aus dem Python Packet \emph{scipy}\footnotetext{\url{https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.mstats.normaltest.html}} hat ergeben, dass die Energie Werte nicht normal Verteilt sind, da die Kurve zu spitz ist.  \textbf{ich weiß ja nicht der letzte Satz klingt nicht gut, soll ich die Varianz nochmal explizit ausrechnen? Sagt uns das überhaupt was wichtiges?}
+Ein Test auf Normalverteilung aus dem Python Packet \emph{scipy}\footnote{\url{https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.mstats.normaltest.html}} hat ergeben, dass die Energie Werte nicht normal Verteilt sind, da die Kurve eine zu geringe Varianz aufweist, also zu spitz ist.  \textbf{ich weiß ja nicht der letzte Satz klingt nicht gut, soll ich die Varianz nochmal explizit ausrechnen? Sagt uns das überhaupt was wichtiges?}
 
 \begin{figure} 
     \subfigure[\ac{AP} Verteilung von Glutaminsäure]{\includegraphics[width=0.49\textwidth]{images/Glutaminsaure_distr.png}}
-    \subfigure[\ac{AP} Verteilung von Glycin]{\includegraphics[width=0.49\textwidth]{images/Glutaminsaure_distr.png}}
-    \caption{Titel unterm gesamten Bild} 
-    \label{fig:glu_distr}
+    \subfigure[\ac{AP} Verteilung von Glycin]{\includegraphics[width=0.49\textwidth]{images/histogramm_G.png}}
+    \caption{Distribution der Energiewerte} 
+    \label{fig:ep_as_distr}
 \end{figure} 
 
 
 \newpage
-\section{\ac{SNP} Analysen mittels \ac{EPs}}
+\section{SNP Analysen mittels EPs}
+\label{sec:snp_analyse}
 
 Um eine eine Aussage über die eventuelle Pathogenität von \ac{SNPs} zu treffen, war es erforderlich geeignete \ac{SNPs} zu finden, die betreffenden Gene zu identifizieren, eine \ac{PDB} Datei mit den Strukturinformationen des betreffenden Proteins zu haben und anschließend das Energieprofil für die generierten \ac{PDB} Dateien zu berechnen. Damit die \ac{EPs} anschließend vergleichen und ausgewertet werden können.
 
 
 \subsection{Identifizierung der SNPs}
 
-Um geeignete \ac{SNPs} für eine aussagekräftige Analyse zu finden, wurde auf die Datenbank ClinVar\footnotetext{\url{https://www.ncbi.nlm.nih.gov/clinvar/}} zurück gegriffen. Diese enthält Daten über genetische Variationen und die Auswirkungen auf die menschliche Gesundheit. Zum Zeitpunkt dieser Arbeit (Oktober 2017) enthielt sie 82.147 als \emph{pathogenic} markierte und 105.337 als \emph{benign} markierte genetische Variationen. Jedoch konnte nicht ohne weiteres aus diesem Datensatz geschöpft werden, denn viele Variationen enthalten widersprüchliche Annotationen. Um die Qualität der Annotation zu bewerten gibt es den sogenannten \emph{Review Status} dieser gibt an, wie gut die Annotation ist. So gibt es z.B. einen Stern, wenn die genetische Variation bisher nur von einem Autoren eingetragen wurde. Gibt es mehrere Autoren und widersprechen sich die Annotationen nicht, so bekommt die Annotation zwei Sterne. Die fast beste Qualität, mit drei Sternen, hat das \emph{expert panel}, Autoren in dieser Kategorie müssen spezielle Anforderungen erfüllen\footnotetext{\url{https://www.ncbi.nlm.nih.gov/clinvar/docs/review_guidelines/}}. Die beste Annotation mit vier Sternen hat \emph{practice guideline}, jedoch fallen fast keine \ac{SNPs} (23) in diese Kategorie, aus diesem Grund wurden erst nur Variationen betrachtet, welche aus dem \emph{expert panel} kommen. 
+Um geeignete \ac{SNPs} für eine aussagekräftige Analyse zu finden, wurde auf die Datenbank ClinVar\footnote{\url{https://www.ncbi.nlm.nih.gov/clinvar/}} zurück gegriffen. Diese enthält Daten über genetische Variationen und die Auswirkungen auf die menschliche Gesundheit. Zum Zeitpunkt dieser Arbeit (Oktober 2017) enthielt sie 82.147 als \emph{pathogenic} markierte und 105.337 als \emph{benign} markierte genetische Variationen. Jedoch konnte nicht ohne weiteres aus diesem Datensatz geschöpft werden, denn viele Variationen enthalten widersprüchliche Annotationen. Um die Qualität der Annotation zu bewerten gibt es den sogenannten \emph{Review Status} dieser gibt an, wie gut die Annotation ist. So gibt es z.B. einen Stern, wenn die genetische Variation bisher nur von einem Autoren eingetragen wurde. Gibt es mehrere Autoren und widersprechen sich die Annotationen nicht, so bekommt die Annotation zwei Sterne. Die fast beste Qualität, mit drei Sternen, hat das \emph{expert panel}, Autoren in dieser Kategorie müssen spezielle Anforderungen erfüllen\footnote{\url{https://www.ncbi.nlm.nih.gov/clinvar/docs/review_guidelines/}}. Die beste Annotation mit vier Sternen hat \emph{practice guideline}, jedoch fallen fast keine \ac{SNPs} (23) in diese Kategorie, aus diesem Grund wurden erst nur Variationen betrachtet, welche aus dem \emph{expert panel} kommen. 
 %
 \begin{table}[]
     \centering
@@ -133,7 +134,7 @@ Um geeignete \ac{SNPs} für eine aussagekräftige Analyse zu finden, wurde auf d
     \label{tab:expert_snps}
 \end{table}
 
-Das \emph{expert panel} enthält 5.437 pathogene und 2.878 gutartige Variationen, von diesen waren 1.717 und 2.697 \ac{SNPs} für diese Arbeit von Interesse, die anderen genetischen Variationen aus Deletionen, Duplikationen und Insertionen bestehen. Ausgehend von diesen \ac{SNPs} wurden alle Gene ausgewählt welche mindestens 10 Pathogene SNPs in der ClinVar besitzen. So wurden 6 Gene ausgewählt und die Aminosäure Sequenz aus der NCBI Protein Datenbank\footnotetext{\url{https://www.ncbi.nlm.nih.gov/protein/}} heruntergeladen und für jeden \ac{SNPs} eine Sequenz angelegt. 
+Das \emph{expert panel} enthält 5.437 pathogene und 2.878 gutartige Variationen, von diesen waren 1.717 und 2.697 \ac{SNPs} für diese Arbeit von Interesse, die anderen genetischen Variationen aus Deletionen, Duplikationen und Insertionen bestehen. Ausgehend von diesen \ac{SNPs} wurden alle Gene ausgewählt welche mindestens 10 Pathogene SNPs in der ClinVar besitzen. So wurden 6 Gene ausgewählt und die Aminosäure Sequenz aus der NCBI Protein Datenbank\footnote{\url{https://www.ncbi.nlm.nih.gov/protein/}} heruntergeladen und für jeden \ac{SNPs} eine Sequenz angelegt. 
 
 \begin{table}[]
     \centering
@@ -165,7 +166,7 @@ Das \emph{expert panel} enthält 5.437 pathogene und 2.878 gutartige Variationen
     \label{tab:multiple_subs_snps}
 \end{table}
 
-Da der Datensatz erst 6 Gene umfasst, wurden die Kriterien der \ac{SNP} Auswahl erweitert. So wurden in einem zweiten Durchlauf auch jende \ac{SNPs} hinzugezogen, welche nicht im \emph{expert Panel} waren, sondern lediglich von mehreren Autoren eingetragen wurden. Somit standen 3.826 pathogene und gutartige 19.070 \ac{SNPs} zu Verfügung. Des weiteren wurde die Mindestanzahl an pathogener SNPs auf 6 pro Gen verringert. Somit konnte der Datensatz um 15 Gene erweitert werden, siehe Tabelle \ref{tab:multiple_subs_snps}.
+Da der Datensatz erst 6 Gene umfasst, wurden die Kriterien der \ac{SNP} Auswahl erweitert. So wurden in einem zweiten Durchlauf auch jende \ac{SNPs} hinzugezogen, welche nicht im \emph{expert Panel} waren, sondern lediglich von mehreren Autoren eingetragen wurden. Somit standen 3.826 pathogene und gutartige 19.070 \ac{SNPs} zu Verfügung. Des weiteren wurde die Mindestanzahl an pathogener SNPs auf 6 pro Gen verringert. So konnte der Datensatz um 15 Gene erweitert werden, siehe Tabelle \ref{tab:multiple_subs_snps}.
 
 
 \subsection{Homologie Berechnungen}
@@ -180,7 +181,8 @@ In einem zweiten Durchgang wurden auch alle Proteine mit ihren SNPs aus \ref{tab
 
 
 
-\subsection{Berechnung \& Auswertung der Energieprofile}
+\subsection{Berechnung \& SNPs in Energieprofilen}
+
 Nachdem nun die \ac{PDB} Dateien vorliegen, wurde für jede dieser Dateien ein Energieprofil berechnet wie es auch in Kapitel \ref{sec:calc_ep} beschrieben ist. Diese \ac{EPs} wurden nun anschließend mit dem Skript \texttt{plot\_eps\_and\_snps.py} analysiert und geplottet. 
 %
 \begin{figure}
@@ -190,38 +192,40 @@ Nachdem nun die \ac{PDB} Dateien vorliegen, wurde für jede dieser Dateien ein E
     \label{fig:ep_vs_snp}
 \end{figure}
 
-Zum Verständnis ist ein \ac{EP} in \ac{Abb} \ref{fig:ep_vs_snp} dargestellt. Hier sieht man eine 2D Visualisierung eines \ac{EP}s, auf der Abszisse sind die Aminosäuren im Einbuchstabencode aufgetragen, wahrend auf der Ordinate die Energiewerte eingetragen sind. Die beiden Darstellungen unterscheiden sich nur durch die Substitution von Valin durch Glycin, so ist hier deutlich die Energiewert Differenz zwischen den beiden Darstellungen zu erkennen. So besitzt im Protein Valin an der Position 68 einen Energiewert von -25, der Glycin \ac{SNP} hingegen besitzt einen Energiewert von -10, so ergibt sich eine Delta von 15.
+Hierbei ist aufgefallen, dass sich die Energieprofile signifikant an den \ac{SNP} Positionen unterscheiden. Zum Verständnis ist ein \ac{EP} in \ac{Abb} \ref{fig:ep_vs_snp} dargestellt. Hier sieht man eine 2D Visualisierung eines \ac{EP}s, auf der Abszisse sind die Aminosäuren im Einbuchstabencode aufgetragen, wahrend auf der Ordinate die Energiewerte eingetragen sind. Die beiden Darstellungen unterscheiden sich nur durch die Substitution von Valin durch Glycin, so ist hier deutlich die Energiewert Differenz zwischen den beiden Darstellungen zu erkennen. So besitzt im Protein Valin an der Position 68 einen Energiewert von -25, der Glycin \ac{SNP} hingegen besitzt einen Energiewert von -10, so ergibt sich eine Delta von 15.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=.95\textwidth]{images/comp_plot_Ile169Val.png}
+    %\caption{Ausschnitt aus dem Protein MSH2 mit gutartigem \ac{SNP} an Position 169.}
+    %\label{fig:comp_plot_benign}
+    \includegraphics[width=.95\textwidth]{images/comp_plot_Gly164Trp.png}
+    \caption{Ausschnitt aus dem Protein MSH2 mit gutartigem \ac{SNP} an Position 169 und mit pathogenen \ac{SNP} an Position 164.}
+    \label{fig:comp_plot}
+\end{figure}
+
+
+Zudem wurden nicht nur Veränderungen unmittelbar am SNP festgestellt, sondern auch einige nicht ganz so starke Veränderungen an verschiedenen anderen Aminosäuren im Protein, auffällig hierbei ist, dass diese Veränderungen sehr oft an den vorher berechneten Kontakten der Aminosäure auftreten. 
+
+In \ac{Abb} \ref{fig:comp_plot} ist ein beispielhafter Ausschnitt aus dem Protein \texttt{MSH2} dargestellt, die Abszisse gibt die Positionen der fortlaufenden Aminosäuren an, auf der Ordinate befinden sich die Energiewerte. Die Referenzsequenz ist blau dargestellt, die mutierte Sequenz ist rot dargestellt und die Differenz der beiden Sequenzen ist grün dargestellt. Die grauen Linien geben die Position der Kontakte an und die gelbe Linie zeigt die Position des \ac{SNPs}.
+
+Im oberen Bild \ref{fig:comp_plot} ist an Position 169 eine Substitution von Isoleucin auf Valin zu sehen, der Energiewert an dieser Stelle wurde um etwa -2 verringert, an den Kontakten und generell in der gesamtem Sequenz, wurden nur sehr kleine Veränderungen festgestellt.
+
+Im unteren Bild der \ac{Abb} ist eine Substitution an Position 164 von Glycin auf Tryptophan zu erkennen. Der Energiewert an dieser Position wurde um etwa 12 erhöht. Auffällig ist hierbei, dass sich auch die Kontakte verändert haben, generell lässt sich sagen, dass es im gesamten Protein zu energetischen Veränderungen kam.
+
+
+\subsection{Auswertung der Energieprofile}
+
+Da nicht alle SNPs innerhalb der aufgeklärten Struktur lagen, bestand der Datensatz am Ende aus 55 \ac{SNPs} aus den Genen \texttt{ACADM, CFTR, MSH2, PMS2} und \texttt{SDHB}. Nun wurde \ac{SNPs} nach Kriterien gesucht um diese SNPs zu trennen.
+
+
+\textbf{in wie fern soll ich das hier noch ausführen? oder ist die Auswertung schon Diskussion}
 
 
 
 
 
 \newpage
-\section{Anwendbarkeit auf unser Problem}
-
-
-
-\begin{table}[]
-    \centering
-    \begin{tabular}{lllll}
-    \hline
-    \multicolumn{1}{|l|}{Genname} & \multicolumn{1}{l|}{Genelänge (bp)} & \multicolumn{1}{l|}{Transkriptlänge} & \multicolumn{1}{l|}{PDB-ENSP} & \multicolumn{1}{l|}{PDB coverage} \\ \hline
-    IDH1 & 29847 & 2298 & 1t09.A & 17,97\% \\
-    KDM6A & 239425 & 5438 & 3avr.A & 9,58\% \\
-    JAK2 & 143793 & 5285 & 4z32.A & 9,18\% \\
-    NRAS & 12425 & 4449 & 3con.A & 3,84\% \\
-    RAD21 & 28931 & 3749 & 4pju.B & 3,71\% \\
-    RAD21 & 28931 & 3749 & 4pjw.B & 3,71\% \\
-    NOTCH1 & 51418 & 9371 & 3eto.A & 3,06\% \\
-    \end{tabular}
-    \caption{Illumina TruSight Myeloid Sequencing Panel Gene \emph{coverage}, Transkriptlänge ist mit UTRs und CDS angegeben}
-    \label{my-label}
-\end{table}
-
-
-
-
-
 \section{PSI \& PHI Winkel Berechnung}
 
 Der generierte Datensatz aus Kapitel \ref{sec:calc_ep}, ist Grundlage der folgenden Berechnung.

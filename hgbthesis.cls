@@ -180,7 +180,7 @@
     \vskip 40mm%
     {\Large M\,A\,S\,T\,E\,R\,A\,R\,B\,E\,I\,T}%
     \vskip 20mm%
-    {\large eingereicht am} \vskip 1mm {Fachhochschul-Masterstudiengang}%
+    {\large eingereicht am} \vskip 1mm {Masterstudiengang}%
     \vskip 4mm%
     {\large\sc\@studiengang}%
     \vskip 4mm%

@@ -1,4 +1,123 @@
 \chapter{Diskussion}
 
-\section{in Arbeit}
-to do...
+In Kapitel \ref{sec:snp_analyse} wurde gezeigt, dass \ac{SNPs} sich in Unterschieden in \ac{EP} ausdrücken. Nun soll diskutiert werden in wie fern sich \ac{SNPs} mittels \ac{EPs} annotieren lassen können.
+
+\section{EPs zur Annotation von SNPs}
+\label{sec:snp_annotation}
+Wie in \ac{Abb} \ref{fig:comp_plot} zu sehen ist, gibt es deutliche Unterschiede zwischen einem \ac{EP} mit pathogenen \ac{SNP} vs einem \ac{EP} mit gutartigem \ac{SNP}. 
+
+
+\subsection{Minimale Coverage}
+\label{sec:min_coverage}
+- mindest Coverage?
+- Mindest Sequenzidentität?
+- Wie abhangig ist die Vorhersage vom template?
+- Überprüfen ob Sequenz identität wichtig ist?, abhängigkeit vom template? 
+
+
+
+\subsection{Problem mit dem Datensatz}
+- Fehler im modell
+- Gesamter Ansatz
+- Modell, seqenzierung, Methodik
+- ClinVar hat nicht die Warheit
+
+- Mutations an sich ist nicht benign
+- Fehlende zusatzdaten -> wird aufgehoben ?
+- Patienten alter, und co
+
+- Problem zu wenige benign SNPs
+- 
+
+
+Entweder Protein vollständig aufgeklärt, wie \url{ABCG2} \url{https://www.ncbi.nlm.nih.gov/pubmed/?term=28554189} oder \texttt{KCNH2} \url{http://www.rcsb.org/pdb/explore/explore.do?structureId=5VA1} aber dafür keine mehrfach bestätigten SNPs, oder viele mehrfachbestätige SNPs, jedoch keine vollständige 3D Struktur, siehe...
+
+SNPs liegen nicht in der aufgeklärten 3S Struktur, siehe ...
+
+SNPs liegen auf verschiedenen Transkripten ...
+
+Sequenz Identität ist nicht ausreichend, siehe ...
+
+Noch nicht ausreichend 3D Strukturen:
+
+Die Anzahl aufgeklärter 3D Strukturen liegt bei XX\% bei einem Wachstum von XX, hingegen die 3D Strukturen nur XX\% bei einem Wachstum von XX\%. Sodass es im Jahr XXYY XY\% zu erwarten sind * Quelle: "Trends in structural coverage of the protein universe and the impact of the Protein Structure Initiative"
+
+
+UniProtKB/Swiss-Prot enthält seit dem 22. Juli 2008 etwa 400K-Sequenzeinträge, während die Protein-Datenbank (PDB) nur etwas mehr als 50K experimentell bestimmte Proteinstrukturen enthält. 
+Quelle (An integrated database for complex protein structure modeling) Aus <http://ieeexplore.ieee.org/document/4686206/?reload=true> 
+Heute:  
+555.426 sequence entries Aus \url{http://web.expasy.org/docs/relnotes/relstat.html} 
+133.589 Biological Macromolecular Structures aus \url{https://www.rcsb.org/pdb/statistics/contentGrowthChart.do?content=total&seqid=100}
+
+Wobei nur einige PDB Einträge nur Subdomänen von Proteinen sind
+Ein PDB Eintrag =/= Eine komplette Squenz
+
+Das Gilt für alle Strukturen über alle Spezies, für den Homo Sapiens gibt es also nur ein Teilsatz an 3D Strukturen.
+    >Wie viele Gene hat der Mensch? >
+    "29 000. Die ungefähre Lokalisation von 22 000 Genen ist bereits bekannt."
+Aus \url{https://www.deutsche-apotheker-zeitung.de/daz-az/2001/daz-11-2001/uid-389}
+
+"Each of the estimated 30,000 genes in the human genome makes an average of three proteins."
+Aus \url{https://www.genome.gov/11006943/human-genome-project-completion-frequently-asked-questions/}
+
+
+
+
+\section{Anwendbarkeit der EPs auf SNP im Panel}
+
+In Kapitel \ref{sec:snp_annotation} wurde gezeigt, dass es möglich ist Energieprofile zu nutzen um \ac{SNPs} zu annotieren. Doch jetzt stellt sich die Frage, ob wir die Erkenntnisse der Arbeit nutzen können um die im Illumina TruSight Myeloid Sequencing Panel auftretenden Gene zu annotieren. Dafür wurde zuerst versucht per Hand die einzelnen Gen Sequenzen herunterzuladen und anschließend in Swissmodel zu modellieren. Doch leider lieferte dies nicht die gewünschten Ergebnisse, die Coverage war in den meisten Fällen sehr schlecht. So bewegte sich z.B. die Coverage für \texttt{NRAS} zwischen 1-4\%, sodass nur einzelne Helices abgedeckt waren. Dieses Bild zeigte sich so, oder so ähnlich für alle getesteten Proteine. 
+
+\begin{table}[]
+    \centering
+    \begin{tabular}{lllll}
+    \hline
+    \multicolumn{1}{|l|}{Genname} & \multicolumn{1}{l|}{Genlänge (bp)} & \multicolumn{1}{l|}{Transkriptlänge} & \multicolumn{1}{l|}{PDB-ENSP} & \multicolumn{1}{l|}{PDB coverage} \\ \hline
+    IDH1 & 29847 & 2298 & 1t09.A & 17,97\% \\
+    KDM6A & 239425 & 5438 & 3avr.A & 9,58\% \\
+    JAK2 & 143793 & 5285 & 4z32.A & 9,18\% \\
+    NRAS & 12425 & 4449 & 3con.A & 3,84\% \\
+    RAD21 & 28931 & 3749 & 4pju.B & 3,71\% \\
+    NOTCH1 & 51418 & 9371 & 3eto.A & 3,06\% \\
+    \end{tabular}
+    \caption{Illumina TruSight Myeloid Sequencing Panel Gene \emph{coverage}, Transkriptlänge ist mit UTRs und CDS angegeben.}
+    \label{tab:illumina_coverage}
+\end{table}
+
+Aus diesem Grund wurde der EnsemblBioMart \footnote{\url{https://www.ensembl.org/biomart}} hinzugezogen, dieser ermöglicht es dem Nutzer leicht spezielle Datensätze mit verschiedensten Filtern herunter zu laden. So wurde in diesem Fall die Genliste des Illumina Panels mit 54 Genen im BioMart eingefügt und Genlänge, Transkriptlänge, korrespondierende \ac{PDB} Einträge und deren Start und Stopp Position abgefragt, dargestellt in Tabelle \ref{tab:illumina_coverage}. Die Start und Stopp Position der \ac{PDB} Einträge wurde mit der Transkriptlänge verrechnet, so dass eine prozentuale Coverage abgebildet werden kann. Wie zu sehen ist, besitzt \texttt{IDH1} die beste Coverage mit 17,97\%, dies ist leider viel zu wenig um eine erfolgreiche Berechnung eines \ac{EPs} durchzuführen. Bei den anderen Genen sieht es leider noch schlechter aus, denn von den 54 Genen im Panel weisen gerade mal 6 Gene überhaupt eine Teilabdeckung auf. 
+
+\begin{table}[]
+    \centering
+    \begin{tabular}{lllll}
+    \hline
+    \multicolumn{1}{|l|}{Genname} & \multicolumn{1}{l|}{Genlänge (bp)} & \multicolumn{1}{l|}{Transkriptlänge} & \multicolumn{1}{l|}{PDB-ENSP} & \multicolumn{1}{l|}{coverage} \\ \hline
+    ATM & 146618 & 12954 & 5np0.A & 23,58\% \\
+    IDH1 & 29847 & 2298 & 1t09.A & 17,97\% \\
+    H3F3A & 10150 & 799 & 3av2.A & 16,90\% \\
+    RB1 & 178235 & 4840 & 4elj.A & 15,17\% \\
+    BRAF & 205437 & 2480 & 4mnf.A & 12,26\% \\
+    PIK3CA & 91979 & 9093 & 2rd0.A & 11,73\% \\
+    SMO & 24673 & 3738 & 5v56.A & 10,27\% \\
+    RHOA & 53853 & 2031 & 1ftn.A & 9,45\% \\
+    JAK2 & 143793 & 5285 & 4z32.A & 9,18\% \\
+    CCND1 & 13387 & 4307 & 2w96.A & 6,27\% \\
+    ALK & 728792 & 6220 & 4fob.A & 5,66\% \\
+    DDR2 & 156027 & 3096 & 2wuh.A & 5,43\% \\
+    ROS1 & 137555 & 7435 & 3zbf.A & 4,01\% \\
+    SMAD4 & 56651 & 8495 & 1dd1.A & 3,14\% \\
+    NOTCH1 & 51418 & 9371 & 3eto.A & 3,06\% \\
+    MYCN & 6443 & 2602 & 5g1x.B & 2,34\%
+    \end{tabular}
+    \caption{VariantPlex Solid Tumor Kit Coverage, Transkriptlänge ist mit UTRs und CDS angegeben.}
+    \label{tab:variantplex_coverage}
+\end{table}
+
+Um zu überprüfen, ob es sich bei dem Illumina Panel nicht um eine unglückliche Ausnahme handelt wurde noch ein zweites Panel überprüft. Das \emph{VariantPlex Solid Tumor Kit}\footnote{\url{http://archerdx.com/variantplex/solid-tumor}} umfasst 67 Gene im Zusammenhang mit soliden Tumoren. Doch auch hier ist nur ein Bruchteil der Gene aufgeklärt und von diesen 16 Genen, ist keines komplett strukturell aufgeklärt. Die höchste Coverage hat \texttt{ATM} mit 23,58\%, dies ist jedoch immer noch zu wenig um damit eine Homologie Modellierung durch zu führen. Auch dieses Panel beinhaltet \texttt{IDH1} und weist damit ebenfalls eine Coverage von 17,97\% auf gefolgt von \texttt{H3F3A} mit einer Coverage von 16,90\%. Bei den Restlichen Treffern fällt die Coverage stark ab.
+
+Somit lässt sich abschließend sagen, dass sich \ac{APs} (noch) nicht für die Annotation von \ac{SNPs} im Illumina TruSight Myeloid Sequencing Panel eignen, da einfach noch zu wenige Strukturen aufgeklärt sind. Denn ohne aufgeklärte Struktur macht es keinen Sinn ein Homologie Berechnung durchzuführen, denn wie in \ref{sec:min_coverage} gezeigt, würde das Ergebnis unbrauchbar sein. Sodass keine \ac{EP} Berechnung durchgeführt werden kann. 
+
+
+\section{Ramachandran Diskussion}
+
+Winkelveränderung
+- In der Mutation
+- In den Kontakten

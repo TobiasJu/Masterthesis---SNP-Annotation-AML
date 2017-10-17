@@ -1,6 +1,6 @@
 \chapter{Diskussion}
 
-In Kapitel \ref{sec:snp_analyse} wurde gezeigt, dass \ac{SNPs} sich in Unterschieden in \ac{EP} ausdrücken. Nun soll diskutiert werden in wie fern sich \ac{SNPs} mittels \ac{EPs} annotieren lassen können.
+In Kapitel \ref{sec:snp_analyse} wurde gezeigt, dass \ac{SNP}s sich in Unterschieden in \ac{EP} ausdrücken. Nun soll diskutiert werden in wie fern sich \ac{SNP}s mittels \ac{EP}s annotieren lassen können.
 
 \section{EPs zur Annotation von SNPs}
 \label{sec:snp_annotation}
@@ -65,31 +65,35 @@ Aus \url{https://www.genome.gov/11006943/human-genome-project-completion-frequen
 
 \section{Anwendbarkeit der EPs auf SNP im Panel}
 
-In Kapitel \ref{sec:snp_annotation} wurde gezeigt, dass es möglich ist Energieprofile zu nutzen um \ac{SNPs} zu annotieren. Doch jetzt stellt sich die Frage, ob wir die Erkenntnisse der Arbeit nutzen können um die im Illumina TruSight Myeloid Sequencing Panel auftretenden Gene zu annotieren. Dafür wurde zuerst versucht per Hand die einzelnen Gen Sequenzen herunterzuladen und anschließend in Swissmodel zu modellieren. Doch leider lieferte dies nicht die gewünschten Ergebnisse, die Coverage war in den meisten Fällen sehr schlecht. So bewegte sich z.B. die Coverage für \texttt{NRAS} zwischen 1-4\%, sodass nur einzelne Helices abgedeckt waren. Dieses Bild zeigte sich so, oder so ähnlich für alle getesteten Proteine. 
+In Kapitel \ref{sec:snp_annotation} wurde gezeigt, dass es möglich ist Energieprofile zu nutzen um \ac{SNP}s zu annotieren. Doch jetzt stellt sich die Frage, ob wir die Erkenntnisse der Arbeit nutzen können um die im Illumina TruSight Myeloid Sequencing Panel auftretenden Gene zu annotieren. Dafür wurde zuerst versucht per Hand die einzelnen Gen Sequenzen herunterzuladen und anschließend in Swissmodel zu modellieren. Doch leider lieferte dies nicht die gewünschten Ergebnisse, die Coverage war in den meisten Fällen sehr schlecht. So bewegte sich z.B. die Coverage für \texttt{NRAS} zwischen 1-4\%, sodass nur einzelne Helices abgedeckt waren. Dieses Bild zeigte sich so, oder so ähnlich für alle getesteten Proteine. 
 
 \begin{table}[]
     \centering
+    \caption{Illumina TruSight Myeloid Sequencing Panel Gene \emph{coverage}, Transkriptlänge ist mit UTRs und CDS angegeben.}
+    \label{tab:illumina_coverage}
+    \resizebox{\linewidth}{!}{%
     \begin{tabular}{lllll}
     \hline
-    \multicolumn{1}{|l|}{Genname} & \multicolumn{1}{l|}{Genlänge (bp)} & \multicolumn{1}{l|}{Transkriptlänge} & \multicolumn{1}{l|}{PDB-ENSP} & \multicolumn{1}{l|}{PDB coverage} \\ \hline
+    \multicolumn{1}{|l|}{Genname} & \multicolumn{1}{l|}{Genlänge (bp)} & \multicolumn{1}{l|}{Transkriptlänge} & \multicolumn{1}{l|}{PDB-ENSP} & \multicolumn{1}{l|}{PDB Coverage} \\ \hline
     IDH1 & 29847 & 2298 & 1t09.A & 17,97\% \\
     KDM6A & 239425 & 5438 & 3avr.A & 9,58\% \\
     JAK2 & 143793 & 5285 & 4z32.A & 9,18\% \\
     NRAS & 12425 & 4449 & 3con.A & 3,84\% \\
     RAD21 & 28931 & 3749 & 4pju.B & 3,71\% \\
     NOTCH1 & 51418 & 9371 & 3eto.A & 3,06\% \\
-    \end{tabular}
-    \caption{Illumina TruSight Myeloid Sequencing Panel Gene \emph{coverage}, Transkriptlänge ist mit UTRs und CDS angegeben.}
-    \label{tab:illumina_coverage}
+    \end{tabular}}
 \end{table}
 
-Aus diesem Grund wurde der EnsemblBioMart \footnote{\url{https://www.ensembl.org/biomart}} hinzugezogen, dieser ermöglicht es dem Nutzer leicht spezielle Datensätze mit verschiedensten Filtern herunter zu laden. So wurde in diesem Fall die Genliste des Illumina Panels mit 54 Genen im BioMart eingefügt und Genlänge, Transkriptlänge, korrespondierende \ac{PDB} Einträge und deren Start und Stopp Position abgefragt, dargestellt in Tabelle \ref{tab:illumina_coverage}. Die Start und Stopp Position der \ac{PDB} Einträge wurde mit der Transkriptlänge verrechnet, so dass eine prozentuale Coverage abgebildet werden kann. Wie zu sehen ist, besitzt \texttt{IDH1} die beste Coverage mit 17,97\%, dies ist leider viel zu wenig um eine erfolgreiche Berechnung eines \ac{EPs} durchzuführen. Bei den anderen Genen sieht es leider noch schlechter aus, denn von den 54 Genen im Panel weisen gerade mal 6 Gene überhaupt eine Teilabdeckung auf. 
+Aus diesem Grund wurde der EnsemblBioMart \footnote{\url{https://www.ensembl.org/biomart}} hinzugezogen, dieser ermöglicht es dem Nutzer leicht spezielle Datensätze mit verschiedensten Filtern herunter zu laden. So wurde in diesem Fall die Genliste des Illumina Panels mit 54 Genen im BioMart eingefügt und Genlänge, Transkriptlänge, korrespondierende \ac{PDB} Einträge und deren Start und Stopp Position abgefragt, dargestellt in Tabelle \ref{tab:illumina_coverage}. Die Start und Stopp Position der \ac{PDB} Einträge wurde mit der Transkriptlänge verrechnet, so dass eine prozentuale Coverage abgebildet werden kann. Wie zu sehen ist, besitzt \texttt{IDH1} die beste Coverage mit 17,97\%, dies ist leider viel zu wenig um eine erfolgreiche Berechnung eines \ac{EP}s durchzuführen. Bei den anderen Genen sieht es leider noch schlechter aus, denn von den 54 Genen im Panel weisen gerade mal 6 Gene überhaupt eine Teilabdeckung auf. 
 
 \begin{table}[]
     \centering
+    \caption{VariantPlex Solid Tumor Kit Coverage, Transkriptlänge ist mit UTRs und CDS angegeben.}
+    \label{tab:variantplex_coverage}
+    \resizebox{\linewidth}{!}{%
     \begin{tabular}{lllll}
     \hline
-    \multicolumn{1}{|l|}{Genname} & \multicolumn{1}{l|}{Genlänge (bp)} & \multicolumn{1}{l|}{Transkriptlänge} & \multicolumn{1}{l|}{PDB-ENSP} & \multicolumn{1}{l|}{coverage} \\ \hline
+    \multicolumn{1}{|l|}{Genname} & \multicolumn{1}{l|}{Genlänge (bp)} & \multicolumn{1}{l|}{Transkriptlänge} & \multicolumn{1}{l|}{PDB-ENSP} & \multicolumn{1}{l|}{Coverage} \\ \hline
     ATM & 146618 & 12954 & 5np0.A & 23,58\% \\
     IDH1 & 29847 & 2298 & 1t09.A & 17,97\% \\
     H3F3A & 10150 & 799 & 3av2.A & 16,90\% \\
@@ -106,14 +110,12 @@ Aus diesem Grund wurde der EnsemblBioMart \footnote{\url{https://www.ensembl.org
     SMAD4 & 56651 & 8495 & 1dd1.A & 3,14\% \\
     NOTCH1 & 51418 & 9371 & 3eto.A & 3,06\% \\
     MYCN & 6443 & 2602 & 5g1x.B & 2,34\%
-    \end{tabular}
-    \caption{VariantPlex Solid Tumor Kit Coverage, Transkriptlänge ist mit UTRs und CDS angegeben.}
-    \label{tab:variantplex_coverage}
+    \end{tabular}}
 \end{table}
 
 Um zu überprüfen, ob es sich bei dem Illumina Panel nicht um eine unglückliche Ausnahme handelt wurde noch ein zweites Panel überprüft. Das \emph{VariantPlex Solid Tumor Kit}\footnote{\url{http://archerdx.com/variantplex/solid-tumor}} umfasst 67 Gene im Zusammenhang mit soliden Tumoren. Doch auch hier ist nur ein Bruchteil der Gene aufgeklärt und von diesen 16 Genen, ist keines komplett strukturell aufgeklärt. Die höchste Coverage hat \texttt{ATM} mit 23,58\%, dies ist jedoch immer noch zu wenig um damit eine Homologie Modellierung durch zu führen. Auch dieses Panel beinhaltet \texttt{IDH1} und weist damit ebenfalls eine Coverage von 17,97\% auf gefolgt von \texttt{H3F3A} mit einer Coverage von 16,90\%. Bei den Restlichen Treffern fällt die Coverage stark ab.
 
-Somit lässt sich abschließend sagen, dass sich \ac{APs} (noch) nicht für die Annotation von \ac{SNPs} im Illumina TruSight Myeloid Sequencing Panel eignen, da einfach noch zu wenige Strukturen aufgeklärt sind. Denn ohne aufgeklärte Struktur macht es keinen Sinn ein Homologie Berechnung durchzuführen, denn wie in \ref{sec:min_coverage} gezeigt, würde das Ergebnis unbrauchbar sein. Sodass keine \ac{EP} Berechnung durchgeführt werden kann. 
+Somit lässt sich abschließend sagen, dass sich \ac{APs} (noch) nicht für die Annotation von \ac{SNP}s im Illumina TruSight Myeloid Sequencing Panel eignen, da einfach noch zu wenige Strukturen aufgeklärt sind. Denn ohne aufgeklärte Struktur macht es keinen Sinn ein Homologie Berechnung durchzuführen, denn wie in \ref{sec:min_coverage} gezeigt, würde das Ergebnis unbrauchbar sein. Sodass keine \ac{EP} Berechnung durchgeführt werden kann. 
 
 
 \section{Ramachandran Diskussion}

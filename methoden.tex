@@ -6,9 +6,9 @@ In diesem Kapitel werden die Grundlagen vermittelt, welche für das Verständnis
 
 \section{Aminosäurerest-Pseudopotentiale}
 
-Bei den \acf{APs} handelt es sich um eine Methode der Transformation der physikochemischen und wechselwirkenden Eigenschaften der Aminosäuren der Proteinstruktur in ein Energiemaß. Diese Energiemaße werden dabei durch eine Dezimalzahl dargestellt und im Gegensatz zur hochkomplexen 3D Strukturen sind die Berechnungen mit ihnen viel einfacher. Die Energieprofile stehen auf dem Webserver \emph{eProS}\footnote{\url{https://biosciences.hs-mittweida.de/epros/}} zum Download bereit. Zusätzlich wurde zur lokalen Berechnung und zu Testzwecken eine lokale Möglichkeit von einem Entwickler der \ac{bigM}\footnote{\url{http://www.bioforscher.de/bigM/}}, zur Berechnung der Energieprofile, zu Verfügung gestellt.
+Bei den \acf{APs} handelt es sich um eine Methode der Transformation der physikochemischen und wechselwirkenden Eigenschaften der Aminosäuren der Proteinstruktur in ein Energiemaß. Diese Energiemaße werden dabei durch eine Dezimalzahl dargestellt und im Gegensatz zur hochkomplexen 3D Strukturen sind die Berechnungen mit ihnen unmittelbarer. Die Energieprofile stehen auf dem Webserver \emph{eProS}\footnote{\url{https://biosciences.hs-mittweida.de/epros/}} zum Download bereit. Zusätzlich wurde zur lokalen Berechnung und zu Testzwecken eine lokale Möglichkeit von den Entwicklern der \ac{bigM}\footnote{\url{http://www.bioforscher.de/bigM/}}, zur Berechnung der Energieprofile, zu Verfügung gestellt.
 
-Durch die \ac{APs} können zu den lokalen Interaktionen der direkten Nachbarn, auch noch die globalen Interaktionen der indirekten Nachbarn betrachtet werden (Abb. \ref{fig:8A_Sphaere}). Zur Berechnung benutzt man die Betrachtung einer 8 Angström Sphäre, um die betrachtete Aminosäure und analysiert ob noch andere Aminosäuren des Proteins in diese Sphäre hineinragen. Somit können auch Effekte wie sterische Hinderung berücksichtigt werden. Durch diese neue Betrachtung löst man sich von der starren Betrachtungsweise der Sequenz und der 2D Struktur, wie es bei bisherigen Vorhersage-Algorithmen war.
+Durch die \ac{APs} können zu den lokalen Interaktionen der direkten Nachbarn, auch noch die globalen Interaktionen der indirekten Nachbarn hinzugezogen werden (Abb. \ref{fig:8A_Sphaere}). Zur Berechnung benutzt man die Betrachtung einer 8 Angström Sphäre, um die betreffende Aminosäure und analysiert ob noch andere Aminosäuren des Proteins in diese Sphäre hineinragen. Somit können auch Effekte wie sterische Hinderung berücksichtigt werden. Durch diese neue Sichtweise löst man sich von der starren Betrachtungsweise der Sequenz und der 2D Struktur, wie es bei bisherigen Vorhersage-Algorithmen war.
 %
 \begin{figure}
 \centering
@@ -40,7 +40,7 @@ Somit lässt sich die Gesamtenergie des Aminosäurerests $E_{a_i}$ mittels \ref{
     \label{eq:total}
 \end{equation}
 
-In ihren Arbeiten \cite{Heinke.2011} hat das ePros Team Mittweida gezeigt, dass die Aminosäurerest-Pseudopotentiale genutzt werden können um die Proteinstruktur Stabilität und Funktionalität zu untersuchen. Es wurde gezeigt, dass Ähnlichkeiten der Energieprofile von Proteinen auf Ähnlichkeiten der strukturellen und funktionellen Eigenschaften dieser Proteine deuten.
+In ihren Arbeiten hat das ePros Team Mittweida gezeigt, dass die Aminosäurerest-Pseudopotentiale genutzt werden können um die Proteinstruktur Stabilität und Funktionalität zu untersuchen. Es wurde gezeigt, dass Ähnlichkeiten der Energieprofile von Proteinen auf Ähnlichkeiten der strukturellen und funktionellen Eigenschaften dieser Proteine deuten\cite{Heinke.2011}.
 
 
 \subsection{ePros Webserver}
@@ -49,7 +49,7 @@ Die einzige aktuelle Quelle fertig berechneter Energieprofile ist der ePros Webs
 
 \begin{figure}
 \includegraphics[width=.95\textwidth]{images/ePros.png}
-\caption{eCalc Ergebnis für \ac{PDB} ID \texttt{1A1C} Chain A, dargestellt mit \ac{eVis}.}
+\caption{Dargestellt ist ein Ausschnitt aus dem Protein \texttt{1A1C}, welches mit \ac{eVis} visualisiert wurde. Auf der Abszisse sind die Aminosäuren im Einbuchstabencode aufgetragen, siehe Tabelle \ref{tab:amino_table}. Darunter ist die Sekundärstruktur als Buchstabencode und als Visualisierung aufgetragen. Unten ist die Aminosäureposition in 10er Schritten aufgetragen. Auf der Ordinate befinden sich die Energiewerte.}
 \label{fig:epros}
 \end{figure}
 
@@ -69,33 +69,73 @@ Das besondere an \emph{eMut} ist, dass es die energetischen Ähnlichkeiten und U
 
 \subsection{Energieprofile}
 \label{sec:Energieprofil}
-\acf{EPs} sind die Grundlage dieser Arbeit, daher wird kurz der Aufbau des Datenformats erklärt. Ein \ac{EP} ist eine Datei mit \ac{APs} für jede Aminosäure. Im folgenden Beispiel ist das EP für die Struktur \emph{3T4F} der \emph{F Chain} dargestellt. Die ersten beiden Zeilen beschreiben das \ac{EP}, in der ersten Zeile steht der Name der Struktur und in der zweiten ob es sich um ein globuläres oder alpha helikales Protein handelt. Die restlichen Zeilen sind immer gleich aufgebaut und Tabstopp separiert. In der Spalte steht immer \texttt{ENGY}, gefolgt von dem Chain Buchstaben, dahinter steht die Aminosäurennummer und der Aminosäurennamen. Dahinter steht die Sekundärstruktur an dieser Stelle und ganz am Ende steht der Energie Wert der betreffenden Aminosäure. Am Ende der Datei kann noch \texttt{REMK} Zeilen stehen, in denen z.B. die Qualität der zugrundeliegenden \ac{PDB} Datei angegeben ist.
+Energieprofile (EPs) sind die Grundlage dieser Arbeit, daher wird kurz der Aufbau des Datenformats erklärt. Ein \ac{EP} ist eine Datei mit \ac{APs} für jede Aminosäure. Im folgenden Beispiel ist das EP für die Struktur \emph{3T4F} der \emph{F Chain} dargestellt. Die ersten beiden Zeilen beschreiben das \ac{EP}, in der ersten Zeile steht der Name der Struktur und in der zweiten ob es sich um ein globuläres oder alpha helikales Protein handelt. Die restlichen Zeilen sind immer gleich aufgebaut und Tabstopp separiert. In der Spalte steht immer \texttt{ENGY}, gefolgt von dem Chain Buchstaben, dahinter steht die Aminosäurennummer und der Aminosäurennamen. Dahinter steht die Sekundärstruktur an dieser Stelle und ganz am Ende steht der Energie Wert der betreffenden Aminosäure. Am Ende der Datei kann noch \texttt{REMK} Zeilen stehen, in denen z.B. die Qualität der zugrundeliegenden \ac{PDB} Datei angegeben ist.
 
-\begin{lstlisting}
-NAME	3t4f
-TYPE	globular
-HEAD	Chain	ResNo	Res	SS	Energy
-ENGY	F	1	P	c	-0.36651769255470024
-ENGY	F	3	G	c	-1.7143933253759942
-ENGY	F	4	P	c	-0.4886902567396003
-ENGY	F	6	G	c	-1.7143933253759942
-ENGY	F	7	P	c	-0.426609617950302
-ENGY	F	9	G	c	-0.8189007383286611
-ENGY	F	10	P	c	0.8896661049247689
-ENGY	F	11	K	c	5.678058211612121
-ENGY	F	12	G	c	0.3188212258358888
-ENGY	F	13	E	c	2.612350424331274
-ENGY	F	15	G	c	-1.3849755172085403
-ENGY	F	16	P	c	-0.4886902567396003
-ENGY	F	18	G	c	-1.7143933253759942
-ENGY	F	19	P	c	-0.6108628209245004
-ENGY	F	21	G	c	-1.7143933253759942
-ENGY	F	22	P	c	-0.4886902567396003
-ENGY	F	24	G	c	-0.735024098503097
-\end{lstlisting}
-% du könntst die abbildung verbesern in meinen augen, in dem du markierungen machst und pfeile undso und nochmal reinschreibst was was ist. damit es auch für den dümmsten leser (mich) klar wird was mir der text vermittelt.
+\begin{table}[]
+\centering
+\caption{Gezeigt ist ein \ac{EP} des globulären Proteins \texttt{3t4f}, zu sehen in den obersten beiden Zeilen. Die dritte Zeile enthält die Header Zeile, welche Aufschluss über die folgenden Zeilen gibt, welche immer gleich Aufgebaut sind. Die \texttt{ENGY} Zeilen beginnen mit dem Aminosäureketten Buchstaben, gefolgt von der Position, dem Namen, der Sekundärstruktur und dem Energiewert der Aminosäure.}
+\label{tab:EP}
+\begin{tabular}{llllll}
+NAME & 3t4f &  &  &  &  \\
+TYPE & globular &  &  &  &  \\
+HEAD & Chain & ResNo & Res & SS & Energy \\
+ENGY & F & 1 & P & c & -0.36651769255470024 \\
+ENGY & F & 3 & G & c & -1.7143933253759942 \\
+ENGY & F & 4 & P & c & -0.4886902567396003 \\
+ENGY & F & 6 & G & c & -1.7143933253759942 \\
+ENGY & F & 7 & P & c & -0.426609617950302 \\
+ENGY & F & 9 & G & c & -0.8189007383286611 \\
+ENGY & F & 10 & P & c & 0.8896661049247689 \\
+ENGY & F & 11 & K & c & 5.678058211612121 \\
+ENGY & F & 12 & G & c & 0.3188212258358888 \\
+ENGY & F & 13 & E & c & 2.612350424331274 \\
+ENGY & F & 15 & G & c & -1.3849755172085403 \\
+ENGY & F & 16 & P & c & -0.4886902567396003 \\
+ENGY & F & 18 & G & c & -1.7143933253759942 \\
+ENGY & F & 19 & P & c & -0.6108628209245004 \\
+ENGY & F & 21 & G & c & -1.7143933253759942 \\
+ENGY & F & 22 & P & c & -0.4886902567396003 \\
+ENGY & F & 24 & G & c & -0.735024098503097
+\end{tabular}
+\end{table}
+
+\begin{table}[]
+    \centering
+    \resizebox{\linewidth}{!}{%
+    \begin{tabular}{llllll}
+     &  &  &  &  &  \\
+     &  &  &  &  &  \\ \hline
+    \multicolumn{1}{|l|}{Name} & \multicolumn{1}{l|}{Abk.} & \multicolumn{1}{l|}{Symbol} & \multicolumn{1}{l|}{Acylgruppe} & \multicolumn{1}{l|}{essentiell?} & \multicolumn{1}{l|}{Ø in Proteinen} \\ \hline
+    Alanin & Ala & A & Alanyl- & nein & 9,0 \% \\
+    Arginin & Arg & R & Arginyl- & semi & 4,7 \% \\
+    Asparagin & Asn & N & Asparaginyl- & nein & 4,4 \% \\
+    Asparaginsäure & Asp & D & $\alpha$-Aspartyl- & nein & 5,5 \% \\
+    Cystein & Cys & C & Cysteinyl- & nein & 2,8 \% \\
+    Glutamin & Gln & Q & Glutaminyl- & nein & 3,9 \% \\
+    Glutaminsäure & Glu & E & $\alpha$-Glutamyl- & nein & 6,2 \% \\
+    Glycin & Gly & G & Glycyl- & nein & 7,5 \% \\
+    Histidin & His & H & Histidyl- & semi & 2,1 \% \\
+    Isoleucin & Ile & I & Isoleucyl- & ja & 4,6 \% \\
+    Leucin & Leu & L & Leucyl- & ja & 7,5 \% \\
+    Lysin & Lys & K & Lysyl- & ja & 7,0 \% \\
+    Methionin & Met & M & Methionyl- & ja & 1,7 \% \\
+    Phenylalanin & Phe & F & Phenylalanyl- & ja & 3,5 \% \\
+    Prolin & Pro & P & Prolyl- & nein & 4,6 \% \\
+    Serin & Ser & S & Seryl- & nein & 7,1 \% \\
+    Threonin & Thr & T & Threonyl- & ja & 6,0 \% \\
+    Tryptophan & Trp & W & Tryptophyl- & ja & 1,1 \% \\
+    Tyrosin & Tyr & Y & Tyrosyl- & nein & 3,5 \% \\
+    Valin & Val & V & Valyl- & ja & 6,9 \%
+    \end{tabular}}
+    \caption{Die 20 kanonischen Aminosäuren mit Abkürzungen, Acylgruppe und prozentualer Anteil an der Gesamtheit\protect\footnotemark. Diese Tabelle dient dem Verständis der Tabelle \ref{tab:EP}, \ac{Abb} \ref{fig:epros}, \ref{fig:energy_ranges} und \ref{fig:ep_vs_snp}.}
+    \label{tab:amino_table}
+\end{table}
+\footnotetext{\url{https://de.wikipedia.org/wiki/Aminosäuren##Kanonische_Aminos.C3.A4uren}}
 
 
+
+
+\newpage
 \section{Datenbanken}
 Bei dem Aufbau eines passenden Datensatzes wurden die Datenbanken \textbf{PDB} und \textbf{Pfam} genutzt, welche zusammen als Datengrundlage für die spätere $\psi$ \& $\phi$ Winkel Kalkulation dienten. 
 
@@ -106,9 +146,9 @@ Eine wichtige Grundlage der Arbeit ist die „Protein Daten Bank“ kurz PDB\cit
 Die \ac{PDB} wurde 1971 von den \ac{BNL}\footnote{\url{https://www.rcsb.org/pdb/static.do?p=general_information/about_pdb/index.html}} als Archiv für biologische makromolekulare Kristallstrukturen etabliert und beinhaltete anfangs nur 7 Strukturen. 1980 zeigte sich ein rasanter Anstieg der eingereichten Strukturen, ausgelöst durch einen verbesserten Prozess der Kristallographie, einen offeneren Datenaustausch der Wissenschaftlichen Gemeinschaft und der neuen Methode der Kernspinresonanzspektroskopie. So umfasst der Datensatz zum Zeitpunkt der vorangegangenen Arbeit 101.207 Strukturen (24. Juni 2014) und zum heutigen Zeitpunkt über 133.920 Strukturen (24 September 2017). Bei einem Wachstum von fast 10.000 Strukturen pro Jahr, macht dies die \ac{PDB} zur weltweit größten Sammlung von bekannten Proteinstrukturen.
 
 \begin{figure}
-\includegraphics[width=.95\textwidth]{PDB_growth_rate.png}
+\includegraphics[width=.95\textwidth]{PDB_growth_rate.pdf}
 %\caption{}
-\caption[Caption for LOF]{Die Jährliche Wachstumsrate\protect\footnotemark \ der \ac{PDB} seit ihrer Gründung 1971.}
+\caption{Die Jährliche Wachstumsrate\protect\footnotemark \ der \ac{PDB} seit ihrer Gründung 1971 bis 2017. Auf der Abszisse sind die Jahre aufgetragen und auf der Ordinate sind die Strukturen pro Jahr (blau) und insgesamt (orange) abgebildet.}
 \label{fig:PDB_growth_rate}
 \end{figure}
 \footnotetext{Die Daten der Tabelle befinden sich auf der offiziellen Webseite der RCSB \ac{PDB} unter: \url{http://www.rcsb.org/pdb/statistics/contentGrowthChart.do?content=total}}
@@ -133,7 +173,7 @@ Die Pfam wurde 1997 von Sonnhammer EL, Eddy SR und Durbin R. ins Leben gerufen \
 Die Aktuelle Version ist Pfam 31.0 und wurde am Europäischen Bioinformatik Institut (EBI)\footnote{\url{https://www.ebi.ac.uk}} produziert, mittels einer Sequenzdatenbank namens Pfamseq, welche auf UniProt\footnote{\url{http://www.uniprot.org}} basiert. Sie enthält aktuell 16712 Familien in 607 Clans (März 2017).
 \begin{figure}
 \includegraphics[width=.95\textwidth]{Pfam_workflow.png}
-\caption{Der Pfam Daten Workflow }
+\caption{Abgebildet ist der \ac{Pfam} Daten Workflow, welcher die Schritte von einem repräsentativen Set bekannter Mitglieder, über das \emph{SEED} bis zum vollständigen Alignment zeigt.}
 \label{fig:Pfam_workflow}
 \end{figure}
 
@@ -167,14 +207,15 @@ Der MCC berechnet sich direkt aus der Konfusionsmatrix \ref{table:konfusionsmatr
 
 \begin{table}[]
     \centering
-    \caption{Konfusionsmatrix }
-    \label{table:konfusionsmatrix}
+    \resizebox{\linewidth}{!}{%
     \begin{tabular}{l|l|l|}
         \cline{2-3}
  & pathogenic SNP (tp + fn) & benign SNP (fp + tn) \\ \hline
 \multicolumn{1}{|l|}{test positive (tp + fp)} & \cellcolor[HTML]{9AFF99}true positive (tp) & \cellcolor[HTML]{FFCCC9}fals positive (fp) \\ \hline
 \multicolumn{1}{|l|}{test negative (fn + tn} & \cellcolor[HTML]{FFFFC7}false negative (fn) & \cellcolor[HTML]{9AFF99}true negative (tn) \\ \hline
-    \end{tabular}
+    \end{tabular}}
+        \caption{Dargestellt ist die Konfusionsmatrix.}
+    \label{table:konfusionsmatrix}
 \end{table}
 
 \begin{equation}
@@ -187,18 +228,20 @@ In Gleichung \ref{eq:mcc2} ist TP die Anzahl der \emph{true postives}, TN die An
 
 \section{Homologie Berechnung}
 \label{sec:siwssmodel}
-Im Rahmen dieser Arbeit war es nötig 3D Strukturen für Protein Sequenzen zu ermitteln welche nicht oder nur teilweise aufgeklärt sind. Denn Homologieberechunungen werden häufig eingesetzt wenn es keine experimentellen Daten zu einer Struktur eines Proteins gibt. 
+Im Rahmen dieser Arbeit war es nötig 3D Strukturen für Protein Sequenzen zu ermitteln welche nicht oder nur teilweise aufgeklärt sind, denn Homologieberechunungen werden häufig eingesetzt wenn es keine experimentellen Daten zu einer Struktur eines Proteins gibt. 
 \begin{figure}
     \includegraphics[width=.95\textwidth]{images/Swissmodel.png}
-    \caption{Typisches Ergebnis einer Swissmodel Anfrage, für jedes Modell werden Koordinaten, Alignment, Sequenzidentität, Abdeckung, Modellierungsprotokoll,eine Qualitätsschätzung und vieles mehr, zur Verfügung gestellt.}
+    \caption{Typisches Ergebnis einer Swissmodel Anfrage, für jedes Modell werden Koordinaten, Alignment, Sequenzidentität, Abdeckung, Modellierungsprotokoll, eine Qualitätsschätzung und vieles mehr, zur Verfügung gestellt.}
     \label{fig:swissmodel}
 \end{figure}
 
 \begin{quote}
-    Die Homologiemodellierung (oder vergleichende Modellierung) stützt sich auf evolutionär verwandte Strukturen (Templates) zur Generierung eines Strukturmodell eines Proteins von Interesse (Target). Der Prozess umfasst typischerweise die folgenden Schritte: (i) Vorlage Identifikation, (ii) Auswahl der Vorlagen, (iii) Modellerstellung und (iv) Schätzung der Modellqualität. Kurz gesagt, eine Bibliothek von experimentell ermittelten Proteinstrukturen wird gesucht, mit empfindlichen Sequenzsuchwerkzeugen zur Identifizierung von Proteinen die evolutionär mit dem Zielprotein verwandt sind. Wenn eine oder mehrere Vorlagen identifiziert sind, werden die Informationen der Abgleich der Ziel- und Modell-Sequenzen gemeinsam mit den 3D-Koordinaten der Vorlage (n) verwendet, um ein Strukturmodell für das Protein zu erstellen. Schließlich wird die Qualität des berechneten Modells geschätzt, um die Qualität des berechneten Modells für spätere Anwendungen zu zeigen.
+    "Die Homologiemodellierung (oder vergleichende Modellierung) stützt sich auf evolutionär verwandte Strukturen (Templates) zur Generierung eines Strukturmodell eines Proteins von Interesse (Target). Der Prozess umfasst typischerweise die folgenden Schritte: (i) Vorlage Identifikation, (ii) Auswahl der Vorlagen, (iii) Modellerstellung und (iv) Schätzung der Modellqualität. Kurz gesagt, eine Bibliothek von experimentell ermittelten Proteinstrukturen wird gesucht, mit empfindlichen Sequenzsuchwerkzeugen zur Identifizierung von Proteinen die evolutionär mit dem Zielprotein verwandt sind. Wenn eine oder mehrere Vorlagen identifiziert sind, werden die Informationen der Abgleich der Ziel- und Modell-Sequenzen gemeinsam mit den 3D-Koordinaten der Vorlage (n) verwendet, um ein Strukturmodell für das Protein zu erstellen. Schließlich wird die Qualität des berechneten Modells geschätzt, um die Qualität des berechneten Modells für spätere Anwendungen zu zeigen."
 \end{quote}
 
-Übersetzt aus \cite{Biasini.2014}, den Autoren des Webservers Swissmodel\footnotetext{\url{https://swissmodel.expasy.org}}, welcher zur Homologie Berechnung genutzt wurde. Swissmodel zeichnet sich durch eine aufgeräumte Benutzeroberfläche, einem zuverlässig Server und einer schnellen Berechung aus, siehe \ac{Abb} \ref{fig:swissmodel}. Zudem ist kein Download erforderlich, somit werden auch keine Referenz Datenbanken benötigt. Damit war der Webserver die optimale Wahl für diese Arbeit.
+Übersetzt aus \cite{Biasini.2014}, den Autoren des Webservers Swissmodel\footnotetext{\url{https://swissmodel.expasy.org}}, welcher zur Homologie Berechnung genutzt wurde. 
+
+Swissmodel zeichnet sich durch eine aufgeräumte Benutzeroberfläche, einem zuverlässig Server und einer schnellen Berechung aus, siehe \ac{Abb} \ref{fig:swissmodel}. Zudem ist kein Download erforderlich, somit werden auch keine Referenz Datenbanken benötigt. Damit war der Webserver die optimale Wahl für diese Arbeit.
 
 
 
@@ -208,16 +251,16 @@ Der Ramachandran Plot wurde 1963 von G. N. Ramachandran \cite{RAMACHANDRAN.1963}
 
 \begin{figure}
     \includegraphics[width=.95\textwidth]{psi_phi.png}
-    \caption{2 dimensionale Projection eines Proteins mit C alpha Atom in der Mitte und gekennzeichneten Winkeln\protect\footnotemark}
+    \caption{2-dimensionale Projektion eines Proteins mit C $\alpha$ Atom in der Mitte und gekennzeichneten Winkeln. Die grauen Ebenen zeigen, dass die Atome welche durch die Peptidbindung (rot) verbunden sind jeweils auf einer Ebene liegen, so kann sich der der Aminosäurerest (grün) über seine $\psi\ \&\ \phi$ Winkeln frei drehen. Die Amino-Gruppe ist blau und die Carboxyl-Gruppe ist rosa dargestellt.\protect\footnotemark}
     \label{fig:psi_phi}
 \end{figure}
-\footnotetext{\url{https://application.wiley-vch.de/HOME/bioinformatik/prot/Prot_1d/ueb/1dprotueb.htm}}
+\footnotetext{\url{https://application.wiley-vch.de/HOME/bioinformatik/prot/Prot_1d/ueb/pepbind.png}}
 
 Anhäufungen im Ramachandran Plot sind immer charakteristisch für spezifische Protein Sekundärstrukturen, wie z.B. alpha Helices oder beta Faltblätter. Diese sind gut zu sehen in der Abbildung \ref{fig:ramaplot}.
 
 \begin{figure}
 \includegraphics[width=.95\textwidth]{images/Ramaplot.png}
-\caption{Abgebildet ist ein Ramachandran Plot welcher 100.000 representative Datenpunkte darstellt. Gut zu sehen sind die Akkumulationen links und rechts drehenden alpha-Helices, sowie die beta-Faltblätter. Auf der Ordinate sind die PSI-, auf der Abszisse die PHI-Winkel aufgetragen\protect\footnotemark.}
+\caption{Abgebildet ist ein Ramachandran Plot welcher 100.000 representative Datenpunkte darstellt. Gut zu sehen sind die Akkumulationen rechts ($\alpha$) und links ($\alpha'$) drehenden alpha-Helices, sowie die beta-Faltblätter ($\beta$). Auf der Ordinate sind die PSI-, auf der Abszisse die PHI-Winkel aufgetragen\protect\footnotemark.}
 \label{fig:ramaplot}
 \end{figure}
 \footnotetext{\url{http://proteopedia.org/wiki/index.php/Ramachandran_Plots}}
@@ -230,16 +273,16 @@ Mathematisch lässt sich der Ramachandran Plot mit folgender Gleichung beschreib
 \end{equation}
 
 
-
+\newpage
 \section{Durchführung der Berechnungen}
 
 
 \subsection{Apache Spark}
-In dieser Arbeit wurde mit der Gesamten RCSB \ac{PDB} und somit mit 133277 Energieprofilen gearbeitet, um diese \emph{Big Data} adäquat und schnell zu verarbeiten wurde sowohl eine Hardware, als auch Software Lösung benötigt, da ein normaler PC nicht mehr ausreicht, diese Datenmengen zeitnah zu verarbeiten. Hierzu wurde als Hardwarelösung das Cluster der Arbeitsgruppe Goesmann genutzt, indem auf 5000 virtuelle Kerne mit 512GB RAM zugegriffen wurde. Als Softwarelösung wurde Apache Spark\footnote{\url{https://spark.apache.org}} eingesetzt, hierbei handelt es sich um eine gneral-purpose Cluster Software, welche über eine High Level API in Python, Scala, R und Java verfügt. Gerade die Python API war sehr hilfreich, da die Mehrzahl aller Skripte für diese Arbeit in Python geschrieben wurden. So konnte ein Python Skript erst lokal auf einem PC entwickelt und mit einem Testdatensatz überprüft werden, um es anschließend mit Spark auf dem Cluster der AG Goesmann zu deployen. Nach dem deploy verteilt Spark die Daten automatisch auf dem Cluster und fängt die Ergebnisse ab. 
+In dieser Arbeit wurde mit der Gesamten RCSB \ac{PDB} und somit mit 133.277 Energieprofilen gearbeitet, um diese Datenmasse adäquat und schnell zu verarbeiten wurde sowohl eine Hardware, als auch Software Lösung benötigt, da ein normaler PC nicht mehr ausreicht, diese Datenmengen zeitnah zu verarbeiten. Hierzu wurde als Hardwarelösung das Cluster der Arbeitsgruppe Goesmann genutzt, indem auf 5000 virtuelle Kerne mit 512GB RAM zugegriffen wurde. Als Softwarelösung wurde Apache Spark\footnote{\url{https://spark.apache.org}} eingesetzt, hierbei handelt es sich um eine gneral-purpose Cluster Software, welche über eine High Level API in Python, Scala, R und Java verfügt. Gerade die Python API war sehr hilfreich, da die Mehrzahl aller Skripte für diese Arbeit in Python geschrieben wurden. So konnte ein Python Skript erst lokal auf einem PC entwickelt und mit einem Testdatensatz überprüft werden, um es anschließend mit Spark auf dem Cluster der AG Goesmann zu deployen. Nach dem deploy verteilt Spark die Daten automatisch auf dem Cluster und fängt die Ergebnisse ab. 
 
 \begin{figure}
 \includegraphics[width=.95\textwidth]{apache_spark.png}
-\caption{Apache Spark\protect\footnotemark}
+\caption{Dargestellt ist die Apache Spark Job Ausführung, zwischen Master und Slave Computern im Netzwerk. Der Master verteilt Aufgaben an die Slave Rechner, welche wiederum die Ergebnisse zurück an den Master Computer senden, \ac{Abb} nach\protect\footnotemark.}
 \label{fig:apache_spark}
 \end{figure}
 \footnotetext{\url{https://www.slideshare.net/perone/apache-spark-intro-to-largescale-recommendations-with-apache-spark-and-python}}
@@ -249,20 +292,21 @@ Zudem verfügt Spark noch über ein SQL Tool zum Verarbeiten von strukturierten 
 
 
 
-%\newpage
+\newpage
 \subsection{Nextflow}
 
 \begin{wrapfigure}{R}{0.5\textwidth}
 \centering
-\includegraphics[width=0.45\textwidth]{Nextflow_pipe.png}
-\caption{Ablauf der Nextflow Pipeline dieser Arbeit}
+\includegraphics[width=0.45\textwidth]{images/flowchart.pdf}
+\caption{Ablauf der Nextflow Pipeline dieser Arbeit, jedes Oval stellt einen Software Container dar, die Channel Namen sind an den Pfeilen zu sehen.}
 \label{fig:nextflow_pipe}
 \end{wrapfigure}
-Bei Nextflow \footnote{\url{https://www.nextflow.io}} handelt es sich um \emph{Data-driven computational} Pipelines, mit denen man leicht Workflows parallelisieren kann. Mit Nextflow lassen sich leicht skalierbare und reproduzierbare wissenschaftliche Workflows schreiben, indem man mit Software Containern arbeitet. Der wesentliche Vorteil dieser Container ist, dass man sie in jeder beliebigen Programmiersprache schreiben kann. So wird in dieser Arbeit Nextflow verwendet um Container mit Python und Java zu vereinen. 
-Eine weitere stärke von Nextflow ist, das man alle Pipelines nicht nur auf dem lokalen Computer ausführen kann, sondern z.B. mit \texttt{drmaa} auf einem Cluster oder in der Cloud.
+Bei Nextflow\footnote{\url{https://www.nextflow.io}} handelt es sich um \emph{Data-driven computational} Pipelines, mit denen man leicht Workflows parallelisieren kann. Mit Nextflow lassen sich leicht skalierbare und reproduzierbare wissenschaftliche Workflows schreiben, indem man mit Software Containern arbeitet. Der wesentliche Vorteil dieser Container ist, dass man sie in jeder beliebigen Programmiersprache schreiben kann. So wird in dieser Arbeit Nextflow verwendet um Container mit Python und Java zu vereinen. Jeder Container hat einen Eingangs- und einen Ausgangs- \emph{Channel}, also einen Fluss an Daten. Zudem kann eine Pipeline wie in \ac{Abb} \ref{fig:nextflow_pipe} dargestellt, linear ablaufen oder sich verzweigen.
+
+Eine weitere Stärke von Nextflow ist, das man alle Pipelines nicht nur auf dem lokalen Computer ausführen kann, sondern z.B. mit \texttt{drmaa} auf einem Cluster oder in der Cloud. So lassen sich auch große Datensätze und rechenintensive Aufgaben zeitnah bewältigen.
 
 
-\textbf{Auf der Webseite stehen noch Buzzwords wie: \emph{Fast prototyping, Portable, Continuous checkpoints, Unified parallelism, Stream oriented} soll ich dazu noch was schreiben?}
+%\textbf{Auf der Webseite stehen noch Buzzwords wie: \emph{Fast prototyping, Portable, Continuous checkpoints, Unified parallelism, Stream oriented}}
 
 
 

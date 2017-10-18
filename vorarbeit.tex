@@ -67,9 +67,9 @@ Alle Algorithmen in dieser Arbeit vorzustellen wäre nicht zielführend und wür
 So arbeitet der \texttt{Sift}\cite{Vaser.2016} Algorithmus mit der Wahrscheinlichkeit mit der eine Aminosäure an einer Position toleriert wird, anhand von Referenz Protein Familien.
 \texttt{Polyphen2}\cite{Adzhubei.2013} steht für \emph{Polymorphism phenotyping}, dieser Algorithmus arbeitet mit \emph{machine learning} und einem Trainingsdatenset \emph{HumDiv/HumVar}.
 \texttt{FATHMM}\cite{Shihab.2013} steht für \emph{Functional Analysis through Hidden Markov Models} und arbeitet wie der Name schon sagt mit Hidden Markov Modellen.
-Als letztes ist noch der \texttt{DANN} \cite{Quang.2015} Algorithmus erwähnenswert, dieser Arbeitet mit neuronalen Netzwerken, was auch sich auch in seinem Namen wiederspiegelt: \emph{deleterious annotation of genetic variants using neural networks}.
+Als letztes ist noch der \texttt{DANN} \cite{Quang.2015} Algorithmus erwähnenswert, dieser Arbeitet mit neuronalen Netzwerken, was sich auch in seinem Namen widerspiegelt: \emph{deleterious annotation of genetic variants using neural networks}.
 
-Hierbei ist wichtig zu erwähnen das kein Algorithmus eine perfekte Vorhersage treffen kann. So wurde in der Arbeit \cite{Liu.2016} ein Trainingsdatensatz bekannter SNPs mit allen Algorithmen annotiert und das Ergebnis ausgewertet siehe \ac{Abb} \ref{fig:comp_scores}. Hierbei lieferte \texttt{MetaSVM} eine \ac{SVM} und \texttt{MetaLR} eine \ac{LR} über alle Scores, also eine Kombination aus allen Scores das beste Ergebnis.
+Hierbei ist wichtig zu erwähnen, dass kein Algorithmus eine perfekte Vorhersage treffen kann. So wurde in der Arbeit \cite{Liu.2016} ein Trainingsdatensatz bekannter SNPs mit allen Algorithmen annotiert und das Ergebnis ausgewertet siehe \ac{Abb} \ref{fig:comp_scores}. Hierbei lieferte \texttt{MetaSVM} eine \ac{SVM} und \texttt{MetaLR} eine \ac{LR} über alle Scores, also eine Kombination aus allen Scores das beste Ergebnis.
 
 %https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4752381/ 
 
@@ -81,6 +81,6 @@ Zusätzlich gibt es noch eine unbestimmte Anzahl von Weiterentwicklungen und Var
 \label{sec:sapa}
 In einer vorherigen Arbeit wurde ein Programm namens \emph{SAPA}\footnote{\url{https://github.com/TobiasJu/SAPA}} erstellt, welches zur Annotation von \emph{Illumina truseq amplicon variants} Daten dient. Das Programm nutzt die oben erwähnten Algorithmen, allerdings aus Performancegründen nicht alle explizit, sondern nutzt die dbNSFP\cite{Liu.2016}, indem als Backend auf Annovar\cite{Wang.2010} gesetzt wird. 
 
-Das Programm wurde am Ende mit einem Clinvar Datensatz aus 2023 pathogenen und 2000 benignen \ac{SNP}s getestet. Bei den Daten handelt es sich ausschließlich um \ac{SNP}s welche von mehreren Autoren die gleiche Vorhersage erhalten haben. Somit sollte die bestmögliche Konsistenz gewährt sein.
+Das Programm wurde am Ende mit einem Clinvar Datensatz aus 2023 pathogenen und 2000 benignen \ac{SNP}s getestet. Bei den Daten handelt es sich ausschließlich um \ac{SNP}s, welche von mehreren Autoren die gleiche Vorhersage erhalten haben. Somit sollte die bestmögliche Konsistenz gewährt sein.
 
 Nach der Auswertung der Annotation wurde so ein \emph{MCC} von 0,64 ermittelt.

@@ -1,14 +1,14 @@
 \chapter[Datenaquirierung]{Datenaquirierung}
 \label{chap:Datenaquirierung}
 
-Dieses Kapitel befasst sich mit der Datenaquirierung, es sollte zum beginn der Arbeit der Versuch unternommen werden die Substitutionsmatrix unter Zuhilfenahme der neuen Strukturen in der \ac{PDB} neu zu berechnen. Da sich zum Zeitpunkt der Arbeit \cite{Mathias.2014} in der \ac{PDB} 101.539 Proteinstrukturen befanden und nun zum Zeitpunkt dieser Arbeit 132.095 (Oktober 2017). Dies bedeutet eine Informationserweiterung von ~30\%. Doch leider war es aus zeitlichen Gründen für mich nicht möglich die Substitutionsmatrix zu reproduzieren. Dennoch wurden die Daten als Grundlage für die $\psi$ \& $\phi$ Berechnung genutzt. Hier wurde besonderen Wert auf die Reproduzierbarkeit gelegt und Schritt für Schritt erklärt wie der Datensatz entstanden ist.
+Dieses Kapitel befasst sich mit der Datenaquirierung, es sollte zum Beginn der Arbeit der Versuch unternommen werden die Substitutionsmatrix unter Zuhilfenahme der neuen Strukturen in der \ac{PDB} neu zu berechnen. Da sich zum Zeitpunkt der Arbeit \cite{Mathias.2014} in der \ac{PDB} 101.539 Proteinstrukturen befanden und nun zum Zeitpunkt dieser Arbeit 132.095 (Oktober 2017). Dies bedeutet eine Informationserweiterung von ~30\%. Doch leider war es aus zeitlichen Gründen für mich nicht möglich die Substitutionsmatrix zu reproduzieren. Dennoch wurden die Daten als Grundlage für die $\psi$ \& $\phi$ Berechnung genutzt. Hier wurde besonderen Wert auf die Reproduzierbarkeit gelegt und Schritt für Schritt erklärt wie der Datensatz entstanden ist.
 
 
 
 \section{Konstruktion des Datensatzes}
 \label{sec:konst}
 
-Um die Änderungen der $\psi$ \& $\phi$ in der 3D Struktur interpretieren zu können musste als erstes ein geeigneter Datensatz erstellt werden. Hierfür wurde an Hand der Arbeit \cite{Mathias.2014}, ein repräsentativer Datensatz aus der \ac{Pfam} und \ac{PDB} erzeugt, alle benutzten Skripte sind im Ordner \texttt{data\_mining} zu finden. 
+Um die Änderungen der $\psi$ \& $\phi$ in der 3D Struktur interpretieren zu können, musste als Erstes ein geeigneter Datensatz erstellt werden. Hierfür wurde an Hand der Arbeit \cite{Mathias.2014}, ein repräsentativer Datensatz aus der \ac{Pfam} und \ac{PDB} erzeugt, alle benutzten Skripte sind im Ordner \texttt{data\_mining} zu finden.
 
 %Hier sollte noch ein bisschen mehr stehen ;)
 % im sinne von warum machen ich das?
@@ -29,7 +29,7 @@ Um die Änderungen der $\psi$ \& $\phi$ in der 3D Struktur interpretieren zu kö
         Danach kann mit der Filterung der \ac{Pfams} begonnen werden, hierfür wurde das Skript \texttt{filter\_membrane\_pfams.py} verwendet.
     \end{enumerate}
 \item
-    Im letzten Schritt werden alle Familien Dateien herausgefiltert, zu denen mindestens eine Struktur in der \ac{PDB} vorhanden ist, Von diesen Familien wird dann nur die Sequenzen übernommen, welche eine bekannte Struktur haben. Um dieses Sequenzen zu Identifizieren mussten zwei zusätzliche Schritte durchgeführt werden.
+    Im letzten Schritt werden alle Familien Dateien herausgefiltert, zu denen mindestens eine Struktur in der \ac{PDB} vorhanden ist, Von diesen Familien wird dann nur die Sequenzen übernommen, welche eine bekannte Struktur haben. Um dieses Sequenzen zu identifizieren mussten zwei zusätzliche Schritte durchgeführt werden.
     \begin{enumerate}
         \item
         Als erstes wurden alle \texttt{UniProtKB} AC/IDs aus der \texttt{pdbmap} mittels dem Skript \texttt{extract\_pdbmap\_ids.py} in ID Listen geparst. 
@@ -50,15 +50,15 @@ Nach allen Schritten wurde so ein Datensatz erzeugt, welcher 73410 Sequenzen aus
 
 \section{Berechnung der Energieprofile}
 \label{sec:calc_ep}
-Der folgende Abschnitt befasst sich mit der Erstellung der \acf{EP}e, denn ursprünglich war es geplant die \ac{EP}s vom Webserver ePros \ref{sec:epros} herunter zu laden, doch leider waren die Downloadlinks zum Zeitpunkt dieser Arbeit nicht erreichbar. Nach einer erfolgreichen E-Mail Korrespondenz wurde ein Java Programm von der Arbeitsgruppe \emph{bigM} zu Verfügung gestellt. Mit diesem Programm war es nun möglich sowohl globuläre, als auch alpha helicale \ac{EP}s  lokal zu berechnen. 
+Der folgende Abschnitt befasst sich mit der Erstellung der \ac{EP}s, denn ursprünglich war es geplant die \ac{EP}s vom Webserver ePros \ref{sec:epros} herunter zu laden, doch leider waren die Downloadlinks zum Zeitpunkt dieser Arbeit nicht erreichbar. Nach einer erfolgreichen E-Mail Korrespondenz wurde ein Java Programm von der Arbeitsgruppe \emph{bigM} zu Verfügung gestellt. Mit diesem Programm war es nun möglich, sowohl globuläre als auch alpha helicale, \ac{EP}s lokal zu berechnen. 
 
-Die Datengrundlage für \ac{EP}s ist die Struktur der Proteine welche in der \ac{PDB} gespeichert sind. Die \ac{PDB} weist zum Zeitpunkt dieser Arbeit (Oktober 2017) 132095 Strukturen vor, auf dem Webserver ePros befinden sich jedoch 346365 \ac{EP}s. Dies ist dem Umstand geschuldet, dass auf dem ePros Webserver für jede \emph{side chain} eines Proteins ein extra \ac{EP} angelegt wurde. So gibt es zum Beispiel für den \ac{PDB} Eintrag 1A0A drei \ac{EP}s, neben der Datei \texttt{1A0A.ep2}, welche alle \emph{side chains} enthält, noch \texttt{1A0A-A.ep2} und \texttt{1A0A-B.ep2}, welche jeweils nur entweder die A oder B \emph{side chain} enthalten.
+Die Datengrundlage für \ac{EP}s ist die Struktur der Proteine, welche in der \ac{PDB} gespeichert sind. Die \ac{PDB} weist zum Zeitpunkt dieser Arbeit (Oktober 2017) 132095 Strukturen vor, auf dem Webserver ePros befinden sich jedoch 346365 \ac{EP}s. Dies ist dem Umstand geschuldet, dass auf dem ePros Webserver für jede \emph{side chain} eines Proteins ein extra \ac{EP} angelegt wurde. So gibt es zum Beispiel für den \ac{PDB} Eintrag 1A0A drei \ac{EP}s, neben der Datei \texttt{1A0A.ep2}, welche alle \emph{side chains} enthält, noch \texttt{1A0A-A.ep2} und \texttt{1A0A-B.ep2}, welche jeweils nur entweder die A oder B \emph{side chain} enthalten.
 
-Die Rechenleistung eines einzelnen PCs stellte sich allerdings als nicht ausreichend heraus um das Problem zeitnah zu lösen. Aufgrund dessen wurde ein Nextflow Pipeline geschrieben mit dem die Berechnung der \ac{EP}s  parallelisiert wurde. Somit konnte die Geschwindigkeit um den Faktor 100 gesteigert werden. Zudem wurde die Nextflow Pipeline noch genutzt um direkt die Anpassung der Daten vorzunehmen, insgesamt wurden 4 Schritte von der Pipeline ausgeführt:
+Die Rechenleistung eines einzelnen PCs stellte sich allerdings als nicht ausreichend heraus, um das Problem zeitnah zu lösen. Aufgrund dessen wurde ein Nextflow Pipeline geschrieben mit dem die Berechnung der \ac{EP}s  parallelisiert wurde. Somit konnte die Geschwindigkeit um den Faktor 100 gesteigert werden. Zudem wurde die Nextflow Pipeline noch genutzt um direkt die Anpassung der Daten vorzunehmen, insgesamt wurden 4 Schritte von der Pipeline ausgeführt:
 
 \begin{enumerate}
     \item
-        Als erstes wurden alle komprimierten \ac{PDB} Dateien entpackt und für jede Datei ein extra Thread angelegt, mit einer maximalen Parallelisierung von 200 Threads.
+        Als Erstes wurden alle komprimierten \ac{PDB} Dateien entpackt und für jede Datei ein extra Thread angelegt, mit einer maximalen Parallelisierung von 200 Threads.
     \item 
         Danach wurden die \ac{EP}s  mittels dem bereitgestellten Java Programm aus den \ac{PDB} Dateien berechnet.
     \item
@@ -67,7 +67,7 @@ Die Rechenleistung eines einzelnen PCs stellte sich allerdings als nicht ausreic
         Im letzten Schritt wurden die Namen der Dateien bereinigt, denn Nextflow arbeitet mit vielen Dateiendungen um die Daten zu verarbeiten. Am Ende des Workflows ist der Ordner gefüllt mit \texttt{pdb*.\-ent.\-ep2.\-cnn} Dateien, diese werden nun geöffnet und anhand ihrer \ac{PDB} ID umbenannt.
 \end{enumerate}
 
-\paragraph{Hinweis:} Hierbei ist noch zu erwähnen das die Pipeline insgesamt zwei mal ausgeführt wurde, einmal mit allen globulär assozierten \ac{PDB} Daten und einmal mit allen alpha helicalen Membran Dateien, da sich die Berechnung dieser beiden Klassen unterscheidet.
+\paragraph{Hinweis:} Hierbei ist noch zu erwähnen, dass die Pipeline insgesamt zweimal ausgeführt wurde, einmal mit allen globulär assozierten \ac{PDB} Daten und einmal mit allen alpha helicalen Membran Dateien, da sich die Berechnung dieser beiden Klassen unterscheidet.
 
 Nach der Abschluss der Berechnung waren 132.098 globuläre und 3.172 alpha helicale \ac{EP}s vorhanden.
 
@@ -78,7 +78,7 @@ Die Kontaktmatrix wurde erstellt mit dem Ziel den Energieprofil zusätzliche Inf
 
 \begin{table}
     \centering
-    \caption{Dargestellt ist das gleiche \ac{EP} wie in \ac{Abb} \ref{tab:EP}, mit zusätzlichem Kontaktprofil in jeder \texttt{ENGY} Zeile, hierbei steht eine 1 für einen Kontakt und eine 0 für keinen Kontakt innerhalb der 8 Angström Sprähre, vergleiche \ref{fig:8A_Sphaere}.}
+    \caption{Dargestellt ist das gleiche \ac{EP} wie in Tabelle \ref{tab:EP}, mit zusätzlichem Kontaktprofil in jeder \texttt{ENGY} Zeile, hierbei steht eine 1 für einen Kontakt und eine 0 für keinen Kontakt innerhalb der 8 Angström Sprähre, vergleiche \ref{fig:8A_Sphaere}.}
     \label{tab:kontaktmatrix}
     \resizebox{\linewidth}{!}{%
     \begin{tabular}{lllllll}

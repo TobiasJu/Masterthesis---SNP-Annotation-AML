@@ -8,7 +8,7 @@ In diesem Kapitel werden die Grundlagen vermittelt, welche für das Verständnis
 
 Bei den \acf{APs} handelt es sich um eine Methode der Transformation der physikochemischen und wechselwirkenden Eigenschaften der Aminosäuren der Proteinstruktur in ein Energiemaß. Diese Energiemaße werden dabei durch eine Dezimalzahl dargestellt und im Gegensatz zur hochkomplexen 3D Strukturen sind die Berechnungen mit ihnen unmittelbarer. Die Energieprofile stehen auf dem Webserver \emph{eProS}\footnote{\url{https://biosciences.hs-mittweida.de/epros/}} zum Download bereit. Zusätzlich wurde zur lokalen Berechnung und zu Testzwecken eine lokale Möglichkeit von den Entwicklern der \ac{bigM}\footnote{\url{http://www.bioforscher.de/bigM/}}, zur Berechnung der Energieprofile, zu Verfügung gestellt.
 
-Durch die \ac{APs} können zu den lokalen Interaktionen der direkten Nachbarn, auch noch die globalen Interaktionen der indirekten Nachbarn hinzugezogen werden (Abb. \ref{fig:8A_Sphaere}). Zur Berechnung benutzt man die Betrachtung einer 8 Angström Sphäre, um die betreffende Aminosäure und analysiert ob noch andere Aminosäuren des Proteins in diese Sphäre hineinragen. Somit können auch Effekte wie sterische Hinderung berücksichtigt werden. Durch diese neue Sichtweise löst man sich von der starren Betrachtungsweise der Sequenz und der 2D Struktur, wie es bei bisherigen Vorhersage-Algorithmen war.
+Durch die \ac{APs} können zu den lokalen Interaktionen der direkten Nachbarn, auch noch die globalen Interaktionen der indirekten Nachbarn hinzugezogen werden (Abb. \ref{fig:8A_Sphaere}). Zur Berechnung benutzt man die Betrachtung einer 8 Angström Sphäre, um die betreffende Aminosäure herum und analysiert ob noch andere Aminosäuren des Proteins in diese Sphäre hineinragen. Somit können auch Effekte wie sterische Hinderung berücksichtigt werden. Durch diese neue Sichtweise löst man sich von der starren Betrachtungsweise der Sequenz und der 2D Struktur, wie es bei bisherigen Vorhersage-Algorithmen war.
 %
 \begin{figure}
 \centering
@@ -17,16 +17,16 @@ Durch die \ac{APs} können zu den lokalen Interaktionen der direkten Nachbarn, a
 \label{fig:8A_Sphaere}
 \end{figure}
 
-Energieprofile sind grobkörnige Aminosäuren Interaktionsmodelle, basierend auf $C_{\alpha}$ und $C_{\beta}$ Atom Koordinaten, welche aus bekannten Protein Strukturen extrahiert wurden. Es wird die natürlich Neigung eines Aminosäurerests, mit anderen Resten zu interagieren, untersucht. Bei Membran lokalisierten Proteinen wird zusätzlich noch die Neigung der Aminosäureresten sich in Richtung der Lipid Doppelschicht zu richten, berücksichtigt. 
+Energieprofile sind grobkörnige Aminosäuren Interaktionsmodelle, basierend auf $C_{\alpha}$ und $C_{\beta}$ Atom Koordinaten, welche aus bekannten Protein Strukturen extrahiert wurden. Es wird die natürlich Neigung eines Aminosäurerests, mit anderen Resten zu interagieren, untersucht. Bei Membran lokalisierten Proteinen wird zusätzlich noch, die Neigung der Aminosäureresten sich in Richtung der Lipid Doppelschicht zu richten, berücksichtigt. 
 
-Generell ist die Energie abhängig von der Neigung des Aminosäurerests nach Außen ($n_{out}$) in das umgebende Milieu oder in das Innere ($n_{in}$) des Proteins. Nimmt man nun den negativen natürlichen Logarithmus zur Basis 10, so ergibt sich für $e_{a_i}$ folgende Gleichung \ref{eq:definition}:
+Generell ist die Energie abhängig von der Neigung des Aminosäurerests nach außen ($n_{out}$) in das umgebende Milieu oder in das Innere ($n_{in}$) des Proteins. Nimmt man nun den negativen natürlichen Logarithmus zur Basis 10, so ergibt sich für $e_{a_i}$ folgende Gleichung \ref{eq:definition}:
 %
 \begin{equation}
   	e_{a_i} \propto -\ln{\left(\frac{n_{a_i}^{in}}{n_{a_i}^{out}}\right)}
   	\label{eq:definition}
 \end{equation}
 
-Diese Parameter sind von bekannten globularen- und membranassoziierten Proteinen hergeleitet. Wie in \ref{eq:single} zu sehen, ist die Interaktionsenergie $e_{a_{i}}$, $a_{j}$ zwischen 2 Aminosäuren $a_{i}$ und $a_{j}$ gleich die Summe der Energien der Beiden. 
+Diese Parameter sind von bekannten globularen- und membranassoziierten Proteinen hergeleitet. Wie in \ref{eq:single} zu sehen, ist die Interaktionsenergie $e_{a_{i}}$, $a_{j}$ zwischen 2 Aminosäuren $a_{i}$ und $a_{j}$ gleich die Summe der Energien der beiden. 
 
 \begin{equation}
   	e_{a_{i},a_{j}} = \left( e_{a_{i}} + e_{a_{j}} \right)
@@ -69,7 +69,7 @@ Das besondere an \emph{eMut} ist, dass es die energetischen Ähnlichkeiten und U
 
 \subsection{Energieprofile}
 \label{sec:Energieprofil}
-Energieprofile (EPs) sind die Grundlage dieser Arbeit, daher wird kurz der Aufbau des Datenformats erklärt. Ein \ac{EP} ist eine Datei mit \ac{APs} für jede Aminosäure. Im folgenden Beispiel ist das EP für die Struktur \emph{3T4F} der \emph{F Chain} dargestellt. Die ersten beiden Zeilen beschreiben das \ac{EP}, in der ersten Zeile steht der Name der Struktur und in der zweiten ob es sich um ein globuläres oder alpha helikales Protein handelt. Die restlichen Zeilen sind immer gleich aufgebaut und Tabstopp separiert. In der Spalte steht immer \texttt{ENGY}, gefolgt von dem Chain Buchstaben, dahinter steht die Aminosäurennummer und der Aminosäurennamen. Dahinter steht die Sekundärstruktur an dieser Stelle und ganz am Ende steht der Energie Wert der betreffenden Aminosäure. Am Ende der Datei kann noch \texttt{REMK} Zeilen stehen, in denen z.B. die Qualität der zugrundeliegenden \ac{PDB} Datei angegeben ist.
+Energieprofile (EPs) sind die Grundlage dieser Arbeit, daher wird kurz der Aufbau des Datenformats erklärt. Ein \ac{EP} ist eine Datei mit \ac{APs} für jede Aminosäure. Im folgenden Beispiel ist das EP für die Struktur \emph{3T4F} der \emph{F Chain} dargestellt. Die ersten beiden Zeilen beschreiben das \ac{EP}, in der ersten Zeile steht der Name der Struktur und in der Zweiten ob es sich um ein globuläres oder alpha helikales Protein handelt. Die restlichen Zeilen sind immer gleich aufgebaut und Tabstopp separiert. In der Spalte steht immer \texttt{ENGY}, gefolgt von dem Chain Buchstaben, dahinter steht die Aminosäurennummer und der Aminosäurennamen. Dahinter steht die Sekundärstruktur an dieser Stelle und ganz am Ende steht der Energie Wert der betreffenden Aminosäure. Am Ende der Datei kann noch \texttt{REMK} Zeilen stehen, in denen z.B. die Qualität der zugrundeliegenden \ac{PDB} Datei angegeben ist.
 
 \begin{table}[]
 \centering
@@ -101,6 +101,8 @@ ENGY & F & 24 & G & c & -0.735024098503097
 
 \begin{table}[]
     \centering
+    \caption{Die 20 kanonischen Aminosäuren mit Abkürzungen, Acylgruppe und prozentualer Anteil an der Gesamtheit\protect\footnotemark. Diese Tabelle dient dem Verständis der Tabelle \ref{tab:EP}, \ac{Abb} \ref{fig:epros}, \ref{fig:energy_ranges} und \ref{fig:ep_vs_snp}.}
+    \label{tab:amino_table}
     \resizebox{\linewidth}{!}{%
     \begin{tabular}{llllll}
      &  &  &  &  &  \\
@@ -127,8 +129,6 @@ ENGY & F & 24 & G & c & -0.735024098503097
     Tyrosin & Tyr & Y & Tyrosyl- & nein & 3,5 \% \\
     Valin & Val & V & Valyl- & ja & 6,9 \%
     \end{tabular}}
-    \caption{Die 20 kanonischen Aminosäuren mit Abkürzungen, Acylgruppe und prozentualer Anteil an der Gesamtheit\protect\footnotemark. Diese Tabelle dient dem Verständis der Tabelle \ref{tab:EP}, \ac{Abb} \ref{fig:epros}, \ref{fig:energy_ranges} und \ref{fig:ep_vs_snp}.}
-    \label{tab:amino_table}
 \end{table}
 \footnotetext{\url{https://de.wikipedia.org/wiki/Aminosäuren##Kanonische_Aminos.C3.A4uren}}
 
@@ -166,16 +166,25 @@ In dieser Arbeit wurde mit dem \ac{PDB} Dateiformat gearbeitet, sodass dieses im
 
 \subsection{Pfam}
 
-Die Protein Family Database\cite{Finn.2014} oder kurz Pfam enthält nah verwandte Sequenz Alignments, sogenannte Protein Familien. Diese setzen sich aus einem repräsentativen Subset aus einem Satz übereinstimmender Sequenzen zusammen, dem sogenannten „Seed Alignment“. Dieses \emph{Seed Alignment} wird anschließend genutzt um ein \emph{Profil hidden Markov model} (HMM) \cite{Soding.2005} mittels der Software HMMER\cite{Mistry.2013} zu erstellen. Nun wird das Profil HMM mit Datenbanken verglichen und um alle Sequenzen erweitert, welche über dem \emph{gathering threshold} GA liegen. GAs werden per Hand kuratiert und sind Familien spezifisch. Diese neuen Mitglieder der Familie werden an das Profil HMM aligniert um ein volles Alignment zu erzeugen. Pfam-Einträge, welche als verwandt identifiziert wurden, werden in Gruppen zusammengefasst, die als \emph{Clans} bezeichnet werden. Beziehungen werden sowohl mittels Sequenzinformationen via HMMER cross matches und SCOOP \cite{Bateman.2007}, als auch durch Protein Homologie Detektion durch HMM-HMM Vergleiche, mit HHsearch \cite{Fidler.2016} ermittelt.
+Die Protein Family Database\cite{Finn.2014} oder kurz Pfam enthält nah verwandte Sequenz Alignments, sogenannte Proteinfamilien. Diese setzen sich aus einem repräsentativen Subset aus einem Satz übereinstimmender Sequenzen zusammen, dem sogenannten „Seed Alignment“. Dieses \emph{Seed Alignment} wird anschließend genutzt um ein \emph{Profil hidden Markov model} (HMM) \cite{Soding.2005} mittels der Software HMMER\cite{Mistry.2013} zu erstellen. Nun wird das Profil HMM mit Datenbanken verglichen und um alle Sequenzen erweitert, welche über dem \emph{gathering threshold} GA liegen. GAs werden per Hand kuratiert und sind Familien spezifisch. Diese neuen Mitglieder der Familie werden an das Profil HMM aligniert um ein volles Alignment zu erzeugen. Pfam-Einträge, welche als verwandt identifiziert wurden, werden in Gruppen zusammengefasst, die als \emph{Clans} bezeichnet werden. Beziehungen werden sowohl mittels Sequenzinformationen via HMMER cross matches und SCOOP \cite{Bateman.2007}, als auch durch Protein Homologie Detektion durch HMM-HMM Vergleiche, mit HHsearch \cite{Fidler.2016} ermittelt.
 
-Die Pfam wurde 1997 von Sonnhammer EL, Eddy SR und Durbin R. ins Leben gerufen \cite{Sonnhammer.1997}. Ihr Ziel war es eine Datenbank zur Proteinsequenz Klassifizierung und Analyse zu erschaffen. Die Pfam setzt sich aus zwei Teilen zusammen, der Pfam A und Pfam B. Die Pfam-A ist kuratiert und enthält gut charakterisierte Protein Domain Familien mit hochqualitativen Alignments. Dies wird durch manuell überprüften Seed Alignments und HMMs, gewährleistet. Pfam B hingegen enthält Sequenzfamilien, bei denen der Domainer Algorithmus zum Alignieren und Clustern aller nicht Pfam A Sequenzen, genutzt wurde. 
+Die Pfam wurde 1997 von Sonnhammer EL, Eddy SR und Durbin R. ins Leben gerufen \cite{Sonnhammer.1997}. Ihr Ziel war es eine Datenbank zur Proteinsequenz Klassifizierung und Analyse zu erschaffen. Die Pfam setzt sich aus zwei Teilen zusammen, der Pfam A und Pfam B. Die Pfam-A ist kuratiert und enthält gut charakterisierte Protein Domain Familien mit hochqualitativen Alignments. Dies wird durch manuell überprüften Seed Alignments und HMMs, gewährleistet. Pfam B hingegen enthält Sequenzfamilien, bei denen der Domainer Algorithmus zum Alignieren und Clustern, aller nicht Pfam A Sequenzen, genutzt wurde. 
 
-Die Aktuelle Version ist Pfam 31.0 und wurde am Europäischen Bioinformatik Institut (EBI)\footnote{\url{https://www.ebi.ac.uk}} produziert, mittels einer Sequenzdatenbank namens Pfamseq, welche auf UniProt\footnote{\url{http://www.uniprot.org}} basiert. Sie enthält aktuell 16712 Familien in 607 Clans (März 2017).
+Die aktuelle Version ist Pfam 31.0 und wurde am Europäischen Bioinformatik Institut (EBI)\footnote{\url{https://www.ebi.ac.uk}} produziert, mittels einer Sequenzdatenbank namens Pfamseq, welche auf UniProt\footnote{\url{http://www.uniprot.org}} basiert. Sie enthält aktuell 16712 Familien in 607 Clans (März 2017).
 \begin{figure}
 \includegraphics[width=.95\textwidth]{Pfam_workflow.png}
 \caption{Abgebildet ist der \ac{Pfam} Daten Workflow, welcher die Schritte von einem repräsentativen Set bekannter Mitglieder, über das \emph{SEED} bis zum vollständigen Alignment zeigt.}
 \label{fig:Pfam_workflow}
 \end{figure}
+
+\subsection{ClinVar}
+\label{sec:clinvar}
+
+ClinVar\footnote{\url{https://www.ncbi.nlm.nih.gov/clinvar/}}
+
+Diese enthält Daten über genetische Variationen und die Auswirkungen auf die menschliche Gesundheit. Zum Zeitpunkt dieser Arbeit (Oktober 2017) enthielt sie 82.147 als \emph{pathogenic} markierte und 105.337 als \emph{benign} markierte genetische Variationen.
+
+Um die Qualität der Annotation zu bewerten gibt es den sogenannten \emph{Review Status}, dieser gibt an wie gut die Annotation ist. So gibt es z.B. einen Stern, wenn die genetische Variation bisher nur von einem Autoren eingetragen wurde. Gibt es mehrere Autoren und widersprechen sich die Annotationen nicht, so bekommt die Annotation zwei Sterne. Die fast beste Qualität, mit drei Sternen, hat das \emph{expert panel}, Autoren in dieser Kategorie müssen spezielle Anforderungen erfüllen\footnote{\url{https://www.ncbi.nlm.nih.gov/clinvar/docs/review_guidelines/}}. Die beste Annotation mit vier Sternen hat \emph{practice guideline}
 
 
 \section{Bewertungen von Klassifikationen}
@@ -201,7 +210,7 @@ Der \emph{Matthews correlation coefficient}, oder kurz MCC ist ein Maß um die Q
     \label{eq:mcc}
 \end{equation}
 
-Der MCC gilt als ausbalanciertes Maß, selbst wenn die Klassen sehr verschiedene Größen haben, Andere Maße, wie der einfache „Anteil der richtigen Vorhersagen“, auch bekannt als statistische Genauigkeit, sind nicht besonders hilfreich, wenn zwei Klassen unterschiedlich groß sind. Denn wenn jedes Objekt dem größeren Set zugewiesen wird, so erreicht man eine Höhere Anzahl an korrekten Vorhersagen, welche statistisch gesehen allerdings wenig Aussagekraft besitzen.
+Der MCC gilt als ausbalanciertes Maß, selbst wenn die Klassen sehr verschiedene Größen haben, Andere Maße, wie der einfache „Anteil der richtigen Vorhersagen“, auch bekannt als statistische Genauigkeit, sind nicht besonders hilfreich, wenn zwei Klassen unterschiedlich groß sind. Denn wenn jedes Objekt dem größeren Set zugewiesen wird, so erreicht man eine höhere Anzahl an korrekten Vorhersagen, welche statistisch gesehen allerdings wenig Aussagekraft besitzen.
 
 Der MCC berechnet sich direkt aus der Konfusionsmatrix \ref{table:konfusionsmatrix}, mit der Formel \ref{eq:mcc2}:
 
@@ -214,7 +223,7 @@ Der MCC berechnet sich direkt aus der Konfusionsmatrix \ref{table:konfusionsmatr
 \multicolumn{1}{|l|}{test positive (tp + fp)} & \cellcolor[HTML]{9AFF99}true positive (tp) & \cellcolor[HTML]{FFCCC9}fals positive (fp) \\ \hline
 \multicolumn{1}{|l|}{test negative (fn + tn} & \cellcolor[HTML]{FFFFC7}false negative (fn) & \cellcolor[HTML]{9AFF99}true negative (tn) \\ \hline
     \end{tabular}}
-        \caption{Dargestellt ist die Konfusionsmatrix.}
+        \caption{Dargestellt ist die Konfusionsmatrix. tp = \emph{true positives}, fp = \emph{false postives}, tn \emph{truenegatives} und fn = \emph{false negatives}}
     \label{table:konfusionsmatrix}
 \end{table}
 
@@ -223,15 +232,15 @@ Der MCC berechnet sich direkt aus der Konfusionsmatrix \ref{table:konfusionsmatr
     \label{eq:mcc2}
 \end{equation}
 
-In Gleichung \ref{eq:mcc2} ist TP die Anzahl der \emph{true postives}, TN die Anzahl der \emph{true negatives}, FP die Anzahl der \emph{true postives} und FN die Anzahl der \emph{true negatives}. Wenn eine der 4 Summen im Teiler 0 Ergibt, so kann man den Nenner willkürlich auf 1 setzen, sodass man einen MCC von 0 erhält, dies stellt den Grenzwert der Gleichung dar.
+In Gleichung \ref{eq:mcc2} ist TP die Anzahl der \emph{true postives}, TN die Anzahl der \emph{true negatives}, FP die Anzahl der \emph{true postives} und FN die Anzahl der \emph{true negatives}. Wenn eine der 4 Summen im Teiler 0 ergibt, so kann man den Nenner willkürlich auf 1 setzen, sodass man einen MCC von 0 erhält, dies stellt den Grenzwert der Gleichung dar.
 
 
 \section{Homologie Berechnung}
 \label{sec:siwssmodel}
-Im Rahmen dieser Arbeit war es nötig 3D Strukturen für Protein Sequenzen zu ermitteln welche nicht oder nur teilweise aufgeklärt sind, denn Homologieberechunungen werden häufig eingesetzt wenn es keine experimentellen Daten zu einer Struktur eines Proteins gibt. 
+Im Rahmen dieser Arbeit war es nötig 3D Strukturen für Protein Sequenzen zu ermitteln welche nicht oder nur teilweise aufgeklärt sind, denn Homologieberechunungen werden häufig eingesetzt, wenn es keine experimentellen Daten zu einer Struktur eines Proteins gibt. 
 \begin{figure}
     \includegraphics[width=.95\textwidth]{images/Swissmodel.png}
-    \caption{Typisches Ergebnis einer Swissmodel Anfrage, für jedes Modell werden Koordinaten, Alignment, Sequenzidentität, Abdeckung, Modellierungsprotokoll, eine Qualitätsschätzung und vieles mehr, zur Verfügung gestellt.}
+    \caption{Typisches Ergebnis einer Swissmodel Anfrage, für jedes Modell werden Koordinaten, Alignment, Sequenzidentität, Abdeckung, Modellierungsprotokoll, eine Qualitätsschätzung und vieles mehr zur Verfügung gestellt.}
     \label{fig:swissmodel}
 \end{figure}
 
@@ -241,7 +250,7 @@ Im Rahmen dieser Arbeit war es nötig 3D Strukturen für Protein Sequenzen zu er
 
 Übersetzt aus \cite{Biasini.2014}, den Autoren des Webservers Swissmodel\footnotetext{\url{https://swissmodel.expasy.org}}, welcher zur Homologie Berechnung genutzt wurde. 
 
-Swissmodel zeichnet sich durch eine aufgeräumte Benutzeroberfläche, einem zuverlässig Server und einer schnellen Berechung aus, siehe \ac{Abb} \ref{fig:swissmodel}. Zudem ist kein Download erforderlich, somit werden auch keine Referenz Datenbanken benötigt. Damit war der Webserver die optimale Wahl für diese Arbeit.
+Swissmodel zeichnet sich durch eine aufgeräumte Benutzeroberfläche, einem zuverlässig Server und einer schnellen Berechung aus, siehe \ac{Abb} \ref{fig:swissmodel}. Zudem ist kein Download erforderlich, somit werden auch keine Referenzdatenbanken benötigt. Damit war der Webserver die optimale Wahl für diese Arbeit.
 
 
 
@@ -251,7 +260,7 @@ Der Ramachandran Plot wurde 1963 von G. N. Ramachandran \cite{RAMACHANDRAN.1963}
 
 \begin{figure}
     \includegraphics[width=.95\textwidth]{psi_phi.png}
-    \caption{2-dimensionale Projektion eines Proteins mit C $\alpha$ Atom in der Mitte und gekennzeichneten Winkeln. Die grauen Ebenen zeigen, dass die Atome welche durch die Peptidbindung (rot) verbunden sind jeweils auf einer Ebene liegen, so kann sich der der Aminosäurerest (grün) über seine $\psi\ \&\ \phi$ Winkeln frei drehen. Die Amino-Gruppe ist blau und die Carboxyl-Gruppe ist rosa dargestellt.\protect\footnotemark}
+    \caption{2-dimensionale Projektion eines Proteins mit C $\alpha$ Atom in der Mitte und gekennzeichneten Winkeln. Die grauen Ebenen zeigen, dass die Atome, welche durch die Peptidbindung (rot) verbunden sind, jeweils auf einer Ebene liegen, so kann sich der Aminosäurerest (grün) über seine $\psi\ \&\ \phi$ Winkeln frei drehen. Die Amino-Gruppe ist blau und die Carboxyl-Gruppe ist rosa dargestellt.\protect\footnotemark}
     \label{fig:psi_phi}
 \end{figure}
 \footnotetext{\url{https://application.wiley-vch.de/HOME/bioinformatik/prot/Prot_1d/ueb/pepbind.png}}
@@ -278,7 +287,6 @@ Mathematisch lässt sich der Ramachandran Plot mit folgender Gleichung beschreib
 
 
 \subsection{Apache Spark}
-In dieser Arbeit wurde mit der Gesamten RCSB \ac{PDB} und somit mit 133.277 Energieprofilen gearbeitet, um diese Datenmasse adäquat und schnell zu verarbeiten wurde sowohl eine Hardware, als auch Software Lösung benötigt, da ein normaler PC nicht mehr ausreicht, diese Datenmengen zeitnah zu verarbeiten. Hierzu wurde als Hardwarelösung das Cluster der Arbeitsgruppe Goesmann genutzt, indem auf 5000 virtuelle Kerne mit 512GB RAM zugegriffen wurde. Als Softwarelösung wurde Apache Spark\footnote{\url{https://spark.apache.org}} eingesetzt, hierbei handelt es sich um eine gneral-purpose Cluster Software, welche über eine High Level API in Python, Scala, R und Java verfügt. Gerade die Python API war sehr hilfreich, da die Mehrzahl aller Skripte für diese Arbeit in Python geschrieben wurden. So konnte ein Python Skript erst lokal auf einem PC entwickelt und mit einem Testdatensatz überprüft werden, um es anschließend mit Spark auf dem Cluster der AG Goesmann zu deployen. Nach dem deploy verteilt Spark die Daten automatisch auf dem Cluster und fängt die Ergebnisse ab. 
 
 \begin{figure}
 \includegraphics[width=.95\textwidth]{apache_spark.png}
@@ -286,6 +294,10 @@ In dieser Arbeit wurde mit der Gesamten RCSB \ac{PDB} und somit mit 133.277 Ener
 \label{fig:apache_spark}
 \end{figure}
 \footnotetext{\url{https://www.slideshare.net/perone/apache-spark-intro-to-largescale-recommendations-with-apache-spark-and-python}}
+
+In dieser Arbeit wurde mit der Gesamten RCSB \ac{PDB} und somit mit 133.277 Energieprofilen gearbeitet, um diese Datenmasse adäquat und schnell zu verarbeiten wurde sowohl eine Hardware, als auch Software Lösung benötigt, da ein normaler PC nicht mehr ausreicht, diese Datenmengen zeitnah zu verarbeiten. Hierzu wurde als Hardwarelösung das Cluster der Arbeitsgruppe Goesmann genutzt, indem auf 5000 virtuelle Kerne mit 512GB RAM zugegriffen wurde. 
+
+Als Softwarelösung wurde Apache Spark\footnote{\url{https://spark.apache.org}} eingesetzt, hierbei handelt es sich um eine gneral-purpose Cluster Software, welche über eine High Level API in Python, Scala, R und Java verfügt. Gerade die Python API war sehr hilfreich, da die Mehrzahl aller Skripte für diese Arbeit in Python geschrieben wurden. So konnte ein Python Skript erst lokal auf einem PC entwickelt und mit einem Testdatensatz überprüft werden, um es anschließend mit Spark auf dem Cluster der AG Goesmann zu deployen. Nach dem Deployment verteilt Spark die Daten automatisch auf dem Cluster und fängt die Ergebnisse ab. 
 
 Zudem verfügt Spark noch über ein SQL Tool zum Verarbeiten von strukturierten Daten, MLib für Machine Learning und GraphX für Graph Prozessierung.
 
@@ -311,10 +323,12 @@ Eine weitere Stärke von Nextflow ist, das man alle Pipelines nicht nur auf dem 
 
 
 \section{Python}
-Der Hauptteil der benötigten Programme dieser Arbeit wurde in Python\footnote{\url{https://www.python.org}} geschrieben. Python zeichnet sich durch eine klare und Objekt orientierte Syntax aus. Es ist vergleichbar mit Perl, Ruby, Scheme oder Java. Python gut dokumentiert und damit leicht zu lernen, dies macht es ideal für ad-hoc Programmieraufgaben und Prototyping, wie es in dieser Arbeit gefordert wurde. Außerdem läuft Python auf allen Betriebssystemen wie Mac OS X, Windows und Unix. Das vermutlich beste an Python ist, die Tatsache, dass es komplett \emph{Open Source} ist und damit Akademisch komplett entgeltfrei benutzt werden kann.
+Der Hauptteil der benötigten Programme dieser Arbeit wurde in Python\footnote{\url{https://www.python.org}} geschrieben. Python zeichnet sich durch eine klare und Objekt orientierte Syntax aus. Es ist vergleichbar mit Perl, Ruby, Scheme oder Java. Python gut dokumentiert und damit leicht zu lernen, dies macht es ideal für ad-hoc Programmieraufgaben und Prototyping, wie es in dieser Arbeit gefordert wurde. Außerdem läuft Python auf allen Betriebssystemen wie Mac OS X, Windows und Unix. Das Beste an Python ist die Tatsache, dass es komplett \emph{Open Source} ist und damit Akademisch komplett entgeltfrei benutzt werden kann.
 
 Durch meine Entwickler Tätigkeit im Edgar\cite{Yu.2017} Projekt der JLU hatte ich viel Kontakt mit Perl und der Unix Umgebung. Im privaten Rahmen setzt ich auf Windows als meinen \emph{daily driver}, damit war Python die logische Wahl, der Programmiersprache, für diese Arbeit.
 
-In dieser Arbeit wurde die Python \emph{legacy} Version 2.7 verwendet, diese zeichnet sich dadurch aus, dass es zu diesem Zeitpunkt noch mehr Bibliotheken für diese Version gibt als für Python 3.X, was durch die fehlende Abwärtskompatibilität geschuldet ist. Denn in Python 3 wurde die Programmiersprache grundlegend überarbeitet, das hat im wesentlichen zu einem viel besseren Unicode Support, sowie eine standardmäßige \emph{bytes/Unicode} Separierung geführt. Zudem wurde die insgesamte Konsistenz der Programmiersprache verbessert.
+In dieser Arbeit wurde die Python \emph{legacy} Version 2.7 verwendet, diese zeichnet sich dadurch aus, dass es zu diesem Zeitpunkt noch mehr Bibliotheken für diese Version gibt als für Python 3.X, was durch die fehlende Abwärtskompatibilität geschuldet ist. So wurde in dieser Arbeit z.B. mit den Bibliotheken \texttt{Matplotlib} und \texttt{Seaborn} gearbeitet um Daten zu visualisieren.
+
+In Python 3 wurde die Programmiersprache grundlegend überarbeitet, das hat im Wesentlichen zu einem viel besseren Unicode Support, sowie eine standardmäßige \emph{bytes/Unicode} Separierung geführt. Zudem wurde die gesamte Konsistenz der Programmiersprache verbessert.
 
 

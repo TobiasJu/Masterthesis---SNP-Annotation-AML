@@ -64,7 +64,7 @@ Der Violinen Plot beinhaltet zudem noch alle Ausreißer, aufgrund dessen sich da
 \subsection{Spektrum der Aminosäuren im Detail}
 In diesem Abschnitt wird das Spektrum der zwei Aminosäuren, Glutaminsäure und Glycin im Detail vorgestellt. Diese beiden Aminosäuren wurden exemplarisch ausgewählt, da sich alle Aminosäurespektren ähnlich verhalten. So ist in \ac{Abb} \ref{fig:ep_as_distr} deutlich zu sehen, dass alle Energiewerte der Glutaminsäure um einen Mittelwert (-0.1) verteilt sind. Dies verhält sich sehr ähnlich für Glycin, hier sind ebenfalls alle Werte um den Mittelwert (-5.1) verteilt. Jedoch fällt auf, dass die Kurve nicht ganz symmetrisch ist, wie in der Verteilung von Energiewerten der Glutaminsäure, sondern nach links flacher abfällt. 
 
-\begin{figure}
+\begin{figure}[H]
     \subfigure[\ac{AP} Verteilung von Glutaminsäure]{\includegraphics[width=0.49\textwidth]{images/Glutaminsaure_distr.png}}
     \subfigure[\ac{AP} Verteilung von Glycin]{\includegraphics[width=0.49\textwidth]{images/histogramm_G.png}}
     \caption{Distribution der Energiewerte von Glutaminsäure links und Glycin rechts. Auf der Abszisse sind die Energiewerte aufgetragen und auf der Ordinate ihr relatives Vorkommen als Dezimalzahl.} 
@@ -80,7 +80,7 @@ Weil auch die restlichen Plots ähnlich aussehen, sind sie hier nicht dargestell
 \section{Ausgewählte Gene und SNPs}
 Die in Kapitel \ref{sec:clinvar_filter} ausgesuchten \ac{SNP}s sind nun hier in Tabelle \ref{tab:expert_snps} und \ref{tab:multiple_subs_snps} dargestellt:
 
-\begin{table}[]
+\begin{table}[H]
     \centering
     \caption{Tabelle aller Gene des \emph{expert panels} mit mindestens 10 pathogenen \ac{SNP}s. Die verwendeten Gene sind grün markiert.}
     \label{tab:expert_snps}
@@ -177,8 +177,9 @@ Die restlichen Plots, also jene welche für die Erstellung der Tabellen \ref{tab
 \newpage
 \section{Auswertung}
 \label{sec:snp_auswertung}
+Der Datensatz aus Kapitel \ref{sec:auswertung_eps} enthielt 85 \ac{SNP}s, da jedoch nicht alle SNPs innerhalb der aufgeklärten Struktur lagen, bestand der Datensatz am Ende aus 55 \ac{SNP}s, aus den Genen \texttt{MSH2, CFTR, ACADM, PMS2, SLC2A1} und \texttt{SDHB}. Nun wurde nach Kriterien gesucht, um diese SNPs zu trennen. 
 
-\begin{table}[]
+\begin{table}[H]
     \centering
     \caption{Dargestellt sind alle alpha helicalen Membranproteine mit \ac{SNP}s, die auf den aufgeklärten Strukturen liegen. Die \texttt{SNP} Zeile gibt an welche Aminosäure an welcher Position ausgetauscht wurde. Die \texttt{ClinVar} Zeile zeigt die offizielle ClinVar Annotation des jeweiligen \ac{SNP}s an. Die \texttt{snp\_diff} Zeile zeigt die Differenz zwischen Mutation und Referenz. Die \texttt{snp\_diff\_amount} Zeile gibt die absolute Differenz zwischen Mutation und Referenz. Die \texttt{total\_diff} Zeile zeigt die Totale Energiedifferenz über die gesamte Polypeptidkette. Die \texttt{total\_contact\_diff} Zeile gibt die Energiedifferenz über alle Kontakte an. Pathogene \ac{SNP}s sind rot und gutartige \ac{SNP}s sind grün markiert, die Tabelle ist aufsteigend nach der blauen Kopfzeile sortiert.}
     \label{tab:snps_memb}
@@ -310,8 +311,6 @@ Die restlichen Plots, also jene welche für die Erstellung der Tabellen \ref{tab
         Val163Asp & pathogenic & -27,66 & 27,66 & 55,33 & 48,98
     \end{tabular}}
 \end{table}
-
-Der Datensatz aus Kapitel \ref{sec:auswertung_eps} enthielt 85 \ac{SNP}s, da jedoch nicht alle SNPs innerhalb der aufgeklärten Struktur lagen, bestand der Datensatz am Ende aus 55 \ac{SNP}s, aus den Genen \texttt{MSH2, CFTR, ACADM, PMS2, SLC2A1} und \texttt{SDHB}. Nun wurde nach Kriterien gesucht, um diese SNPs zu trennen. 
 
 Um eine bestmögliche Klassifizierung der \ac{SNP}s zu erhalten, wurden die \ac{SNP}s nach Membran und globulärer Assoziation getrennt. So enthielt die Tabelle \ref{tab:snps_memb} mit den Membranproteinen 13 \ac{SNP}s, welche eindeutig nach ihrer Differenz am \ac{SNP} klassifiziert werden konnten. Indem die untere Grenze bei -2,5 und die obere Grenze bei -0,3 fest gelegtwurde. Somit sind alle \ac{SNP}s pathogen, wenn sie unter oder über dieser Grenze liegen.
 

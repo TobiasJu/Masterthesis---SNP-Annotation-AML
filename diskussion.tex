@@ -66,7 +66,7 @@ In Kapitel \ref{sec:snps_in_eps} wurde gezeigt, dass pathogene \ac{SNP}s die Ene
 
 Dafür wurde zuerst per Hand versucht, die einzelnen Gensequenzen herunterzuladen und anschließend in Swissmodel zu modellieren. Doch leider lieferte dies nicht die gewünschten Ergebnisse, denn die Coverage war in den meisten Fällen sehr schlecht. So bewegte sich z.B. die Coverage für \texttt{NRAS} zwischen 1-4\%, sodass nur einzelne Helices abgedeckt waren. Es wurden noch vier andere Gene aus dem Panel getestet, aber auch diese hatten keine allzu große Coverage, zusätzlich war der Vorgang sehr zeitaufwendig. 
 
-\begin{table}[]
+\begin{table}[H]
     \centering
     \caption{Illumina TruSight Myeloid Sequencing Panel Gene \emph{coverage}, Transkriptlänge ist mit UTRs und CDS angegeben.}
     \label{tab:illumina_coverage}
@@ -116,7 +116,7 @@ Bei den anderen Genen des Panels sah es leider noch schlechter aus, denn von den
     \end{tabular}}
 \end{table}
 
-Um zu überprüfen, ob es sich bei dem Illumina Panel nicht um eine unglückliche Ausnahme handelt, wurde noch ein zweites Panel überprüft. Das \emph{VariantPlex Solid Tumor Kit}\footnote{\url{http://archerdx.com/variantplex/solid-tumor}} umfasst 67 Gene im Zusammenhang mit soliden Tumoren. Doch auch hier ist nur ein Bruchteil der Gene (16) aufgeklärt und von diesen 16 Genen, ist keines komplett strukturell aufgeklärt. Die höchste Coverage hat \texttt{ATM} mit 23,58\%. Dies ist jedoch immer noch zu wenig um damit eine Homologie Modellierung durchzuführen. Auch dieses Panel beinhaltet \texttt{IDH1} und weist damit ebenfalls eine Coverage von 17,97\% auf, gefolgt von \texttt{H3F3A} mit einer Coverage von 16,90\%. Bei den restlichen Treffern fällt die Coverage stark ab und 51 Gene haben sogar gar keine.
+Um zu überprüfen, ob es sich bei dem Illumina Panel nicht um eine unglückliche Ausnahme handelt, wurde noch ein zweites Panel überprüft. Das \emph{VariantPlex Solid Tumor Kit}\footnote{\url{http://archerdx.com/variantplex/solid-tumor}} umfasst 67 Gene im Zusammenhang mit soliden Tumoren. Doch auch hier ist nur ein Bruchteil der Gene (16) aufgeklärt und von diesen 16 Genen, ist keines komplett strukturell aufgeklärt, siehe Tabelle \ref{tab:variantplex_coverage}. Die höchste Coverage hat \texttt{ATM} mit 23,58\%. Dies ist jedoch immer noch zu wenig um damit eine Homologie Modellierung durchzuführen. Auch dieses Panel beinhaltet \texttt{IDH1} und weist damit ebenfalls eine Coverage von 17,97\% auf, gefolgt von \texttt{H3F3A} mit einer Coverage von 16,90\%. Bei den restlichen Treffern fällt die Coverage stark ab und 51 Gene haben sogar gar keine.
 
 Somit lässt sich abschließend sagen, dass sich \ac{APs} (noch) nicht für die Annotation von \ac{SNP}s im Illumina TruSight Myeloid Sequencing Panel eignen, da einfach noch zu wenige Strukturen aufgeklärt sind. Denn ohne aufgeklärte Struktur macht es keinen Sinn, ein Homologie Modellierung durchzuführen, denn wie in \ref{sec:min_coverage} gezeigt, würde das Ergebnis unbrauchbar sein. Sodass keine \ac{EP} Berechnung möglich ist. 
 
@@ -126,7 +126,7 @@ Somit lässt sich abschließend sagen, dass sich \ac{APs} (noch) nicht für die 
 
 In diesem Abschnitt wird diskutiert, welche minimale Coverage ein Protein haben muss, damit es Sinn macht ein \ac{EP} dafür zu berechnen. Denn es hat sich herausgestellt, dass die Vorhersage eines \ac{SNP}s sehr stark abhängig von dem verwendeten Template ist.
 
-\begin{figure}
+\begin{figure}[H]
     \centering
     \includegraphics[width=.99\textwidth]{images/comp_plot_KCNH2_Arg181Gln.png}
     \caption{Ausschnitt aus dem Protein \texttt{KCNH2} mit gutartigem \ac{SNP} an Position 181. Der Plot ist exakt wie \ref{fig:comp_plot_MSH2} aufgebaut.}

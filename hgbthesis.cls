@@ -153,13 +153,15 @@
     \vskip 4mm%
     {\large\sc\@studiengang}%
     \vskip 4mm%
-    {\large in \@studienort}%
+    {\large \@studienort}%
     \vskip 16mm%
-    {\large im \monthname[\value{@abgabemonat}] \arabic{@abgabejahr}}%
+    {\large \monthname[\value{@abgabemonat}] \arabic{@abgabejahr}}%
 \end{center}\par
   \vfil\null
 \end{titlepage}%
 }
+
+% --------- MASTER ----------
 
 \newcommand{\@matitel}{%
 \begin{titlepage}%
@@ -184,9 +186,9 @@
     \vskip 4mm%
     {\large\sc\@studiengang}%
     \vskip 4mm%
-    {\large in \@studienort}%
+    {\large \@studienort}%
     \vskip 16mm%
-    {\large im \monthname[\value{@abgabemonat}] \arabic{@abgabejahr}}%
+    {\large \monthname[\value{@abgabemonat}] \arabic{@abgabejahr}}%
 %   {\large im \@abgabemonat\ \@abgabejahr}%
 \end{center}\par
   \vfil\null
@@ -216,9 +218,9 @@
     \vskip 4mm%
     {\large\sc\@studiengang}%
     \vskip 4mm%
-    {\large in \@studienort}%
+    {\large \@studienort}%
     \vskip 16mm%
-    {\large im \monthname[\value{@abgabemonat}] \arabic{@abgabejahr}}%
+    {\large \monthname[\value{@abgabemonat}] \arabic{@abgabejahr}}%
 \end{center}\par
   \vfil\null
 \end{titlepage}%
@@ -248,9 +250,9 @@
     \vskip 4mm%
     {\large\sc\@studiengang}%
     \vskip 4mm%
-    {\large in \@studienort}%
+    {\large \@studienort}%
     \vskip 16mm%
-    {\large im \monthname[\value{@abgabemonat}] \arabic{@abgabejahr}}%
+    {\large \monthname[\value{@abgabemonat}] \arabic{@abgabejahr}}%
 \end{center}\par
   \vfil\null
 \end{titlepage}%

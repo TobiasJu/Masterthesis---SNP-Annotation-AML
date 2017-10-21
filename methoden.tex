@@ -6,14 +6,14 @@ In diesem Kapitel werden die Grundlagen vermittelt, welche für das Verständnis
 
 \section{Aminosäurerest-Pseudopotentiale}
 
-Bei den \acf{APs} handelt es sich um eine Methode der Transformation der physikochemischen und wechselwirkenden Eigenschaften der Aminosäuren der Proteinstruktur in ein Energiemaß. Diese Energiemaße werden dabei durch eine Dezimalzahl dargestellt und im Gegensatz zur hochkomplexen 3D Strukturen sind die Berechnungen mit ihnen unmittelbarer. Die Energieprofile stehen auf dem Webserver \emph{eProS}\footnote{\url{https://biosciences.hs-mittweida.de/epros/}} zum Download bereit. Zusätzlich wurde zur lokalen Berechnung und zu Testzwecken eine lokale Möglichkeit von den Entwicklern der \ac{bigM}\footnote{\url{http://www.bioforscher.de/bigM/}}, zur Berechnung der Energieprofile, zu Verfügung gestellt.
+Bei den \acf{APs} handelt es sich um eine Methode der Transformation der physikochemischen und wechselwirkenden Eigenschaften der Aminosäuren der Proteinstruktur in ein Energiemaß. Diese Energiemaße werden dabei durch eine dimensionslose Dezimalzahl dargestellt und im Gegensatz zur hochkomplexen 3D Strukturen sind die Berechnungen mit ihnen unmittelbarer. Die Energieprofile stehen auf dem Webserver \emph{eProS}\footnote{\url{https://biosciences.hs-mittweida.de/epros/}} zum Download bereit. Zusätzlich wurde zur lokalen Berechnung und zu Testzwecken eine lokale Möglichkeit von den Entwicklern der \ac{bigM}\footnote{\url{http://www.bioforscher.de/bigM/}}, zur Berechnung der Energieprofile, zu Verfügung gestellt.
 
 Durch die \ac{APs} können zu den lokalen Interaktionen der direkten Nachbarn, auch noch die globalen Interaktionen der indirekten Nachbarn hinzugezogen werden (Abb. \ref{fig:8A_Sphaere}). Zur Berechnung benutzt man die Betrachtung einer 8 Angström Sphäre, um die betreffende Aminosäure herum und analysiert ob noch andere Aminosäuren des Proteins in diese Sphäre hineinragen. Somit können auch Effekte wie sterische Hinderung berücksichtigt werden. Durch diese neue Sichtweise löst man sich von der starren Betrachtungsweise der Sequenz und der 2D Struktur, wie es bei bisherigen Vorhersage-Algorithmen war.
 %
 \begin{figure}
 \centering
 \includegraphics[width=.95\textwidth]{8A_Sphaere.png}
-\caption{Ein 3D Modell einer Proteinstruktur, hellblau ist die 8 Angström Umgebung um die dunkelblaue Aminosäure im Zentrum, mit direkten Nachbarn in grün und in indirekten Nachbarn in rot. Die punktierte Linie zeigt den Abstand der $C_{\alpha}$ Atome in Angström.}%\cite{8A_Sphaere}
+\caption{Ein 3D Modell einer Proteinstruktur, hellblau ist die 8 Angström Umgebung um die dunkelblaue Aminosäure im Zentrum, mit direkten Nachbarn in grün und in indirekten Nachbarn in rot. Die punktierte Linie zeigt den Abstand der $C_{\alpha}$ Atome in Angström.}% \cite{8A_Sphaere}
 \label{fig:8A_Sphaere}
 \end{figure}
 
@@ -40,7 +40,7 @@ Somit lässt sich die Gesamtenergie des Aminosäurerests $E_{a_i}$ mittels \ref{
     \label{eq:total}
 \end{equation}
 
-In ihren Arbeiten hat das ePros Team Mittweida gezeigt, dass die Aminosäurerest-Pseudopotentiale genutzt werden können um die Proteinstruktur Stabilität und Funktionalität zu untersuchen. Es wurde gezeigt, dass Ähnlichkeiten der Energieprofile von Proteinen auf Ähnlichkeiten der strukturellen und funktionellen Eigenschaften dieser Proteine deuten\cite{Heinke.2011}.
+In ihren Arbeiten hat das ePros Team Mittweida gezeigt, dass die Aminosäurerest-Pseudopotentiale genutzt werden können um die Proteinstruktur Stabilität und Funktionalität zu untersuchen. Es wurde gezeigt, dass Ähnlichkeiten der Energieprofile von Proteinen auf Ähnlichkeiten der strukturellen und funktionellen Eigenschaften dieser Proteine deuten \cite{Heinke.2011}.
 
 
 \subsection{ePros Webserver}
@@ -59,7 +59,7 @@ Mittels \emph{eCalc} lassen sich Energieprofile auf Grundlage einer Struktur ode
 \item[eAlign]
 Mit \emph{eAlign} ist es möglich zwei EPs mit einem modifizierten Needle-man-Wunsch/Smith-Waterman Algorithmus zu alignieren und paarweise zu vergleichen.
 \item[eGOR]
-Anders als \emph{eCalc} ist \emph{eGOR} ein \emph{GOR}\cite{Garnier.1996} basierter Ansatz um ein EP zu berechnen, als Grundlage dient eine Aminosäure Sequenz.
+Anders als \emph{eCalc} ist \emph{eGOR} ein \emph{GOR} \cite{Garnier.1996} basierter Ansatz um ein EP zu berechnen, als Grundlage dient eine Aminosäure Sequenz.
 \item[eSearch]
 Dieses Tool führt paarweise Vergleiche eines gegebenen EPs mit der vorberechneten eProS-Datenbank durch. Nach der Berechnung werden die besten Treffer visualisiert und können detaillierter analysiert werden.
 \item[eMut]
@@ -137,12 +137,12 @@ ENGY & F & 24 & G & c & -0.735024098503097
 
 \newpage
 \section{Datenbanken}
-Bei dem Aufbau eines passenden Datensatzes wurden die Datenbanken \textbf{PDB} und \textbf{Pfam} genutzt, welche zusammen als Datengrundlage für die spätere $\psi$ \& $\phi$ Winkel Kalkulation dienten. 
+Bei dem Aufbau eines passenden Datensatzes wurden die Datenbanken \ac{PDB} und \ac{Pfam} genutzt, welche zusammen als Datengrundlage für die spätere $\psi$ \& $\phi$ Winkel Kalkulation dienten. Zusätzlich war die ClinVar Datenbank noch essentiell, denn sie diente als Grundlage für die \ac{SNP} Daten.
 
 
 \subsection{RCSB PDB}
 
-Eine wichtige Grundlage der Arbeit ist die „Protein Daten Bank“ kurz PDB\cite{Bernstein.1977}, sie enthält die 3D Strukturdaten der Proteine, welche die Grundlage der Energieprofile sind. Die \ac{PDB} enthält zusätzlich noch Strukturdaten von Nukleinsäuren und komplexen \emph{Assemblies}, die in allen Aspekten der Biomedizin und der Landwirtschaft, von der Proteinsynthese bis hin zum Gesundheitswesen von Bedeutung sind. Die \ac{PDB} bietet auf Grundlage dieser Daten Tools für Forschung und Bildung in der Molekularbiologie, in der Strukturbiologie und in der Rechenbiologie an.
+Eine wichtige Grundlage der Arbeit ist die „Protein Daten Bank“ kurz PDB \cite{Bernstein.1977}, sie enthält die 3D Strukturdaten der Proteine, welche die Grundlage der Energieprofile sind. Die \ac{PDB} enthält zusätzlich noch Strukturdaten von Nukleinsäuren und komplexen \emph{Assemblies}, die in allen Aspekten der Biomedizin und der Landwirtschaft, von der Proteinsynthese bis hin zum Gesundheitswesen von Bedeutung sind. Die \ac{PDB} bietet auf Grundlage dieser Daten Tools für Forschung und Bildung in der Molekularbiologie, in der Strukturbiologie und in der Rechenbiologie an.
 Die \ac{PDB} wurde 1971 von den \ac{BNL}\footnote{\url{https://www.rcsb.org/pdb/static.do?p=general_information/about_pdb/index.html}} als Archiv für biologische makromolekulare Kristallstrukturen etabliert und beinhaltete anfangs nur 7 Strukturen. 1980 zeigte sich ein rasanter Anstieg der eingereichten Strukturen, ausgelöst durch einen verbesserten Prozess der Kristallographie, einen offeneren Datenaustausch der Wissenschaftlichen Gemeinschaft und der neuen Methode der Kernspinresonanzspektroskopie. So umfasst der Datensatz zum Zeitpunkt der vorangegangenen Arbeit 101.207 Strukturen (24. Juni 2014) und zum heutigen Zeitpunkt über 133.920 Strukturen (24 September 2017). Bei einem Wachstum von fast 10.000 Strukturen pro Jahr, macht dies die \ac{PDB} zur weltweit größten Sammlung von bekannten Proteinstrukturen.
 
 \begin{figure}
@@ -157,16 +157,19 @@ Die \ac{PDB} wurde 1971 von den \ac{BNL}\footnote{\url{https://www.rcsb.org/pdb/
 %wen interessiert denn in deiner arbeit die nutzer. oder dass anfangs noch die daten über festplatten ausgetauscht werden musste und alles. 
 %In meinen augen solltest du diesen abschnitt sehr kürzen auf das wesentliche
 
-Der Zugriff auf die \ac{PDB} hat sich im Laufe der Jahre drastisch geändert, so wurden die Daten am Anfang noch mit Magnet Medien ausgetauscht, so kam mit der Etablierung des WWW, der Datenaustausch über dieses. Ebenso haben sich die Autoren der Daten geändert, so waren es am Anfang nur Experten auf dem Fachgebiet der Strukturellen Forschung, so sind es heute unterschiedlichste Kompetenzen in den Techniken der Röntgenkristallstrukturbestimmung, Kernspinresonanz, Kryo-Elektronenmikroskopie und theoretischen Modellierung. Genau so hat sich auch die Nutzerschaft erweitert, sodass es heute eine sehr diverse Gruppe aus Forschern, Lehrern und Studenten in den Fachbereichen Biologie, Chemie, Informatik und Physik ist. Die zunehmende Erkenntnis über den Wert der Daten und dem daraus resultierenden Verständnis der biologischen Funktion, sorgte für einen erhöhten Zustrom an Daten und erforderte einen neuen Weg die Daten zu sammeln, organisieren und zu verteilen. Im Oktober 1988 wurde das Management der \ac{PDB} Zuständig für die \ac{RCSB}. Die \ac{PDB} setzt sich heute aus einer Vielzahl von Subdatenbanken zusammen, die wichtigsten sind die Europäische \ac{PDB} (PDBe), die Japanische \ac{PDB} (PDBj), die Biological Magnetic Resonance Bank (BMRB) und die Worldwide \ac{PDB} (wwPDB). Zusammen pflegen und kuratieren diese Datenbanken die \ac{PDB} und sorgen dafür, dass die \ac{PDB} weltweit frei und öffentlich verfügbar ist.
+%Der Zugriff auf die \ac{PDB} hat sich im Laufe der Jahre drastisch geändert, so wurden die Daten am Anfang noch mit Magnet Medien ausgetauscht, so kam mit der Etablierung des WWW, der Datenaustausch über dieses. Ebenso haben sich die Autoren der Daten geändert, so waren es am Anfang nur Experten auf dem Fachgebiet der Strukturellen Forschung, so sind es heute unterschiedlichste Kompetenzen in den Techniken der Röntgenkristallstrukturbestimmung, Kernspinresonanz, Kryo-Elektronenmikroskopie und theoretischen Modellierung. Genau so hat sich auch die Nutzerschaft erweitert, sodass es heute eine sehr diverse Gruppe aus Forschern, Lehrern und Studenten in den Fachbereichen Biologie, Chemie, Informatik und Physik ist. Die zunehmende Erkenntnis über den Wert der Daten und dem daraus resultierenden Verständnis der biologischen Funktion, sorgte für einen erhöhten Zustrom an Daten und erforderte einen neuen Weg die Daten zu sammeln, organisieren und zu verteilen. 
+Im Oktober 1988 wurde das Management der \ac{PDB} Zuständig für die \ac{RCSB}. Die \ac{PDB} setzt sich heute aus einer Vielzahl von Unterdatenbanken zusammen, die wichtigsten sind die Europäische \ac{PDB} (PDBe), die Japanische \ac{PDB} (PDBj), die Biological Magnetic Resonance Bank (BMRB) und die Worldwide \ac{PDB} (wwPDB). Zusammen pflegen und kuratieren diese Datenbanken die \ac{PDB} und sorgen dafür, dass die \ac{PDB} weltweit frei und öffentlich verfügbar ist.
 
-Die Vision der RCSB ist es eine Ressource zu schaffen, welche mittels modernster Technologien, die Nutzung und Analyse von Strukturdaten erleichtert und damit eine Grundlage für die biologische Forschung stellt. 
+%Die Vision der RCSB ist es eine Ressource zu schaffen, welche mittels modernster Technologien, die Nutzung und Analyse von Strukturdaten erleichtert und damit eine Grundlage für die biologische Forschung stellt. 
 
-In dieser Arbeit wurde mit dem \ac{PDB} Dateiformat gearbeitet, sodass dieses im folgenden Abschnitt erklärt wird. Alle Strukturen der \ac{PDB} sind verfügbar in dem .pdb Format, dieses ist sehr strikt geregelt, jede Zeile darf maximal 80 Zeichen enthalten und muss mit einem Identifyer beginnen. Anders als bei ähnlichen Formaten, werden hier einzelne Spalten nicht durch Tabs separiert, sondern befinden sich an genau charakterisierten Positionen. Z.B. ist der \emph{Residue name} in der \texttt{ATOM} Zeile immer an der Position 18-20 zu finden, wobei die 1. Position bei 1 beginnt und nicht bei 0. Für weitere Arbeiten ist die Seite 176 in den Formatvorgaben\footnotetext{Die Formatvorgabe ist zu finden unter \url{ftp://ftp.wwpdb.org/pub/pdb/doc/format_descriptions/Format_v33_A4.pdf}} der \ac{PDB} interessant.
+In dieser Arbeit wurde mit dem \ac{PDB} Dateiformat gearbeitet, sodass dieses im folgenden Abschnitt erklärt wird. Alle Strukturen der \ac{PDB} sind verfügbar in dem .pdb Format, dieses ist sehr strikt geregelt, jede Zeile darf maximal 80 Zeichen enthalten und muss mit einem Identifyer beginnen. Anders als bei ähnlichen Formaten, werden hier einzelne Spalten nicht durch Tabs separiert, sondern befinden sich an genau charakterisierten Positionen. 
+%Z.B. ist der \emph{Residue name} in der \texttt{ATOM} Zeile immer an der Position 18-20 zu finden, wobei die 1. Position bei 1 beginnt und nicht bei 0. 
+Für weitere Arbeiten ist die Seite 176 in den Formatvorgaben\footnotetext{Die Formatvorgabe ist zu finden unter \url{ftp://ftp.wwpdb.org/pub/pdb/doc/format_descriptions/Format_v33_A4.pdf}} der \ac{PDB} interessant.
 
 
 \subsection{Pfam}
-
-Die Protein Family Database\cite{Finn.2014} oder kurz Pfam enthält nah verwandte Sequenz Alignments, sogenannte Proteinfamilien. Diese setzen sich aus einem repräsentativen Subset aus einem Satz übereinstimmender Sequenzen zusammen, dem sogenannten „Seed Alignment“. Dieses \emph{Seed Alignment} wird anschließend genutzt um ein \emph{Profil hidden Markov model} (HMM) \cite{Soding.2005} mittels der Software HMMER\cite{Mistry.2013} zu erstellen. Nun wird das Profil HMM mit Datenbanken verglichen und um alle Sequenzen erweitert, welche über dem \emph{gathering threshold} GA liegen. GAs werden per Hand kuratiert und sind Familien spezifisch. Diese neuen Mitglieder der Familie werden an das Profil HMM aligniert um ein volles Alignment zu erzeugen. Pfam-Einträge, welche als verwandt identifiziert wurden, werden in Gruppen zusammengefasst, die als \emph{Clans} bezeichnet werden. Beziehungen werden sowohl mittels Sequenzinformationen via HMMER cross matches und SCOOP \cite{Bateman.2007}, als auch durch Protein Homologie Detektion durch HMM-HMM Vergleiche, mit HHsearch \cite{Fidler.2016} ermittelt.
+\label{sec:pfam}
+Die Protein Family Database \cite{Finn.2014} oder kurz Pfam enthält nah verwandte Sequenz Alignments, sogenannte Proteinfamilien. Diese setzen sich aus einem repräsentativen Subset aus einem Satz übereinstimmender Sequenzen zusammen, dem sogenannten „Seed Alignment“. Dieses \emph{Seed Alignment} wird anschließend genutzt um ein \emph{Profil hidden Markov model} (HMM) \cite{Soding.2005} mittels der Software HMMER \cite{Mistry.2013} zu erstellen. Nun wird das Profil HMM mit Datenbanken verglichen und um alle Sequenzen erweitert, welche über dem \emph{gathering threshold} GA liegen. GAs werden per Hand kuratiert und sind Familien spezifisch. Diese neuen Mitglieder der Familie werden an das Profil HMM aligniert um ein volles Alignment zu erzeugen. Pfam-Einträge, welche als verwandt identifiziert wurden, werden in Gruppen zusammengefasst, die als \emph{Clans} bezeichnet werden. Der Workflow ist auf \ac{Abb} \ref{fig:Pfam_workflow} gezeigt. Beziehungen werden sowohl mittels Sequenzinformationen via HMMER cross matches und SCOOP \cite{Bateman.2007}, als auch durch Protein Homologie Detektion durch HMM-HMM Vergleiche, mit HHsearch \cite{Fidler.2016} ermittelt.
 
 Die Pfam wurde 1997 von Sonnhammer EL, Eddy SR und Durbin R. ins Leben gerufen \cite{Sonnhammer.1997}. Ihr Ziel war es eine Datenbank zur Proteinsequenz Klassifizierung und Analyse zu erschaffen. Die Pfam setzt sich aus zwei Teilen zusammen, der Pfam A und Pfam B. Die Pfam-A ist kuratiert und enthält gut charakterisierte Protein Domain Familien mit hochqualitativen Alignments. Dies wird durch manuell überprüften Seed Alignments und HMMs, gewährleistet. Pfam B hingegen enthält Sequenzfamilien, bei denen der Domainer Algorithmus zum Alignieren und Clustern, aller nicht Pfam A Sequenzen, genutzt wurde. 
 
@@ -177,14 +180,34 @@ Die aktuelle Version ist Pfam 31.0 und wurde am Europäischen Bioinformatik Inst
 \label{fig:Pfam_workflow}
 \end{figure}
 
+
 \subsection{ClinVar}
 \label{sec:clinvar}
 
-ClinVar\footnote{\url{https://www.ncbi.nlm.nih.gov/clinvar/}}
+Die ClinVar\footnote{\url{https://www.ncbi.nlm.nih.gov/clinvar/}} Datenbank enthält Informationen über genetische Variationen und deren Auswirkungen auf die menschliche Gesundheit. Die Variationen sind in verschiedene Kategorien aufgeteilt wie in Kapitel \ref{sec:snp_exp} beschrieben. Zum Zeitpunkt dieser Arbeit (Oktober 2017) enthielt sie 82.147 als \emph{pathogenic} markierte und 105.337 als \emph{benign} markierte genetische Variationen. Diese Daten wurden von 838 Autoren\footnote{\url{https://www.ncbi.nlm.nih.gov/clinvar/docs/submitter_list/}} eingetragen, die Top 10 ist in Tabelle \ref{tab:clinvar} eingetragen.
 
-Diese enthält Daten über genetische Variationen und die Auswirkungen auf die menschliche Gesundheit. Zum Zeitpunkt dieser Arbeit (Oktober 2017) enthielt sie 82.147 als \emph{pathogenic} markierte und 105.337 als \emph{benign} markierte genetische Variationen.
+\begin{table}[]
+    \centering
+    \caption{Dargestellt sind die Top 10 Autoren der ClinVar sortiert nach der Anzahl ihrer Beiträge in die Datenbank.}
+    \label{tab:clinvar}
+    \resizebox{\linewidth}{!}{%
+    \begin{tabular}{llll}
+        \hline
+        \multicolumn{1}{|l|}{Autor} & \multicolumn{1}{l|}{Beiträge insgesamt} & \multicolumn{1}{l|}{Interpretationen} & \multicolumn{1}{l|}{Gene} \\ \hline
+        Illumina Clinical Services Laboratory; Illumina & 138336 & 138336 & 2085 \\
+        GeneDx & 73416 & 73098 & 22930 \\
+        Invitae & 45422 & 41425 & 698 \\
+        EGL Genetic Diagnostics; Eurofins Clinical Diagnostics & 30127 & 30097 & 1772 \\
+        OMIM; Johns Hopkins University & 28264 & 28264 & 4379 \\
+        Ambry Genetics & 21422 & 21422 & 435 \\
+        Laboratory for Molecular Medicine; HealthCare Personalized Medicine & 19020 & 18930 & 1351 \\
+        PreventionGenetics & 15739 & 15739 & 1491 \\
+        Genetic Services Laboratory; University of Chicago & 15340 & 15340 & 1212 \\
+        Database of Curated Mutations; Washington University in St Louis & 6947 & 6878 & 131
+        \end{tabular}}
+\end{table}
 
-Um die Qualität der Annotation zu bewerten gibt es den sogenannten \emph{Review Status}, dieser gibt an wie gut die Annotation ist. So gibt es z.B. einen Stern, wenn die genetische Variation bisher nur von einem Autoren eingetragen wurde. Gibt es mehrere Autoren und widersprechen sich die Annotationen nicht, so bekommt die Annotation zwei Sterne. Die fast beste Qualität, mit drei Sternen, hat das \emph{expert panel}, Autoren in dieser Kategorie müssen spezielle Anforderungen erfüllen\footnote{\url{https://www.ncbi.nlm.nih.gov/clinvar/docs/review_guidelines/}}. Die beste Annotation mit vier Sternen hat \emph{practice guideline}
+Um die Qualität der Annotation zu bewerten gibt es den sogenannten \emph{Review Status}, dieser gibt an wie gut die Annotation ist. So gibt es z.B. einen Stern, wenn die genetische Variation bisher nur von einem Autoren eingetragen wurde. Gibt es mehrere Autoren und widersprechen sich die Annotationen nicht, so bekommt die Annotation zwei Sterne. Die fast beste Qualität, mit drei Sternen, hat das \emph{expert panel}, Autoren in dieser Kategorie müssen spezielle Anforderungen erfüllen\footnote{\url{https://www.ncbi.nlm.nih.gov/clinvar/docs/review_guidelines/}}. Die beste Annotation mit vier Sternen hat \emph{practice guideline}. Für diese Arbeit wurde auf alle Daten, von zwei bis vier Sternen, zugegriffen.
 
 
 \section{Bewertungen von Klassifikationen}
@@ -203,7 +226,7 @@ Der F1 Score kann Werte von 0 bis 1 annehmen, wobei ein Score von 1 die beste m�
 
 \subsection{Matthews correlation coefficient}
 
-Der \emph{Matthews correlation coefficient}, oder kurz MCC ist ein Maß um die Qualität einer binären Klassifikation zu bewerten und wird oftmals im Bereich des \emph{Machine Learnings} angewandt. Der Biochemiker Brian W. Matthews führte diesen Algorithmus 1975, in seinem Paper „Comparison of the predicted and observed secondary structure of T4 phage lysozyme“\cite{Matthews.1975} ein. Der MCC berücksichtig \emph{true} und \emph{false postives}, sowie \emph{true} und \emph{false negatives}, um eine Bewertung einer beobachtete und vorhergesagte zwei Klassen Klassifizierung zu treffen. Dabei kann der MCC einen Wert von -1 bis 1 annehmen, ein Koeffizient von 1 repräsentiert eine perfekte Vorhersage. Ein Koeffizient von 0 bedeutet, dass die Vorhersage nicht besser ist, als ein zufälliger Münzwurf. Ein Wert vom -1 deutet auf eine totale Differenz zwischen Beobachtung und Vorhersage hin. Der MCC ist auch bekannt als Phi Koeffizient und zusammenhängend mit der chi Quadrat Statistik, für eine 2x2 Kontingenztabelle, in der n für die totale Anzahl der Beobachtungen steht.
+Der \emph{Matthews correlation coefficient}, oder kurz MCC ist ein Maß um die Qualität einer binären Klassifikation zu bewerten und wird oftmals im Bereich des \emph{Machine Learnings} angewandt. Der Biochemiker Brian W. Matthews führte diesen Algorithmus 1975, in seinem Paper „Comparison of the predicted and observed secondary structure of T4 phage lysozyme“ \cite{Matthews.1975} ein. Der MCC berücksichtig \emph{true} und \emph{false postives}, sowie \emph{true} und \emph{false negatives}, um eine Bewertung einer beobachtete und vorhergesagte zwei Klassen Klassifizierung zu treffen. Dabei kann der MCC einen Wert von -1 bis 1 annehmen, ein Koeffizient von 1 repräsentiert eine perfekte Vorhersage. Ein Koeffizient von 0 bedeutet, dass die Vorhersage nicht besser ist, als ein zufälliger Münzwurf. Ein Wert vom -1 deutet auf eine totale Differenz zwischen Beobachtung und Vorhersage hin. Der MCC ist auch bekannt als Phi Koeffizient und zusammenhängend mit der chi Quadrat Statistik, für eine 2x2 Kontingenztabelle, in der n für die totale Anzahl der Beobachtungen steht.
 
 \begin{equation}
     |MCC| = \sqrt{\frac{x^2}{n}}
@@ -223,7 +246,7 @@ Der MCC berechnet sich direkt aus der Konfusionsmatrix \ref{table:konfusionsmatr
 \multicolumn{1}{|l|}{test positive (tp + fp)} & \cellcolor[HTML]{9AFF99}true positive (tp) & \cellcolor[HTML]{FFCCC9}fals positive (fp) \\ \hline
 \multicolumn{1}{|l|}{test negative (fn + tn} & \cellcolor[HTML]{FFFFC7}false negative (fn) & \cellcolor[HTML]{9AFF99}true negative (tn) \\ \hline
     \end{tabular}}
-        \caption{Dargestellt ist die Konfusionsmatrix. tp = \emph{true positives}, fp = \emph{false postives}, tn \emph{truenegatives} und fn = \emph{false negatives}}
+        \caption{Dargestellt ist die Konfusionsmatrix. tp = \emph{true positives}, fp = \emph{false postives}, tn \emph{truenegatives} und fn = \emph{false negatives}.}
     \label{table:konfusionsmatrix}
 \end{table}
 
@@ -255,7 +278,7 @@ Swissmodel zeichnet sich durch eine aufgeräumte Benutzeroberfläche, einem zuve
 
 
 \section{Ramachandran Plot}
-
+\label{sec:ramachandran}
 Der Ramachandran Plot wurde 1963 von G. N. Ramachandran \cite{RAMACHANDRAN.1963} entwickelt, um die jeweiligen Diederwinkel (oder auch Torsionswinkel)  $\psi\ \&\ \phi$ eines bestimmten Protein-Backbones darzustellen. Die 3D Struktur eines Proteins wird hauptsächlich durch nicht kovalente Bindungen zwischen Atomen unterschiedlicher Aminosäurereste bestimmt, diese Bindungen sind für Strukturen wie Alpha Helices und Beta Faltblätter verantwortlich. Dies wird durch Veränderungen der  $\psi\ \&\ \phi$ Winkel des C Alpha Atoms erreicht. Denn durch den Doppelbindungscharakter der Aminosäuren ist der $\omega$ Winkel immer 180° und das Protein damit planar. Somit können sich $\psi\ \&\ \phi$ Winkel in einem Bereich von -180° bis +180° befinden, siehe \ref{fig:psi_phi}. Wenn man nun auf der Ordinate die $\psi$-, auf der Abszisse die $\phi$-Winkel der C Alpha Atome aufträgt, erhält man den typischen Ramachandran Plot. 
 
 \begin{figure}
@@ -297,14 +320,13 @@ Mathematisch lässt sich der Ramachandran Plot mit folgender Gleichung beschreib
 
 In dieser Arbeit wurde mit der Gesamten RCSB \ac{PDB} und somit mit 133.277 Energieprofilen gearbeitet, um diese Datenmasse adäquat und schnell zu verarbeiten wurde sowohl eine Hardware, als auch Software Lösung benötigt, da ein normaler PC nicht mehr ausreicht, diese Datenmengen zeitnah zu verarbeiten. Hierzu wurde als Hardwarelösung das Cluster der Arbeitsgruppe Goesmann genutzt, indem auf 5000 virtuelle Kerne mit 512GB RAM zugegriffen wurde. 
 
-Als Softwarelösung wurde Apache Spark\footnote{\url{https://spark.apache.org}} eingesetzt, hierbei handelt es sich um eine gneral-purpose Cluster Software, welche über eine High Level API in Python, Scala, R und Java verfügt. Gerade die Python API war sehr hilfreich, da die Mehrzahl aller Skripte für diese Arbeit in Python geschrieben wurden. So konnte ein Python Skript erst lokal auf einem PC entwickelt und mit einem Testdatensatz überprüft werden, um es anschließend mit Spark auf dem Cluster der AG Goesmann zu deployen. Nach dem Deployment verteilt Spark die Daten automatisch auf dem Cluster und fängt die Ergebnisse ab. 
+Als Softwarelösung wurde Apache Spark\footnote{\url{https://spark.apache.org}} eingesetzt, hierbei handelt es sich um eine gneral-purpose Cluster Software, welche über eine High Level API in Python, Scala, R und Java verfügt. Gerade die Python API war sehr hilfreich, da die Mehrzahl aller Skripte für diese Arbeit in Python geschrieben wurden. So konnte ein Python Skript erst lokal auf einem PC entwickelt und mit einem Testdatensatz überprüft werden, um es anschließend mit Spark auf dem Cluster der AG Goesmann zu deployen. Nach dem Deployment verteilt Spark die Daten automatisch auf dem Cluster und fängt die Ergebnisse ab, siehe \ac{Abb} \ref{fig:apache_spark}. 
 
 Zudem verfügt Spark noch über ein SQL Tool zum Verarbeiten von strukturierten Daten, MLib für Machine Learning und GraphX für Graph Prozessierung.
 
 
 
-
-\newpage
+%\newpage
 \subsection{Nextflow}
 
 \begin{wrapfigure}{R}{0.5\textwidth}
@@ -325,7 +347,7 @@ Eine weitere Stärke von Nextflow ist, das man alle Pipelines nicht nur auf dem 
 \section{Python}
 Der Hauptteil der benötigten Programme dieser Arbeit wurde in Python\footnote{\url{https://www.python.org}} geschrieben. Python zeichnet sich durch eine klare und Objekt orientierte Syntax aus. Es ist vergleichbar mit Perl, Ruby, Scheme oder Java. Python gut dokumentiert und damit leicht zu lernen, dies macht es ideal für ad-hoc Programmieraufgaben und Prototyping, wie es in dieser Arbeit gefordert wurde. Außerdem läuft Python auf allen Betriebssystemen wie Mac OS X, Windows und Unix. Das Beste an Python ist die Tatsache, dass es komplett \emph{Open Source} ist und damit Akademisch komplett entgeltfrei benutzt werden kann.
 
-Durch meine Entwickler Tätigkeit im Edgar\cite{Yu.2017} Projekt der JLU hatte ich viel Kontakt mit Perl und der Unix Umgebung. Im privaten Rahmen setzt ich auf Windows als meinen \emph{daily driver}, damit war Python die logische Wahl, der Programmiersprache, für diese Arbeit.
+Durch meine Entwickler Tätigkeit im Edgar \cite{Yu.2017} Projekt der JLU hatte ich viel Kontakt mit Perl und der Unix Umgebung. Im privaten Rahmen setzt ich auf Windows als meinen \emph{daily driver}, damit war Python die logische Wahl, der Programmiersprache, für diese Arbeit.
 
 In dieser Arbeit wurde die Python \emph{legacy} Version 2.7 verwendet, diese zeichnet sich dadurch aus, dass es zu diesem Zeitpunkt noch mehr Bibliotheken für diese Version gibt als für Python 3.X, was durch die fehlende Abwärtskompatibilität geschuldet ist. So wurde in dieser Arbeit z.B. mit den Bibliotheken \texttt{Matplotlib} und \texttt{Seaborn} gearbeitet um Daten zu visualisieren.
 

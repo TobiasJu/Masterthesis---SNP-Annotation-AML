@@ -1,7 +1,7 @@
 \chapter[Datenaquirierung]{Datenaquirierung}
 \label{chap:Datenaquirierung}
 
-Dieses Kapitel befasst sich mit der Datenaquirierung, es sollte zum Beginn der Arbeit der Versuch unternommen werden die Substitutionsmatrix unter Zuhilfenahme der neuen Strukturen in der \ac{PDB} neu zu berechnen. Da sich zum Zeitpunkt der Arbeit \cite{Mathias.2014} in der \ac{PDB} 101.539 Proteinstrukturen befanden und nun zum Zeitpunkt dieser Arbeit 132.095 (Oktober 2017). Dies bedeutet eine Informationserweiterung von ~30\%. Doch leider war es aus zeitlichen Gründen für mich nicht möglich die Substitutionsmatrix zu reproduzieren. Dennoch wurden die Daten als Grundlage für die $\psi$ \& $\phi$ Berechnung genutzt. Hier wurde besonderen Wert auf die Reproduzierbarkeit gelegt und Schritt für Schritt erklärt wie der Datensatz entstanden ist.
+Dieses Kapitel befasst sich mit der Datenaquirierung, es sollte zum Beginn der vorherigen Arbeit der Versuch unternommen werden die Substitutionsmatrix unter Zuhilfenahme der neuen Strukturen in der \ac{PDB} neu zu berechnen. Da sich zum Zeitpunkt der Arbeit \cite{Mathias.2014} in der \ac{PDB} 101.539 Proteinstrukturen befanden und nun zum Zeitpunkt dieser Arbeit 132.095 (Oktober 2017). Dies bedeutet eine Informationserweiterung von etwa 30\%. Doch es war aus zeitlichen Gründen für mich nicht möglich die Substitutionsmatrix zu reproduzieren. Dennoch wurden die Daten als Grundlage für die $\psi$ \& $\phi$ Berechnung genutzt. Hier wurde besonderen Wert auf die Reproduzierbarkeit gelegt und Schritt für Schritt erklärt wie der Datensatz entstanden ist.
 
 
 
@@ -16,7 +16,7 @@ Um die Änderungen der $\psi$ \& $\phi$ in der 3D Struktur interpretieren zu kö
 \begin{enumerate}
 \item
     \begin{sloppypar}
-    Um schnell und effizient mit den beiden Datenbanken zu arbeiten, wurden diese von deren offiziellen Webseiten heruntergeladen. Die \ac{PDB} ist unter \url{http://www.rcsb.org/pdb/static.do?p=download/http/index.html} erreichbar und wurde via Kommandozeile mit \texttt{wget -N \url{ftp://ftp.wwpdb.org/pub/pdb/data/structures/all/pdb/*}} heruntergeladen. Die \ac{Pfam} ist zu finden unter \url{ftp://ftp.ebi.ac.uk/pub/databases/Pfam/releases/Pfam31.0/} hier wurde die Datei \texttt{Pfam-A.full.ncbi.gz} herunter geladen. Nach dem Download umfassten die Dateien der \ac{PDB} 16GB und die \ac{Pfam} 28GB (hierbei ist zu beachten das die entpackte \ac{Pfam} 212GB und die \ac{PDB} Dateien 100GB umfassen).
+    Um schnell und effizient mit den beiden Datenbanken zu arbeiten, wurden diese von deren offiziellen Webseiten heruntergeladen. Die \ac{PDB} besitzt eine offizielle download Seite\footnote{\url{http://www.rcsb.org/pdb/static.do?p=download/http/index.html}}. Doch in dieser Arbeit wurde sie via der Kommandozeile mit ''\texttt{wget -N \url{ftp://ftp.wwpdb.org/pub/pdb/data/structures/all/pdb/*}}'' heruntergeladen. Die \ac{Pfam} ist auf dem FTP-Server\footnote{\url{ftp://ftp.ebi.ac.uk/pub/databases/Pfam/releases/Pfam31.0/}} zu finden, hier wurde die Datei \texttt{Pfam-A.full.ncbi.gz} herunter geladen. Nach dem Download umfassten die Dateien der \ac{PDB} 16GB und die \ac{Pfam} 28GB (hierbei ist zu beachten das die entpackte \ac{Pfam} 212GB und die \ac{PDB} Dateien 100GB umfassen).
     \end{sloppypar}
 \item
     Alle \ac{Pfams} werden in einer einzigen großen Datei zu Verfügung gestellt. Dies ist für die weitere Arbeit ungeeignet, da die gesamte Datei immer wieder in den \ac{RAM} geladen werden müsste. Der Aufbau der Dateistruktur ermöglicht es uns jedoch jeden Eintrag einer Familie separat zu erfassen und in eine Datei zu extrahieren, dies wurde mit \texttt{extract\_protein\_families.py} durchgeführt.
@@ -24,7 +24,7 @@ Um die Änderungen der $\psi$ \& $\phi$ in der 3D Struktur interpretieren zu kö
     Um die benötigten Strukturdaten aus der PDB zu extrahieren, wird eine Datei benötigt, welche von der Pfam bereitgestellt wird. Die \texttt{pdbmap} enthält mapping Informationen, zu allen Sequenzen von Proteindomänen der \ac{Pfam}, zu denen eine Struktur auf der \ac{PDB} vorhanden ist. Durch die entsprechende Kennzeichnung durch \ac{Pfam} ID und \ac{PDB} ID, sowie Start und Ende der Proteindomäne innerhalb der gesamten Proteinstruktur, lassen sich die benötigten Strukturdaten extrahieren. Jedoch muss diese Liste vor ihrer Verwendung noch überprüft werden.
     \begin{enumerate}
         \item 
-        Es ist wichtig alpha helicale Membranproteine herauszufiltern, da diese sich fundamental in ihren strukturellen Eigenschaften von globulären Proteinen unterscheiden. Dies wurde mit Hilfe des Skriptes \texttt{filter\_membrane\_protein\_ids.py} durchgeführt. Dieses Skript benötigt zusätzlich noch die Liste aller Transmembranproteine \texttt{pdbtm\_all.list.txt}, welches auf der Webseite der \ac{PDBTM} \url{http://pdbtm.enzim.hu} zu finden ist.
+        Es ist wichtig alpha helicale Membranproteine herauszufiltern, da diese sich fundamental in ihren strukturellen Eigenschaften von globulären Proteinen unterscheiden. Dies wurde mit Hilfe des Skriptes \texttt{filter\_membrane\_protein\_ids.py} durchgeführt. Dieses Skript benötigt zusätzlich noch die Liste aller Transmembranproteine \texttt{pdbtm\_all.list.txt}, welches auf der Webseite der \ac{PDBTM}\footnote{\url{http://pdbtm.enzim.hu}} zu finden ist.
         \item
         Danach kann mit der Filterung der \ac{Pfams} begonnen werden, hierfür wurde das Skript \texttt{filter\_membrane\_pfams.py} verwendet.
     \end{enumerate}
@@ -34,7 +34,7 @@ Um die Änderungen der $\psi$ \& $\phi$ in der 3D Struktur interpretieren zu kö
         \item
         Als erstes wurden alle \texttt{UniProtKB} AC/IDs aus der \texttt{pdbmap} mittels dem Skript \texttt{extract\_pdbmap\_ids.py} in ID Listen geparst. 
         \item
-        Danach wurden diese ID Listen mit den \texttt{UniProtKB} AC/IDs auf der Webseite \url{http://www.uniprot.org/uploadlists/} eingefügt um so die korrespondierenden \texttt{EMBL} CDS IDs zu bekommen, welche die Sequenzen in den Pfams eindeutig beschreiben.
+        Danach wurden diese ID Listen mit den \texttt{UniProtKB} AC/IDs auf der UniProt Webseite\footnote{\url{http://www.uniprot.org/uploadlists/}} eingefügt, um so die korrespondierenden \texttt{EMBL} CDS IDs zu bekommen, welche die Sequenzen in den Pfams eindeutig beschreiben.
         \item
         Mit den EMBL CDS IDs war es nun möglich alle benötigten Sequenzen aus den Pfams mittels dem Skript \texttt{find\-\_pfam\-\_pdb\-\_sequences.py} zu filtern.
         \item

@@ -42,7 +42,7 @@ Das \emph{expert panel} enthält 5.437 pathogene und 2.878 gutartige Variationen
 Da der Datensatz nach dem ersten Filterschritt immer noch zu wenige Gene und \ac{SNP}s umfasst, wurden die Kriterien der \ac{SNP} Auswahl erweitert. So wurden in einem zweiten Durchlauf auch jene \ac{SNP}s hinzugezogen, welche nicht im \emph{expert Panel} waren, sondern lediglich von mehreren Autoren eingetragen wurden. Somit standen 3.826 pathogene und 19.070 gutartige \ac{SNP}s zu Verfügung. Zusätzlich wurde die Mindestanzahl an pathogener SNPs auf 6 pro Gen verringert. Der erweiterte Datensatz befindet sich in Tabelle \ref{tab:multiple_subs_snps}.
 
 
-\subsection{Homologie Berechnungen}
+\subsection{Homologie Modellierung}
 
 Sobald alle Proteinsequenzen mit ihren zugehörigen \ac{SNP}s vorlagen musste eine Homologie Modellierung durchgeführt werden. Denn zum einen besitzen nicht alle Proteine eine aufgeklärte Struktur und zum anderen sind nur sehr wenige mutierte Proteine strukturell aufgeklärt. So war es notwendig jeweils für das Proteine und die Mutation mit dem \ac{SNP} eine Homologie Berechnung durchzuführen. Hierzu wurde, wie in Kapitel \ref{sec:siwssmodel} gezeigt, mit Swissmodel eine Modellierung durchgeführt, indem alle Sequenzen per Hand das Online Formular eingefügt wurden. Die Ergebnisse sind in Tabelle \ref{tab:expert_snps} dargestellt.
 
@@ -63,11 +63,12 @@ Die Plots haben eine gute Übersicht über die Qualität der \ac{SNP}s geliefert
 Das Skript iteriert über einen Ordner und dessen Unterordner, dabei wird vorausgesetzt, dass in jedem Unterordner ein Gen mit allen zugehörigen mutierten \ac{EP}s und des Referenz \ac{EP}s ist. Nun berechnet das Skript die totale Energie Differenz, über alle Aminosäuren, zwischen Mutation und Referenz \ac{EP}, sowie die relative und absolute Energie Differenz am \ac{SNP}. Zusätzlich iteriert das Skript noch über die Kontakte und berechnet auch hier die Energie Differenz pro Kontakt und über alle Kontakte insgesamt. Die Ergebnisse werden in einer Tabelle ausgegeben, siehe Tabellen \ref{tab:snps_glob} und \ref{tab:snps_memb}.
 
 
-%\newpage
-%\section{PSI \& PHI Winkel Berechnung}
-%
-%Der generierte Datensatz aus Kapitel \ref{sec:calc_ep}, ist Grundlage der folgenden Berechnung. Bedingt durch die Tatsache, dass alle in dieser Arbeit \ref{sec:konst} gefilterten \ac{Pfam} auch eine aufgeklärte Struktur besitzen lies sich nun jede \ac{Pfam} in einen Ramachandran Plot darstellen, siehe \ac{Abb} \ref{fig:ramachandran_PF01287}.
+\newpage
+\section{PSI \& PHI Winkel Berechnung}
 
+Der generierte Datensatz aus Kapitel \ref{sec:calc_ep}, ist Grundlage der folgenden Berechnung. Um mit Ramachandran Plots zu generieren, war es zuerst notwendig aus den Strukturdaten die PSI \& PHI Winkel zu errechnen. Dies wurde mit dem Skript \texttt{calculate\_psi\_phi.py} durchgeführt. Dafür liest das Skript zuerst die \texttt{pdbmap} ein und anschließend sucht es alle Proteine der jeweiligen Pfam zusammen. Dabei übernimmt das Skript selbst nur eine Wrapper Rolle, die Winkelberechnung an sich, wird mittels dem Java Programm \texttt{ramachan.jar} durchgeführt. Dieses Java Programm wurde mir von meinem Betreuer zu Verfügung gestellt. So sorgt das Skript dafür, dass die Winkelberechnung für jedes Protein der Familie durchgeführt wird. Ist die Berechnung abgeschlossen, so werden die Daten gebündelt und mit Seaborn\footnote{\url{https://seaborn.pydata.org/generated/seaborn.jointplot.html}} geplottet, siehe \ac{Abb} \ref{fig:ramachandran_PF01287}. 
+
+Danach wurde für ein passendes Protein der Familie die Sequenz mutierte und das Protein anschließend modelliert, wie in Kapitel \ref{sec:siwssmodel} beschrieben. Anschließend wurde per Hand die PSI \& PHI Winkel errechnet und in den Plot eingezeichnet.
 
 
 

@@ -266,7 +266,7 @@
 
 \newcommand{\@ccLicenseAt}{%
 Diese Arbeit wird unter den Bedingungen der \textsl{Creative Commons Lizenz} 
-\emph{Namens\-nennung--NichtKommerziell--Keine\-Bearbeitung Österreich} 
+\emph{Namens\-nennung--Nicht Kommerziell--Keine Bearbeitung Österreich} 
 (CC BY-NC-ND) veröffentlicht --
 siehe \url{http://creativecommons.org/licenses/by-nc-nd/3.0/at/}.}
 

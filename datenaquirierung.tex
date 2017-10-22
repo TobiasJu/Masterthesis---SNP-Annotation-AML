@@ -1,13 +1,12 @@
 \chapter[Datenaquirierung]{Datenaquirierung}
 \label{chap:Datenaquirierung}
 
-Dieses Kapitel befasst sich mit der Datenaquirierung. Es sollte zu Beginn der vorherigen Arbeit der Versuch unternommen werden, die Substitutionsmatrix unter Zuhilfenahme der neuen Strukturen in der \ac{PDB} neu zu berechnen. Da sich zum Zeitpunkt der Arbeit \cite{Mathias.2014} in der \ac{PDB} 101.539 Proteinstrukturen befanden und nun zum Zeitpunkt dieser Arbeit 132.095 (Oktober 2017). Dies bedeutet eine Informationserweiterung von etwa 30\%. Doch es war aus zeitlichen Gründen für mich nicht möglich, die Substitutionsmatrix zu reproduzieren. Dennoch wurden die Daten als Grundlage für die $\psi$ \& $\phi$ Berechnung genutzt. Hier wurde besonderer Wert auf die Reproduzierbarkeit gelegt und Schritt für Schritt erklärt wie der Datensatz entstanden ist.
+Dieses Kapitel befasst sich mit der Datenaquirierung. Es sollte zu Beginn der vorherigen Arbeit der Versuch unternommen werden, die Substitutionsmatrix, unter Zuhilfenahme der neuen Strukturen in der \ac{PDB}, neu zu berechnen. Da sich zum Zeitpunkt der Arbeit \cite{Mathias.2014} in der \ac{PDB} 101.539 Proteinstrukturen befanden und nun zum Zeitpunkt dieser Arbeit 132.095 (Oktober 2017). Dies bedeutet eine Informationserweiterung von etwa 30\%. Doch es war aus zeitlichen Gründen nicht möglich, die Substitutionsmatrix zu reproduzieren. Dennoch wurden die Daten als Grundlage für die $\psi$ \& $\phi$ Berechnung genutzt. Hier wurde besonders Wert auf die Reproduzierbarkeit gelegt und Schritt für Schritt erklärt wie der Datensatz entstanden ist.
 
 
 
 \section{Konstruktion des Datensatzes}
 \label{sec:konst}
-
 Um die Änderungen der $\psi$ \& $\phi$ in der 3D-Struktur interpretieren zu können, musste als Erstes ein geeigneter Datensatz erstellt werden. Hierfür wurde an Hand der Arbeit \cite{Mathias.2014}, ein repräsentativer Datensatz aus der \ac{Pfam} und \ac{PDB} erzeugt, Alle benutzten Skripte sind im Ordner \texttt{data\_mining}, im Anhang dieser Arbeit, zu finden.
 
 % Hier könnte noch ein bisschen mehr stehen ;)
@@ -16,7 +15,7 @@ Um die Änderungen der $\psi$ \& $\phi$ in der 3D-Struktur interpretieren zu kö
 \begin{enumerate}
 \item
     \begin{sloppypar}
-    Um schnell und effizient mit den beiden Datenbanken arbeiten zu können, wurden diese von deren offiziellen Webseiten heruntergeladen. Die \ac{PDB} besitzt eine offizielle download Seite\footnote{\url{http://www.rcsb.org/pdb/static.do?p=download/http/index.html}}. Doch in dieser Arbeit wurde sie via Kommandozeile mit folgendem Befehl heruntergeladen:
+    Um schnell und effizient mit den beiden Datenbanken arbeiten zu können, wurden diese von deren offiziellen Webseiten heruntergeladen. Die \ac{PDB} besitzt eine offizielle download Seite\footnote{\url{http://www.rcsb.org/pdb/static.do?p=download/http/index.html}}, doch in dieser Arbeit wurde sie via Kommandozeile mit folgendem Befehl heruntergeladen:
 \begin{lstlisting}
 wget -N ftp://ftp.wwpdb.org/pub/pdb/data/structures/all/pdb/*
 \end{lstlisting}
@@ -29,21 +28,21 @@ wget -N ftp://ftp.wwpdb.org/pub/pdb/data/structures/all/pdb/*
     Um die benötigten Strukturdaten aus der PDB zu extrahieren, wird eine Datei benötigt, welche von der Pfam bereitgestellt wird. Die \texttt{pdbmap} enthält mapping Informationen zu allen Sequenzen von Proteindomänen der \ac{Pfam}, zu denen eine Struktur auf der \ac{PDB} vorhanden ist. Durch die entsprechende Kennzeichnung durch \ac{Pfam} ID und \ac{PDB} ID, sowie Start und Ende der Proteindomäne innerhalb der gesamten Proteinstruktur, lassen sich die benötigten Strukturdaten extrahieren. Jedoch muss diese Liste vor ihrer Verwendung noch überprüft werden.
     \begin{enumerate}
         \item 
-        Es ist wichtig, alpha helicale Membranproteine herauszufiltern, da diese sich fundamental in ihren strukturellen Eigenschaften von globulären Proteinen unterscheiden. Dies wurde mit Hilfe des Skriptes \texttt{filter\_membrane\_protein\_ids.py} durchgeführt. Dieses Skript benötigt zusätzlich noch die Liste aller Transmembranproteine \texttt{pdbtm\_all.list.txt}, welches auf der Webseite der \ac{PDBTM}\footnote{\url{http://pdbtm.enzim.hu}} zu finden ist.
+        Es ist wichtig, alpha helicale Membranproteine herauszufiltern, da diese sich fundamental in ihren strukturellen Eigenschaften von globulären Proteinen unterscheiden. Dies wurde mit Hilfe des Skriptes \texttt{filter\_membrane\_protein\_ids.py} durchgeführt. Dieses Skript benötigt zusätzlich noch die Liste aller Transmembranproteine \texttt{pdbtm\_all.list.txt}, welche auf der Webseite der \ac{PDBTM}\footnote{\url{http://pdbtm.enzim.hu}} zu finden ist.
         \item
-        Danach kann mit der Filterung der \ac{Pfams} begonnen werden. Hierfür wurde das Skript \texttt{filter\_membrane\_pfams.py} verwendet.
+        Filterung der \ac{Pfams}, hierfür wurde das Skript \texttt{filter\-\_membrane\-\_pfams.py} verwendet, welches alle membranassoziierte Proteine herausfiltert.
     \end{enumerate}
 \item
     Im letzten Schritt werden alle Familiendateien herausgefiltert, zu denen mindestens eine Struktur in der \ac{PDB} vorhanden ist. Von diesen Familien werden dann nur die Sequenzen übernommen, welche eine bekannte Struktur haben. Um dieses Sequenzen, zu identifizieren mussten zwei zusätzliche Schritte durchgeführt werden.
     \begin{enumerate}
         \item
-        Als erstes wurden alle \texttt{UniProtKB} AC/IDs aus der \texttt{pdbmap} mittels dem Skript \texttt{extract\_pdbmap\_ids.py} in ID Listen geparst. 
+        Parsen der \texttt{UniProtKB} AC/IDs aus der \texttt{pdbmap}, mittels dem Skript \texttt{extract\_pdbmap\_ids.py}, in ID Listen.
         \item
-        Danach wurden diese ID Listen mit den \texttt{UniProtKB} AC/IDs auf der UniProt Webseite\footnote{\url{http://www.uniprot.org/uploadlists/}} eingefügt, um so die korrespondierenden \texttt{EMBL} CDS IDs zu bekommen, welche die Sequenzen in den Pfams eindeutig beschreiben.
+        Die ID Listen mit den \texttt{UniProtKB} AC/IDs auf der UniProt Webseite\footnote{\url{http://www.uniprot.org/uploadlists/}} einfügen, um so die korrespondierenden \texttt{EMBL} CDS IDs zu erhalten, welche die Sequenzen in den Pfams eindeutig beschreiben.
         \item
-        Mit den EMBL CDS IDs war es nun möglich, alle benötigten Sequenzen aus den Pfams mittels dem Skript \texttt{find\-\_pfam\-\_pdb\-\_sequences.py} zu filtern.
+        Filtern aller benötigten Sequenzen aus den Pfams, mit den EMBL CDS IDs, mittels dem Skript \texttt{find\-\_pfam\-\_pdb\-\_sequences.py}.
         \item
-        Zuletzt wurde noch mit dem Skript \texttt{find\-\_empty\-\_pfams.py} alle Proteinfamilien, welche keine Sequenzen mehr beinhalten, verworfen. 
+        Verwerfen aller Proteinfamilien, welche keine Sequenzen mehr beinhalten, mit dem Skript \texttt{find\-\_empty\-\_pfams.py}. 
     \end{enumerate}
 \end{enumerate}
 
@@ -51,24 +50,23 @@ Nach allen Schritten wurde so ein Datensatz erzeugt, der 73410 Sequenzen aus 502
 
 
 
-
 \section{Berechnung der Energieprofile}
 \label{sec:calc_ep}
-Der folgende Abschnitt befasst sich mit der Erstellung der \ac{EP}s, denn ursprünglich war es geplant, die \ac{EP}s vom Webserver ePros \ref{sec:epros} herunter zu laden, doch leider waren die Downloadlinks zum Zeitpunkt dieser Arbeit nicht erreichbar. Nach einer erfolgreichen E-Mail Korrespondenz wurde ein Java Programm von der Arbeitsgruppe \emph{bigM} zur Verfügung gestellt. Mit diesem Programm war es nun möglich, sowohl globuläre als auch alpha helicale, \ac{EP}s lokal zu berechnen. 
+Der folgende Abschnitt befasst sich mit der Erstellung der \ac{EP}s, denn ursprünglich war es geplant, die \ac{EP}s vom Webserver ePros \ref{sec:epros} herunter zu laden, doch die Downloadlinks waren zum Zeitpunkt dieser Arbeit nicht erreichbar. Als Ausgleich wurde ein Java Programm von der Arbeitsgruppe \emph{bigM} zur Verfügung gestellt. Mit diesem Programm war es nun möglich, sowohl globuläre als auch alpha helicale, \ac{EP}s lokal zu berechnen. 
 
-Die Datengrundlage für \ac{EP}s ist die Struktur der Proteine, welche in der \ac{PDB} gespeichert sind. Die \ac{PDB} weist z.Z. dieser Arbeit (Oktober 2017) 132095 Strukturen vor, auf dem Webserver ePros befinden sich jedoch 346365 \ac{EP}s. Dies ist dem Umstand geschuldet, dass auf dem ePros Webserver für jede \emph{side chain} eines Proteins ein extra \ac{EP} angelegt wurde. So gibt es z.B. für den \ac{PDB} Eintrag 1A0A drei \ac{EP}s, neben der Datei \texttt{1A0A.ep2}, welche alle \emph{side chains} enthält, noch \texttt{1A0A-A.ep2} und \texttt{1A0A-B.ep2}, welche jeweils nur entweder die A oder B \emph{side chain} enthalten.
+Die Datengrundlage für \ac{EP}s ist die Struktur der Proteine, welche in der \ac{PDB} gespeichert sind. Die \ac{PDB} weist z.Z. dieser Arbeit (Oktober 2017) 132.095 Strukturen vor, auf dem Webserver ePros befinden sich jedoch 346.365 \ac{EP}s. Dies ist dem Umstand geschuldet, dass auf dem ePros Webserver für jede \emph{side chain} eines Proteins ein extra \ac{EP} angelegt wurde. So gibt es z.B. für den \ac{PDB} Eintrag 1A0A drei \ac{EP}s, neben der Datei \texttt{1A0A.ep2}, welche alle \emph{side chains} enthält, noch \texttt{1A0A-A.ep2} und \texttt{1A0A-B.ep2}, welche jeweils nur entweder die A oder B \emph{side chain} enthalten.
 
-Die Rechenleistung eines einzelnen PCs stellte sich allerdings als nicht ausreichend heraus, um das Problem zeitnah zu lösen. Aufgrund dessen wurde eine Nextflow Pipeline geschrieben, mit der die Berechnung der \ac{EP}s  parallelisiert wurde. Somit konnte die Geschwindigkeit um den Faktor 100 gesteigert werden. Zudem wurde die Nextflow Pipeline noch genutzt, um direkt die Anpassung der Daten vorzunehmen. Insgesamt wurden 4 Schritte von der Pipeline ausgeführt:
+Die Rechenleistung eines einzelnen PCs stellte sich allerdings als nicht ausreichend heraus, um das Problem zeitnah zu lösen. Aufgrund dessen wurde eine Nextflow Pipeline geschrieben, mit der die Berechnung der \ac{EP}s  parallelisiert wurde. Somit konnte die Geschwindigkeit ca. um den Faktor 100 gesteigert werden. Zudem wurde die Nextflow Pipeline noch genutzt, um direkt die Anpassung der Daten vorzunehmen. Insgesamt wurden 4 Schritte von der Pipeline ausgeführt:
 
 \begin{enumerate}
     \item
-        Als Erstes wurden alle komprimierten \ac{PDB} Dateien entpackt und für jede Datei ein extra Thread angelegt, mit einer maximalen Parallelisierung von 200 Threads.
+        Entpacken aller komprimierten \ac{PDB} Dateien und anlegen eines extra Thread für jede Datei, mit einer maximalen Parallelisierung von 200 Threads.
     \item 
-        Danach wurden die \ac{EP}s  mittels dem bereitgestellten Java Programm aus den \ac{PDB} Dateien berechnet.
+        Berechnung der \ac{EP}s aus den \ac{PDB} Dateien, mittels dem bereitgestellten Java Programm.
     \item
-        Im 3. Schritt wurde jedem \ac{EP} ein zusätzliches Verbindungsprofil hinzugefügt, indem nach benachbarten Aminosäuren innerhalb der 8 Angström Sphäre gesucht wurde, diese Kontaktmatrix ist in Abschnitt \ref{sec:Kontaktmatrix} näher erklärt.
+        Hinzufügen eins zusätzliches Verbindungsprofil zum \ac{EP}, indem nach benachbarten Aminosäuren innerhalb der 8 Angström Sphäre gesucht wurde, diese Kontaktmatrix ist in Abschnitt \ref{sec:Kontaktmatrix} näher erklärt.
     \item
-        Im letzten Schritt wurden die Namen der Dateien bereinigt, denn Nextflow arbeitet mit vielen Dateiendungen, um die Daten zu verarbeiten. Am Ende des Workflows ist der Ordner gefüllt mit \texttt{pdb*.\-ent.\-ep2.\-cnn} Dateien. Diese werden nun geöffnet und anhand ihrer \ac{PDB} ID umbenannt.
+        Bereinigung der Dateinamen, Nextflow arbeitet mit vielen Dateiendungen, um die Daten zu verarbeiten. Am Ende des Workflows ist der Ordner gefüllt mit \texttt{pdb*.\-ent.\-ep2.\-cnn} Dateien. Diese werden nun geöffnet und anhand ihrer \ac{PDB} ID umbenannt.
 \end{enumerate}
 
 \paragraph{Hinweis:} Hierbei ist noch zu erwähnen, dass die Pipeline insgesamt zweimal ausgeführt wurde, einmal mit allen globulär assozierten \ac{PDB} Daten und einmal mit allen alpha helicalen Membran Dateien, da sich die Berechnung dieser beiden Klassen unterscheidet.
@@ -77,11 +75,11 @@ Nach der Abschluss der Berechnung waren 132.098 globuläre und 3.172 alpha helic
 
 \section{Kontaktmatrix}
 \label{sec:Kontaktmatrix}
-Die Kontaktmatrix wurde erstellt mit dem Ziel, dem Energieprofil zusätzliche Informationen hinzuzufügen, ohne es dabei zu verändern oder externe Daten zu benötigen. Ein \ac{EP} mit Kontakten ist identisch zu einem \ac{EP} ohne diese (siehe Abschnitt \ref{sec:Energieprofil}). Es wurde lediglich um eine Spalte, bestehend aus einer Liste, aus \texttt{1} oder \texttt{0}, erweitert:
+Die Kontaktmatrix wurde erstellt mit dem Ziel, dem Energieprofil zusätzliche Informationen hinzuzufügen, ohne es dabei zu verändern oder externe Daten zu benötigen. Ein \ac{EP} mit Kontakten ist identisch zu einem \ac{EP} ohne diese, siehe Abschnitt \ref{sec:Energieprofil}. Es wurde lediglich um eine Spalte, bestehend aus einer Liste, aus \texttt{1} oder \texttt{0}, erweitert:
 
 \begin{table}[H]
     \centering
-    \caption{Dargestellt ist das gleiche \ac{EP} wie in Tabelle \ref{tab:EP}, mit zusätzlichem Kontaktprofil in jeder \texttt{ENGY} Zeile. Hierbei steht eine 1 für einen Kontakt und eine 0 für keinen Kontakt innerhalb der 8 Angström Sprähre, vergleiche \ref{fig:8A_Sphaere}.}
+    \caption{Dargestellt ist das gleiche \ac{EP} wie in Tabelle \ref{tab:EP}, mit zusätzlichem Kontaktprofil in jeder \texttt{ENGY} Zeile. Hierbei steht eine 1 für einen Kontakt und eine 0 für keinen Kontakt innerhalb der 8 Angström Sprähre, vgl. \ac{Abb} \ref{fig:8A_Sphaere}. Die Länge der Kontaktliste entspricht der Länge der Aminosäuresequenz, dem entsprechend ist die Position der Zahl, gleich der Position in der Kette.}
     \label{tab:kontaktmatrix}
     \resizebox{\linewidth}{!}{%
     \begin{tabular}{lllllll}
@@ -108,9 +106,9 @@ Die Kontaktmatrix wurde erstellt mit dem Ziel, dem Energieprofil zusätzliche In
     \end{tabular}}
 \end{table}
 
-In dieser Liste ist die Information zu den benachbarten Aminosäuren gespeichert. Die Länge der Liste ist immer gleich der Länge der Sequenz der Polypeptidkette im EP. Hierbei ist zu beachten, dass fehlende 3D-Informationen und somit fehlende Aminosäuren übersprungen werden. Im obigen Beispiel sieht man dies sehr gut. Die \texttt{F Chain} hat 24 Aminosäuren, doch es sind nur die 3D-Positionen von 17 Aminosäuren bekannt, weswegen auch die Kontaktliste nur 17 Einträge aufweist. Iteriert man nun über die Liste, so ist der erste Eintrag gleich der ersten Position in der Chain, der zweite Eintrag in der Liste ist hingegen der Dritte in der Chain, da die Position der zweiten Aminosäure noch nicht aufgeklärt ist und somit auch im \ac{EP} fehlt.
+In dieser Liste ist die Information zu den benachbarten Aminosäuren gespeichert. Die Länge der Liste ist immer gleich der Länge der Sequenz der Polypeptidkette im EP. Hierbei ist zu beachten, dass fehlende 3D-Informationen und somit fehlende Aminosäuren übersprungen werden. Im obigen Beispiel ist dies zu sehen, vgl. Tabelle \ref{tab:kontaktmatrix}. Die \texttt{F Chain} hat 24 Aminosäuren, doch es sind nur die 3D-Positionen von 17 Aminosäuren bekannt, weswegen auch die Kontaktliste nur 17 Einträge aufweist. Iteriert man nun über die Liste, so ist der erste Eintrag gleich der ersten Position in der Kette, der zweite Eintrag in der Liste ist hingegen der Dritte in der Kette, da die Position der zweiten Aminosäure noch nicht aufgeklärt ist und somit auch im \ac{EP} fehlt.
 
-Eine \texttt{1} bedeutet, es gibt in der 8 Angström Umgebung um die Aminosäure, einen Kontakt mit der anderen Aminosäure. Am Beispiel der ersten Aminosäure Prolin an Position 1, kann man also sehen, dass diese Kontakte mit Glycin an Position 3 und Prolin an Position 4 in der Chain hat. Eine \texttt{0} bedeutet im Gegensatz dazu, dass kein Kontakt in der 8\AA\ Umgebung besteht.
+Eine \texttt{1} bedeutet, es gibt in der 8 Angström Umgebung um die Aminosäure, einen Kontakt mit der anderen Aminosäure. Am Beispiel der ersten Aminosäure Prolin an Position 1, kann man also sehen, dass diese Kontakte mit Glycin an Position 3 und Prolin an Position 4 in der Kette hat. Eine \texttt{0} bedeutet im Gegensatz dazu, dass kein Kontakt in der 8\AA\ Umgebung besteht.
 
 Um ein Kontaktprofil zu errechnen, wird das Python Skript \texttt{add\-\_aa\-\_connections.py} verwendet. Zuerst wird für das jeweilige \ac{EP} die entsprechende \ac{PDB} Datei herausgesucht. In dem oben genannten Beispiel wäre dies \texttt{pdb3t4f.ent}. Nun wird über die \ac{PDB} Datei iteriert und alle Positionen der Aminosäuren analysiert und mit der Abstandsgleichung \ref{eq:abstand}, der Abstand der einzelnen Aminosäuren zueinander bestimmt.
 

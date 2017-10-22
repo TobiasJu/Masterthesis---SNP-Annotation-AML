@@ -8,17 +8,17 @@ Ausgehend von dem nun verfügbaren Datensatz, ist es möglich mit der Anwendung 
 \section{Aminosäurerest-Pseudopotential Spektrum}
 
 
-\subsection{Quartil Berechnung}
+\subsection{Quantil Berechnung}
 
-Zuerst wurde die allgemeine Verteilung der \ac{APs} in Quartile erfasst. Dies wurde mit dem Skript \texttt{check\_energy\_quants.py} durchgeführt. Dafür wurde zuerst über den Ordner mit allen globulären \ac{EP}s iteriert und alle Energiewerte in eine Liste geschrieben. Danach wurde diese Liste sortiert und mit dem Grubbs-Test\cite{Jain.2010} (alpha=0.05) wurden die Ausreißer entfernt. Abschließend wurde die Länge der Liste ermittelt und die Quartile ausgegeben.
+Zuerst wurde die allgemeine Verteilung der \ac{APs} in Quartile erfasst. Dies wurde mit dem Skript \texttt{check\_energy\_quants.py} durchgeführt. Dafür wurde zuerst über den Ordner mit allen globulären \ac{EP}s iteriert und alle Energiewerte in eine Liste geschrieben. Danach wurde diese Liste sortiert und mit dem Grubbs-Test \cite{Jain.2010} (alpha=0.05), wurden die Ausreißer entfernt. Abschließend wurde die Länge der Liste ermittelt und die Quartile ausgegeben.
 
-Die oben genannten Schritte wurden für den Ordner mit den membranassoziierten Proteinen wiederholt, die Ergebnisse wurden in eine Excel Tabelle überführt und sind in \ac{Abb} \ref{fig:quartiles_glob} und \ref{fig:quartiles_memb} dargestellt.
+Die oben genannten Schritte wurden für den Ordner mit den membranassoziierten Proteinen wiederholt. Die Ergebnisse wurden in eine Excel Tabelle überführt und sind in \ac{Abb} \ref{fig:quartiles_glob} und \ac{Abb} \ref{fig:quartiles_memb} dargestellt.
 
 
 \subsection{Berechnungen für alle Aminosäurespektren}
 Nachdem die insgesamte Verteilung der Energiewerte bekannt ist, wurde in einem weiteren Schritt überprüft, ob und wie sich die \ac{AP} Verteilung zwischen den einzelnen Aminosäuren unterscheidet. Dafür wurde der gesamte Datensatz aus 132.098 globulären \ac{EP}s mit dem Skript \texttt{check\_aa\_energy\_range.py} analysiert. 
 
-Das Skript iteriert über die \ac{EP}s und speichert die Energiewerte, mit dem zugehörigen Aminosäurenamen, in einem Python \emph{Dictionary}. Dies ermöglicht es, über jeden \emph{Key} zu iterieren, um so nur für die gerade betrachtete Aminosäure alle Energiewerte zu verarbeiten. Nun wird für jede Aminosäure separat ein Test auf Normalverteilung aus dem Python Packet \emph{scipy}\footnote{\url{https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.mstats.normaltest.html}} durchgeführt und mittels dem Grubbs-Test die Ausreißer entfernt. Die Ergebnisse wurden abschließend mit \emph{Seaborn} visualisiert und sind in \ac{Abb} \ref{fig:energy_ranges} dargestellt. 
+Das Skript iteriert über die \ac{EP}s und speichert die Energiewerte, mit dem zugehörigen Aminosäurenamen, in einem Python \emph{Dictionary}. Dies ermöglicht es, über jeden \emph{Key} zu iterieren, um so nur für die gerade betrachtete Aminosäure alle Energiewerte zu verarbeiten. Nun wird für jede Aminosäure separat ein Test auf Normalverteilung aus dem Python Packet \emph{scipy}\footnote{\url{https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.mstats.normaltest.html}} durchgeführt und mittels dem Grubbs-Test die Ausreißer entfernt. Die Ergebnisse wurden abschließend mit \emph{Seaborn}\footnote{\url{http://seaborn.pydata.org}} visualisiert und sind in \ac{Abb} \ref{fig:energy_ranges} dargestellt. 
 
 Zusätzlich wurde mit dem Skript noch ein Histogramm für jede Aminosäure erstellt, siehe \ac{Abb} \ref{fig:ep_as_distr}.
 
@@ -27,7 +27,7 @@ Zusätzlich wurde mit dem Skript noch ein Histogramm für jede Aminosäure erste
 \section{SNP Analysen mittels EPs}
 \label{sec:snp_analyse}
 
-Um eine Aussage über die eventuelle Pathogenität von \ac{SNP}s zu treffen, war es erforderlich geeignete \ac{SNP}s zu finden, die betreffenden Gene zu identifizieren, eine \ac{PDB} Datei mit den Strukturinformationen des betreffenden Proteins zu haben. Dies ist notwendig, um anschließend das \ac{EP} für die generierten \ac{PDB} Dateien zu berechnen, damit die \ac{EP}s anschließend verglichen und ausgewertet werden können.
+Um eine Aussage über die eventuelle Pathogenität von \ac{SNP}s zu treffen, war es erforderlich geeignete \ac{SNP}s zu finden, die betreffenden Gene zu identifizieren und eine \ac{PDB} Datei mit den Strukturinformationen des betreffenden Proteins zu generieren. Dies ist notwendig, um anschließend das \ac{EP} für die generierten \ac{PDB} Dateien zu berechnen, damit die \ac{EP}s verglichen und ausgewertet werden können.
 
 
 \subsection{Identifizierung der SNPs}
@@ -36,34 +36,34 @@ Um geeignete \ac{SNP}s für eine aussagekräftige Analyse zu finden, wurde auf d
 
 Jedoch konnte nicht ohne Weiteres aus diesem Datensatz geschöpft werden, denn viele Variationen enthalten widersprüchliche Annotationen. Aufgrund dessen wurde auf die besten Annotationen zurückgegriffen, da fast keine \ac{SNP}s (23) in die beste Kategorie (vier Sterne) fallen, wurden zuerst nur Variationen betrachtet, welche aus dem \emph{expert panel} (drei Sterne) kommen. 
 
-Das \emph{expert panel} enthält 5.437 pathogene und 2.878 gutartige Variationen. Von diesen waren 1.717 pathogene und 2.697 gutartige \ac{SNP}s für diese Arbeit von Interesse, da die anderen genetischen Variationen aus Deletionen, Duplikationen und Insertionen bestehen. Ausgehend von diesen \ac{SNP}s wurden alle Gene ausgewählt, welche mindestens 10 Pathogene \ac{SNP}s in der ClinVar besitzen. So wurden 6 Gene ausgewählt, die Aminosäuresequenz aus der NCBI Protein Datenbank\footnote{\url{https://www.ncbi.nlm.nih.gov/protein/}} heruntergeladen und für jeden \ac{SNP} eine Sequenz angelegt. 
+Das \emph{expert panel} enthält 5.437 pathogene und 2.878 gutartige Variationen. Von diesen waren 1.717 pathogene und 2.697 gutartige \ac{SNP}s für diese Arbeit von Interesse, da die anderen genetischen Variationen aus Deletionen, Duplikationen und Insertionen bestehen. Ausgehend von diesen \ac{SNP}s wurden alle Gene ausgewählt, welche mindestens 10 Pathogene \ac{SNP}s in der ClinVar besitzen. So wurden 6 Gene ausgewählt, die Aminosäuresequenz aus der NCBI Protein Datenbank\footnote{\url{https://www.ncbi.nlm.nih.gov/protein/}} heruntergeladen und für jeden \ac{SNP} eine entsprechende Sequenz angelegt. 
 
-Da der Datensatz nach dem ersten Filterschritt immer noch zu wenige Gene und \ac{SNP}s umfasst, wurden die Kriterien der \ac{SNP} Auswahl erweitert. So wurden in einem zweiten Durchlauf auch jene \ac{SNP}s hinzugezogen, welche nicht im \emph{expert Panel} waren, sondern lediglich von mehreren Autoren eingetragen wurden. Somit standen 3.826 pathogene und 19.070 gutartige \ac{SNP}s zur Verfügung. Zusätzlich wurde die Mindestanzahl an pathogener SNPs auf 6 pro Gen verringert. Der erweiterte Datensatz befindet sich in Tabelle \ref{tab:multiple_subs_snps}.
+Da dieser Datensatz nach dem ersten Filterschritt immer noch zu wenige Gene und \ac{SNP}s umfasst, wurden die Kriterien der \ac{SNP} Auswahl erweitert. So wurden in einem zweiten Durchlauf auch jene \ac{SNP}s hinzugezogen, welche nicht im \emph{expert Panel} waren, sondern lediglich von mehreren Autoren eingetragen wurden. Somit standen 3.826 pathogene und 19.070 gutartige \ac{SNP}s zur Verfügung. Zusätzlich wurde die Mindestanzahl an pathogener SNPs auf 6 pro Gen verringert. Der letztendlich verwendete Datensatz befindet sich in Tabelle \ref{tab:multiple_subs_snps}.
 
 
 \subsection{Homologie Modellierung}
-Sobald alle Proteinsequenzen mit ihren zugehörigen \ac{SNP}s vorlagen, musste eine Homologie Modellierung durchgeführt werden. Denn zum einen besitzen nicht alle Proteine eine aufgeklärte Struktur und zum anderen sind nur sehr wenige mutierte Proteine strukturell aufgeklärt. So war es notwendig, jeweils für das Protein und die Mutation mit dem \ac{SNP} eine Homologie Berechnung durchzuführen. Hierzu wurde, wie in Kapitel \ref{sec:siwssmodel} gezeigt, mit Swissmodel eine Modellierung durchgeführt, indem alle Sequenzen per Hand in das Online Formular eingefügt wurden. Die Ergebnisse sind in Tabelle \ref{tab:expert_snps} dargestellt.
+Sobald alle Proteinsequenzen mit ihren zugehörigen \ac{SNP}s vorlagen, musste eine Homologie Modellierung durchgeführt werden. Denn zum einen besitzen nicht alle Proteine eine aufgeklärte Struktur und zum anderen sind nur sehr wenige mutierte Proteine strukturell aufgeklärt. So war es notwendig, jeweils für das Protein und die Mutation mit dem \ac{SNP} eine Homologie Berechnung durchzuführen. Hierzu wurde, wie in Kapitel \ref{sec:siwssmodel} gezeigt, mit Swissmodel eine Modellierung durchgeführt, indem alle Sequenzen per Hand in das online Formular eingefügt wurden. Die Ergebnisse sind in Tabelle \ref{tab:expert_snps} dargestellt.
 
 
 \subsection{Berechnung \& SNPs in Energieprofilen}
 \label{sec:plot_eps}
-Nachdem nun die \ac{PDB} Dateien vorliegen, wurde für jede dieser Dateien ein \ac{EP} berechnet, wie es auch in Kapitel \ref{sec:calc_ep} beschrieben ist. Diese \ac{EP}s wurden nun anschließend mit dem Skript \texttt{plot\_eps\_and\_snps.py} analysiert. Das Skript plottet zuerst die Referenz Energiesequenz und legt darüber die mutierte Sequenz, sodass man leicht sehen kann, an welcher Stelle sich die beiden unterscheiden. Zusätzlich wird noch eine dritte Linie, welche die Differenz der beiden darstellt, geplottet.
+Nachdem nun die \ac{PDB} Dateien vorliegen, wurde für jede dieser Dateien ein \ac{EP} berechnet, wie in Kapitel \ref{sec:calc_ep} beschrieben. Diese \ac{EP}s wurden nun anschließend mit dem Skript \texttt{plot\_eps\_and\_snps.py} analysiert. Das Skript plottet zuerst die Referenz Energiesequenz und legt darüber die mutierte Sequenz, sodass gesehen werden kann, an welcher Stelle sich die beiden unterscheiden. Zusätzlich wird noch eine dritte Linie, welche die Differenz der beiden darstellt, geplottet.
 
 Um diesen Ablauf nicht per Hand für jeden \ac{SNP} einzeln auszuführen, wurden verschiedene Bash Skripte zum Automatisieren geschrieben, diese sind im Online Anhang im Ordner \texttt{shell} zu finden.
 
 
 \subsection{Auswertung der Energieprofile}
 \label{sec:auswertung_eps}
-Die Plots haben eine gute Übersicht über die Qualität der \ac{SNP}s geliefert, jedoch wurde nach einer automatisierten Auswertung gesucht. Dies wurde mit dem Skript \texttt{snp\_eval.py} realisiert.
+Die Plots haben eine Übersicht über die Qualität der \ac{SNP}s geliefert, jedoch wurde nach einer automatisierten Auswertung gesucht. Dies wurde mit dem Skript \texttt{snp\_eval.py} realisiert.
 
 Das Skript iteriert über einen Ordner und dessen Unterordner, dabei wird vorausgesetzt, dass in jedem Unterordner ein Gen mit allen zugehörigen mutierten \ac{EP}s und des Referenz \ac{EP}s ist. Nun berechnet das Skript die totale Energie Differenz, über alle Aminosäuren, zwischen Mutation und Referenz \ac{EP}, sowie die relative und absolute Energiedifferenz am \ac{SNP}. Zusätzlich iteriert das Skript noch über die Kontakte und berechnet auch hier die Energiedifferenz pro Kontakt und über alle Kontakte insgesamt. Die Ergebnisse werden in einer Tabelle ausgegeben, siehe Tabellen \ref{tab:snps_glob} und \ref{tab:snps_memb}.
 
 
 \newpage
 \section{PSI \& PHI Winkel Berechnung}
-Der generierte Datensatz aus Kapitel \ref{sec:calc_ep}, ist Grundlage der folgenden Berechnung. Um mit Ramachandran Plots zu generieren, war es zuerst notwendig aus den Strukturdaten die PSI \& PHI Winkel zu errechnen. Dies wurde mit dem Skript \texttt{calculate\_psi\_phi.py} durchgeführt. Dafür liest das Skript zuerst die \texttt{pdbmap} ein und anschließend sucht es alle Proteine der jeweiligen Pfam zusammen. Dabei übernimmt das Skript selbst nur eine Wrapper Rolle, die Winkelberechnung an sich, wird mittels dem Java Programm \texttt{ramachan.jar} durchgeführt. Dieses Java Programm wurde mir von meinem Betreuer zu Verfügung gestellt. So sorgt das Skript dafür, dass die Winkelberechnung für jedes Protein der Familie durchgeführt wird. Ist die Berechnung abgeschlossen, so werden die Daten gebündelt und mit Seaborn\footnote{\url{https://seaborn.pydata.org/generated/seaborn.jointplot.html}} geplottet, siehe \ac{Abb} \ref{fig:ramachandran_PF01287}. 
+Der generierte Datensatz aus Kapitel \ref{sec:calc_ep} ist Grundlage der folgenden Berechnung. Um Ramachandran Plots zu generieren, war es zuerst notwendig aus den Strukturdaten die $\psi\ \&\ \phi$ Winkel zu errechnen. Dies wurde mit dem Skript \texttt{calculate\_psi\_phi.py} durchgeführt. Dafür liest das Skript zuerst die \texttt{pdbmap} ein, welche mapping Informationen von PDB IDs zu jeder Pfam enthält. Anschließend sucht es alle Proteine der jeweiligen Pfam zusammen. Dabei übernimmt das Skript selbst nur die Rolle eines Wrappers, die Winkelberechnung an sich, wird mittels dem Java Programm \texttt{ramachan.jar} durchgeführt. Dieses Java Programm wurde mir von meinem Betreuer zu Verfügung gestellt. So sorgt das Skript dafür, dass die Winkelberechnung für jedes Protein der Familie durchgeführt wird. Ist die Berechnung abgeschlossen, so werden die Daten gebündelt und mit Seaborn\footnote{\url{https://seaborn.pydata.org/generated/seaborn.jointplot.html}} geplottet, siehe \ac{Abb} \ref{fig:ramachandran_PF01287}. 
 
-Danach wurde für ein passendes Protein der Familie die Sequenz mutierte und das Protein anschließend modelliert, wie in Kapitel \ref{sec:siwssmodel} beschrieben. Anschließend wurde per Hand die PSI \& PHI Winkel errechnet und in den Plot eingezeichnet.
+Danach wurde für ein passendes Protein der Familie die Sequenz mutierte und das Protein anschließend modelliert, wie in Kapitel \ref{sec:siwssmodel} beschrieben. Anschließend wurde per Hand die $\psi\ \&\ \phi$ Winkel errechnet und in den Plot eingezeichnet.
 
 
 

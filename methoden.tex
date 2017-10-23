@@ -67,11 +67,12 @@ Die einzige aktuelle Quelle fertig berechneter Energieprofile ist der ePros Webs
 \end{description}
 
 
+\newpage
 \subsection{Energieprofile}
 \label{sec:Energieprofil}
 Energieprofile (EPs) sind die Grundlage dieser Arbeit, daher wird kurz der Aufbau des Datenformats erklärt. Ein \ac{EP} ist eine Datei mit \ac{APs} für jede Aminosäure. Im folgenden Beispiel ist das \ac{EP} für die Struktur \texttt{3T4F} der \emph{F Chain} dargestellt. Die ersten beiden Zeilen beschreiben das \ac{EP}, in der ersten Zeile steht der Name der Struktur und in der Zweiten ob es sich um ein globuläres oder alpha helikales Protein handelt. Die restlichen Zeilen sind immer gleich aufgebaut und Tabstopp separiert. In der Spalte steht immer \texttt{ENGY}, gefolgt von dem Chain Buchstaben, dahinter steht die Aminosäurennummer und der Aminosäurennamen. Dahinter steht die Sekundärstruktur und ganz am Ende steht der Energie Wert der betreffenden Aminosäure. Am Ende der Datei können noch Zeilen mit \texttt{REMK} beginnen, in denen z.B. die Qualität der zugrundeliegenden \ac{PDB} Datei angegeben ist.
 
-\begin{table}[]
+\begin{table}[H]
     \centering
     \caption{Gezeigt ist ein \acf{EP} des globulären Proteins \texttt{3t4f}, zu sehen in den obersten beiden Zeilen. Die dritte Zeile enthält die Header Zeile, welche Aufschluss über die folgenden Zeilen gibt, welche immer gleich aufgebaut sind. Die \texttt{ENGY} Zeilen beginnen mit dem Aminosäureketten-Buchstaben, gefolgt von der Position, dem Namen, der Sekundärstruktur und dem Energiewert der Aminosäure.}
     \label{tab:EP}
@@ -99,14 +100,14 @@ Energieprofile (EPs) sind die Grundlage dieser Arbeit, daher wird kurz der Aufba
     \end{tabular}
 \end{table}
 
-\begin{table}[]
+\begin{figure}[]
+%\begin{table}[]
     \centering
-    \caption{Die 20 kanonischen Aminosäuren mit Abkürzungen, Acylgruppe und prozentualer Anteil an der Gesamtheit\protect\footnotemark. Diese Tabelle dient dem Verständis der Tabelle \ref{tab:EP}, \ac{Abb} \ref{fig:epros}, \ac{Abb} \ref{fig:energy_ranges} und \ac{Abb} \ref{fig:ep_vs_snp}.}
+    \captionof{table}{Die 20 kanonischen Aminosäuren mit Abkürzungen, Acylgruppe und prozentualer Anteil an der Gesamtheit \cite{Merkl.2015}. Diese Tabelle dient dem Verständis der Tabelle \ref{tab:EP}, \ac{Abb} \ref{fig:amino_venn}, \ac{Abb} \ref{fig:epros}, \ac{Abb} \ref{fig:energy_ranges} und \ac{Abb} \ref{fig:ep_vs_snp}.}
     \label{tab:amino_table}
     \resizebox{\linewidth}{!}{%
     \begin{tabular}{llllll}
-     &  &  &  &  &  \\
-     &  &  &  &  &  \\ \hline
+    \hline
     \multicolumn{1}{|l|}{Name} & \multicolumn{1}{l|}{Abk.} & \multicolumn{1}{l|}{Symbol} & \multicolumn{1}{l|}{Acylgruppe} & \multicolumn{1}{l|}{essentiell?} & \multicolumn{1}{l|}{Ø in Proteinen} \\ \hline
     Alanin & Ala & A & Alanyl- & nein & 9,0 \% \\
     Arginin & Arg & R & Arginyl- & semi & 4,7 \% \\
@@ -127,12 +128,16 @@ Energieprofile (EPs) sind die Grundlage dieser Arbeit, daher wird kurz der Aufba
     Threonin & Thr & T & Threonyl- & ja & 6,0 \% \\
     Tryptophan & Trp & W & Tryptophyl- & ja & 1,1 \% \\
     Tyrosin & Tyr & Y & Tyrosyl- & nein & 3,5 \% \\
-    Valin & Val & V & Valyl- & ja & 6,9 \%
+    Valin & Val & V & Valyl- & ja & 6,9 \% \\
+     &  &  &  &  & 
     \end{tabular}}
-\end{table}
-%\footnotetext{\url{https://de.wikipedia.org/wiki/Aminosäuren##Kanonische_Aminos.C3.A4uren}}
+%\end{table}
 
-
+    \centering
+    \includegraphics[width=.70\textwidth]{images/amino_venn_diagramm.png}
+    \captionof{figure}{Venn Diagramm der 20 kanonischen Aminosäuren, zusammengefasst in Gruppen, basierend auf ihren physikalisch-chemischen Eigenschaften, aus \cite{Merkl.2015}.}
+    \label{fig:amino_venn}
+\end{figure}
 
 
 \newpage
@@ -146,10 +151,10 @@ Eine wichtige Grundlage der Arbeit ist die „Protein Daten Bank“, kurz PDB \c
 Die \ac{PDB} wurde 1971 von den \ac{BNL}\footnote{\url{https://www.rcsb.org/pdb/static.do?p=general_information/about_pdb/index.html}} als Archiv für biologische makromolekulare Kristallstrukturen etabliert und beinhaltete anfangs nur 7 Strukturen. 1980 zeigte sich ein rasanter Anstieg der eingereichten Strukturen, ausgelöst durch einen verbesserten Prozess der Kristallographie, einen offeneren Datenaustausch der wissenschaftlichen Gemeinschaft und der neuen Methode der Kernspinresonanzspektroskopie. So umfasst der Datensatz zum Zeitpunkt der vorangegangenen Arbeit 101.207 Strukturen (Juni 2014) und zum heutigen Zeitpunkt über 133.920 Strukturen (Oktober 2017). Bei einem Wachstum von fast 10.000 Strukturen pro Jahr, macht dies die \ac{PDB} zur weltweit größten Sammlung von bekannten Proteinstrukturen.
 
 \begin{figure}
-\includegraphics[width=.95\textwidth]{PDB_growth_rate.pdf}
-%\caption{}
-\caption{Die jährliche Wachstumsrate\protect\footnotemark \ der \ac{PDB} seit ihrer Gründung 1971 bis 2017. Auf der Abszisse sind die Jahre aufgetragen und auf der Ordinate sind die Strukturen pro Jahr (blau) und insgesamt (orange) abgebildet.}
-\label{fig:PDB_growth_rate}
+    \centering
+    \includegraphics[width=.95\textwidth]{PDB_growth_rate.pdf}
+    \caption{Die jährliche Wachstumsrate\protect\footnotemark \ der \ac{PDB} seit ihrer Gründung 1971 bis 2017. Auf der Abszisse sind die Jahre aufgetragen und auf der Ordinate sind die Strukturen pro Jahr (blau) und insgesamt (orange) abgebildet.}
+    \label{fig:PDB_growth_rate}
 \end{figure}
 
 %Der Zugriff auf die \ac{PDB} hat sich im Laufe der Jahre drastisch geändert, so wurden die Daten am Anfang noch mit Magnet Medien ausgetauscht, so kam mit der Etablierung des WWW, der Datenaustausch über dieses. Ebenso haben sich die Autoren der Daten geändert, so waren es am Anfang nur Experten auf dem Fachgebiet der Strukturellen Forschung, so sind es heute unterschiedlichste Kompetenzen in den Techniken der Röntgenkristallstrukturbestimmung, Kernspinresonanz, Kryo-Elektronenmikroskopie und theoretischen Modellierung. Genau so hat sich auch die Nutzerschaft erweitert, sodass es heute eine sehr diverse Gruppe aus Forschern, Lehrern und Studenten in den Fachbereichen Biologie, Chemie, Informatik und Physik ist. Die zunehmende Erkenntnis über den Wert der Daten und dem daraus resultierenden Verständnis der biologischen Funktion, sorgte für einen erhöhten Zustrom an Daten und erforderte einen neuen Weg die Daten zu sammeln, organisieren und zu verteilen. 
@@ -178,7 +183,7 @@ Die Pfam wurde 1997 von Sonnhammer EL, Eddy SR und Durbin R. ins Leben gerufen \
 Die aktuelle Version ist Pfam 31.0 und wurde am Europäischen Bioinformatik Institut (EBI)\footnote{\url{https://www.ebi.ac.uk}} produziert, mittels einer Sequenzdatenbank namens Pfamseq, welche auf UniProt\footnote{\url{http://www.uniprot.org}} basiert. Sie enthält aktuell 16712 Familien in 607 Clans (März 2017).
 
 
-\newpage
+%\newpage
 \subsection{ClinVar}
 \label{sec:clinvar}
 Die ClinVar\footnote{\url{https://www.ncbi.nlm.nih.gov/clinvar/}} Datenbank enthält Informationen über genetische Variationen und deren Auswirkungen auf die menschliche Gesundheit. Die Variationen sind in verschiedene Kategorien aufgeteilt, wie in Kapitel \ref{sec:snp_exp} beschrieben. Zum Zeitpunkt dieser Arbeit (Oktober 2017) enthielt sie 82.147 als \emph{pathogenic} markierte und 105.337 als \emph{benign} markierte genetische Variationen. Diese Daten wurden von 838 Autoren\footnote{\url{https://www.ncbi.nlm.nih.gov/clinvar/docs/submitter_list/}} eingetragen, die Top 10 sind in Tabelle \ref{tab:clinvar} eingetragen.
@@ -265,7 +270,7 @@ Im Rahmen dieser Arbeit war es nötig 3D-Strukturen für Proteinsequenzen zu erm
 \end{figure}
 
 \begin{quote}
-    "Die Homologiemodellierung (oder vergleichende Modellierung) stützt sich auf evolutionär verwandte Strukturen (Templates) zur Generierung eines Strukturmodell eines Proteins von Interesse (Target). Der Prozess umfasst typischerweise die folgenden Schritte: (i) Vorlage Identifikation, (ii) Auswahl der Vorlagen, (iii) Modellerstellung und (iv) Schätzung der Modellqualität. Kurz gesagt, eine Bibliothek von experimentell ermittelten Proteinstrukturen wird gesucht, mit empfindlichen Sequenzsuchwerkzeugen zur Identifizierung von Proteinen, die evolutionär mit dem Zielprotein verwandt sind. Wenn eine oder mehrere Vorlagen identifiziert sind, werden die Informationen der Abgleich der Ziel- und Modell-Sequenzen gemeinsam mit den 3D-Koordinaten der Vorlage (n) verwendet, um ein Strukturmodell für das Protein zu erstellen. Schließlich wird die Qualität des berechneten Modells geschätzt, um die Qualität des berechneten Modells für spätere Anwendungen zu zeigen."
+    "Die Homologiemodellierung (oder vergleichende Modellierung) stützt sich auf evolutionär verwandte Strukturen (Templates) zur Generierung eines Strukturmodell eines Proteins von Interesse (Target). Der Prozess umfasst typischerweise die folgenden Schritte: (i) Vorlage Identifikation, (ii) Auswahl der Vorlagen, (iii) Modellerstellung und (iv) Schätzung der Modellqualität. Kurz gesagt, eine Bibliothek von experimentell ermittelten Proteinstrukturen wird gesucht, mit empfindlichen Sequenzsuchwerkzeugen zur Identifizierung von Proteinen, die evolutionär mit dem Zielprotein verwandt sind. Wenn eine oder mehrere Vorlagen identifiziert sind, werden die Informationen der Abgleich der Ziel- und Modell-Sequenzen gemeinsam mit den 3D-Koordinaten der Vorlage (n) verwendet, um ein Strukturmodell für das Protein zu erstellen. Schließlich wird die Qualität des berechneten Modells geschätzt(QMEAN), um die Qualität des berechneten Modells für spätere Anwendungen zu zeigen."
 \end{quote}
 
 Übersetzt aus \cite{Biasini.2014}, den Autoren des Webservers Swissmodel\footnotetext{\url{https://swissmodel.expasy.org}}, welcher zur Homologie Berechnung genutzt wurde. Swissmodel liefert nach der Berechnung eine 3D-Struktur, mit einer gewissen \emph{Coverage}. Die Coverage bezeichnet den prozentualen Anteil der Struktur, welcher für die gegebene Aminosäuresequenz berechnet wurde. Je höher die Coverage ist, desto vollständiger ist also die Proteinstruktur.
@@ -278,9 +283,9 @@ Swissmodel zeichnet sich durch eine aufgeräumte Benutzeroberfläche, einem zuve
 \label{sec:ramachandran}
 Der Ramachandran Plot wurde 1963 von G. N. Ramachandran \cite{RAMACHANDRAN.1963} entwickelt, um die jeweiligen Diederwinkel (oder auch Torsionswinkel)  $\psi\ \&\ \phi$ eines bestimmten Protein-Backbones darzustellen. Die 3D-Struktur eines Proteins wird hauptsächlich durch nicht kovalente Bindungen zwischen Atomen unterschiedlicher Aminosäurereste bestimmt. Diese Bindungen sind für Strukturen wie Alpha Helices und Beta Faltblätter verantwortlich. Dies wird durch Veränderungen der  $\psi\ \&\ \phi$ Winkel des C Alpha Atoms erreicht, denn durch den Doppelbindungscharakter der Aminosäuren ist der $\omega$ Winkel immer 180° und das Protein damit planar. Somit können sich $\psi\ \&\ \phi$ Winkel in einem Bereich von -180° bis +180° befinden, siehe \ac{Abb} \ref{fig:psi_phi}. Wenn man nun auf der Ordinate die $\psi$-, auf der Abszisse die $\phi$-Winkel der C Alpha Atome aufträgt, erhält man den typischen Ramachandran Plot. 
 
-\begin{figure}
+\begin{figure}[H]
     \centering
-    \includegraphics[width=.95\textwidth]{psi_phi.png}
+    \includegraphics[width=.80\textwidth]{psi_phi.png}
     \caption{2-dimensionale Projektion eines Proteins mit C $\alpha$ Atom in der Mitte und gekennzeichneten Winkeln. Die grauen Ebenen zeigen, dass die Atome, welche durch die Peptidbindung (rot) verbunden sind, jeweils auf einer Ebene liegen, so kann sich der Aminosäurerest (grün) über seine $\psi\ \&\ \phi$ Winkeln frei drehen. Die Amino-Gruppe ist blau und die Carboxyl-Gruppe ist rosa dargestellt.\protect\footnotemark}
     \label{fig:psi_phi}
 \end{figure}
@@ -324,7 +329,7 @@ Zudem verfügt Spark noch über ein SQL Tool zum Verarbeiten von strukturierten 
 
 
 
-\newpage
+%\newpage
 \subsection{Nextflow}
 
 \begin{wrapfigure}{R}{0.5\textwidth}

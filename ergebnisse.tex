@@ -62,7 +62,7 @@ Der Violinen Plot beinhaltet zudem noch alle Ausreißer, aufgrund dessen sich da
 
 \newpage
 \subsection{Spektrum der Aminosäuren im Detail}
-In diesem Abschnitt wird das Spektrum der zwei Aminosäuren, Glutaminsäure und Glycin im Detail vorgestellt. Diese beiden Aminosäuren wurden exemplarisch ausgewählt, da sich alle Aminosäurespektren ähnlich verhalten. So ist in \ac{Abb} \ref{fig:ep_as_distr} zu sehen, dass alle Energiewerte der Glutaminsäure um einen Mittelwert (-0.1) verteilt sind. Bei Glycin sind ebenfalls alle Werte um den Mittelwert (-5.1) verteilt. Die Kurve ist nicht ganz symmetrisch, wie die Verteilung von den Energiewerten der Glutaminsäure. Die werte für die Aminosäuren Glycin bilden eine schiefe Verteilung, welche nach links flacher ist, als nach rechts. 
+In diesem Abschnitt wird das Energiespektrum der zwei Aminosäuren, Glutaminsäure und Glycin im Detail vorgestellt. Bei diesem Spektrum handelt es sich, um alle vorkommenden Energiewerte der jeweiligen Aminosäure. Die beiden Aminosäuren wurden exemplarisch ausgewählt, da sich alle Aminosäurespektren ähnlich verhalten. So ist in \ac{Abb} \ref{fig:ep_as_distr} zu sehen, dass alle Energiewerte der Glutaminsäure um einen Mittelwert (-0.1) verteilt sind. Bei Glycin sind ebenfalls alle Werte um den Mittelwert (-5.1) verteilt. Die Kurve ist nicht ganz symmetrisch, wie die Verteilung von den Energiewerten der Glutaminsäure. Die werte für die Aminosäuren Glycin bilden eine schiefe Verteilung, welche nach links flacher ist, als nach rechts. 
 
 \begin{figure}[H]
     \subfigure[\ac{AP} Verteilung von Glutaminsäure]{\includegraphics[width=0.49\textwidth]{images/Glutaminsaure_distr.png}}
@@ -146,8 +146,8 @@ Die in Kapitel \ref{sec:plot_eps} berechneten Plots sind nun hier dargestellt. I
 %
 \begin{figure}
     \centering
-    \includegraphics[width=.90\textwidth]{images/comp_plot_Ile169Val.png}
-    \includegraphics[width=.90\textwidth]{images/comp_plot_Gly164Trp.png}
+    \subfigure[EP mit \ac{SNP} Ile169Val.]{\includegraphics[width=.90\textwidth]{images/comp_plot_benign_MSH2_Ile169Val.png}}
+    \subfigure[EP mit \ac{SNP} Gly164Trp.]{\includegraphics[width=.90\textwidth]{images/comp_plot_patho_MSH2_Gly164Trp.png}}
     \caption{Ausschnitt aus dem Protein MSH2 mit benignem \ac{SNP} an Position 169 und mit pathogenen \ac{SNP} an Position 164. Auf der Abszisse ist die Aminosäureposition und auf der Ordinate sind die Energiewerte aufgetragen. Die Referenzsequenz ist blau, die mutierte Sequenz rot und die Differenz der beiden Sequenzen grün dargestellt. Die Position des \ac{SNP}s ist gelb markiert. Die gesamte Energiedifferenz über alle Aminosäuren ist in der Legende hinter \emph{diff} angegeben.} 
     \label{fig:comp_plot_MSH2}
 \end{figure}
@@ -160,8 +160,8 @@ Zudem wurden nicht nur Veränderungen unmittelbar am \ac{SNP} festgestellt, sond
 
 \begin{figure}
     \centering
-    \includegraphics[width=.95\textwidth]{images/comp_plot_ACADM_Met87Ile.png}
-    \includegraphics[width=.95\textwidth]{images/comp_plot_ACADM_Ile78Thr.png}
+    \subfigure[EP mit \ac{SNP} Met87Ile.]{\includegraphics[width=.95\textwidth]{images/comp_plot_ACADM_Met87Ile.png}}
+    \subfigure[EP mit \ac{SNP} Ile78Thr.]{\includegraphics[width=.95\textwidth]{images/comp_plot_ACADM_Ile78Thr.png}}
     \caption{Ausschnitt aus dem Protein ACADM mit benignem \ac{SNP} an Position 78 und mit pathogenen \ac{SNP} an Position 87. Auf der Abszisse ist die Aminosäureposition und auf der Ordinate sind die Energiewerte aufgetragen. Die Referenzsequenz ist blau, die mutierte Sequenz rot und die Differenz der beiden Sequenzen grün dargestellt. Die Position des \ac{SNP}s ist gelb markiert. Die gesamte Energiedifferenz über alle Aminosäuren ist in der Legende hinter \emph{diff} angegeben.}
     \label{fig:comp_plot_ACADM}
 \end{figure}

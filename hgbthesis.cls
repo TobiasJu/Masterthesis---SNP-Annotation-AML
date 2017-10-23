@@ -179,7 +179,7 @@
   \end{picture}
     \vskip 10mm%
     {\large\sc\@author}
-    \vskip 40mm%
+    \vskip 35mm%
     {\Large M\,A\,S\,T\,E\,R\,A\,R\,B\,E\,I\,T}%
     \vskip 20mm%
     {\large eingereicht am} \vskip 1mm {Masterstudiengang}%
@@ -188,6 +188,10 @@
     \vskip 4mm%
     {\large \@studienort}%
     \vskip 16mm%
+    {\large Erstprüfer: Andr\.{e} Marquardt}%
+    \vskip 1mm%
+    {\large Zweitprüfer: Prof. Dr. Alexander Goesmann}%
+    \vskip 5mm%
     {\large \monthname[\value{@abgabemonat}] \arabic{@abgabejahr}}%
 %   {\large im \@abgabemonat\ \@abgabejahr}%
 \end{center}\par
